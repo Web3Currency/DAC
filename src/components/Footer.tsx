@@ -13,6 +13,14 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
           <div className="lg:col-span-4 space-y-4">
             <div className="flex flex-col items-start gap-3">
+              <div className="w-fit max-w-[260px]">
+                <div className="text-xl font-bold tracking-tight text-white whitespace-nowrap">
+                  DEMOLA ADETOLA &amp; CO.
+                </div>
+                <div className="w-full origin-left scale-x-90 whitespace-nowrap text-[10px] font-semibold tracking-tight text-[#8ABE4B]">
+                  Chartered Estate Surveyors+Valuers
+                </div>
+              </div>
               <img
                 src="https://i.imgur.com/qczlHrn.png"
                 alt="Demola Adetola & Co. Logo"
