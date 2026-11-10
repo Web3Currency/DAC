@@ -81,10 +81,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
         <div className="px-6 py-5 bg-[#252223] text-white flex items-center justify-between border-b border-[#383435]">
           <div>
             <span className="text-[11px] font-bold tracking-wider uppercase text-[#8ABE4B] block">
-              Demola Adetola &amp; Co. · Fiduciary Mandate
+              Demola Adetola &amp; Co. · Property Enquiry
             </span>
             <h3 className="text-lg font-bold text-white mt-0.5">
-              Request Partner Valuation / Consultation
+              Request a Valuation or Consultation
             </h3>
           </div>
           <button
@@ -103,10 +103,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                 <CheckCircle className="w-8 h-8 text-[#07A757]" />
               </div>
               <h4 className="text-xl font-bold text-[#252223]">
-                Consultation Mandate Registered
+                Enquiry Preview
               </h4>
               <p className="text-xs sm:text-sm text-[#626061] max-w-md mx-auto leading-relaxed">
-                Thank you, <strong>{fullName}</strong>. A Chartered Surveyor from our Lagos Island practice will reach out to schedule your physical inspection or board consultation.
+                Thank you, <strong>{fullName}</strong>. This is a website preview. Enquiry submission is not connected yet.
               </p>
               <div className="pt-3">
                 <button
@@ -231,7 +231,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
               <div className="pt-3 border-t border-[#E5E9E1] flex items-center justify-between gap-3">
                 <span className="text-[11px] text-[#626061]">
-                  Strict NIESV &amp; ESVARBON Fiduciary Confidentiality
+                  Your details are shown for this website preview only
                 </span>
 
                 <div className="flex items-center gap-2">
