@@ -30,7 +30,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onOpenConsultati
   ];
 
   return (
-    <section id="process" className="py-20 lg:py-24 bg-[#F5F8F2] border-b border-[#E5E9E1]">
+    <section id="process" className="py-14 sm:py-16 lg:py-24 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
           <div className="max-w-3xl">
@@ -42,7 +42,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onOpenConsultati
               A Clear Process, From First Talk to Delivery.
             </h2>
             <p className="mt-4 text-sm sm:text-base text-[#626061] leading-relaxed">
-              We keep you informed at every stage, so you know what is happening and what to expect.
+              We explain each step and keep you updated as the work progresses.
             </p>
           </div>
           {onOpenConsultation && (
