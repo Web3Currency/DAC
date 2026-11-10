@@ -38,11 +38,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
   };
 
   return (
-    <section id="contact" className="py-14 sm:py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
+    <section id="contact" className="py-14 sm:py-12 sm:py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header — Strict, few text */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-8 sm:mb-12">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-8 h-0.5 bg-[#8ABE4B]" />
             <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">
@@ -77,7 +77,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
           {/* Left Form (no border, clean shadow) */}
           <div className="lg:col-span-7 bg-[#FFFFFF] rounded-2xl p-6 sm:p-8 shadow-md">
             <h3 className="text-lg font-bold text-[#252223] mb-4 pb-3 border-b border-[#E5E9E1]">
-              Submit Inquiry
+              Send an Enquiry
             </h3>
 
             {submitted ? (
@@ -194,7 +194,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                   type="submit"
                   className="w-full py-3 px-5 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-sm transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
                 >
-                  <span>Preview Enquiry</span>
+                  <span>Send Enquiry</span>
                   <Send className="w-3.5 h-3.5" />
                 </button>
               </form>
