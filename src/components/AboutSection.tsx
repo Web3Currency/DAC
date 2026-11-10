@@ -36,7 +36,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
                 </div>
               </div>
               <p className="text-xs text-[#626061] leading-normal">
-                The firm states that it is registered with the relevant professional and corporate bodies. Details should be confirmed before publication.
+                Serving the Nigerian property sector since 1993.
               </p>
             </div>
           </div>
