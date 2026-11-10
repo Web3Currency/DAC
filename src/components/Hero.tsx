@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
             We help individuals, businesses and investors with property valuation, buying and selling, property management and real estate advice.
           </p>
 
-          <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10">
+          <div className="flex flex-wrap gap-x-6 gap-y-3 mb-7">
             {proofPoints.map((point) => (
               <div key={point} className="flex items-center gap-2 text-sm font-medium text-white/90">
                 <CheckCircle2 className="w-4 h-4 text-[#A9D477] shrink-0" />
