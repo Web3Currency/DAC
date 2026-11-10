@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/src/assets/images/demola_logo_full.png"
+                src="https://raw.githubusercontent.com/Web3Currency/DAC/main/src/assets/images/demola_logo_full.png"
                 alt="Demola Adetola & Co."
                 className="h-10 w-auto object-contain brightness-110"
               />
