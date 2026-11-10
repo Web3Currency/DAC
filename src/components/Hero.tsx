@@ -8,7 +8,7 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   const proofPoints = [
     'Established in 1993',
-    'ESVARBON-licensed practice',
+    'Chartered estate surveying and valuation services',
     'Serving clients across Nigeria',
   ];
 
