@@ -9,22 +9,22 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
 
   return (
-    <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/50 shadow-[0_8px_30px_rgba(37,34,35,0.08)] supports-[backdrop-filter]:bg-white/60 transition-colors duration-300">
+    <header className="sticky top-0 z-[100] isolate self-start w-full shrink-0 bg-white/75 backdrop-blur-xl border-b border-white/60 shadow-[0_6px_24px_rgba(37,34,35,0.07)] supports-[backdrop-filter]:bg-white/65 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between h-16 md:h-[76px]">
           
           {/* Logo displayed directly without a container, background or outline */}
           <a href="#" className="flex items-center shrink-0 py-2">
             <img
               src="https://i.imgur.com/qczlHrn.png"
               alt="Demola Adetola & Co. Logo"
-              className="h-12 sm:h-14 md:h-16 w-auto max-w-[240px] sm:max-w-[280px] object-contain"
+              className="h-10 sm:h-11 md:h-12 w-auto max-w-[210px] sm:max-w-[230px] object-contain"
               loading="eager"
             />
           </a>
 
           {/* Desktop Navigation Menu */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-[#252223]">
+          <nav className="hidden lg:flex items-center gap-5 text-[13px] font-medium text-[#252223]">
             <a href="#" className="text-[#07A757] font-semibold py-1 border-b-2 border-[#8ABE4B]">
               Home
             </a>
@@ -36,25 +36,25 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
             <a href="#contact" className="hover:text-[#07A757] transition-colors py-1">Contact us</a>
           </nav>
 
-          <div className="hidden md:flex items-center gap-6 shrink-0">
-            <a href={`tel:${COMPANY_INFO.primaryPhone}`} className="flex items-center gap-3 text-left group">
-              <div className="w-10 h-10 rounded-full bg-[#F5F8F2]/80 border border-[#E5E9E1]/80 flex items-center justify-center text-[#07A757] group-hover:bg-[#8ABE4B] group-hover:text-[#252223] transition-all">
-                <Phone className="w-4 h-4" />
+          <div className="hidden md:flex items-center gap-4 shrink-0">
+            <a href={`tel:${COMPANY_INFO.primaryPhone}`} className="flex items-center gap-2.5 text-left group">
+              <div className="w-9 h-9 rounded-full bg-[#F5F8F2]/80 border border-[#E5E9E1]/80 flex items-center justify-center text-[#07A757] group-hover:bg-[#8ABE4B] group-hover:text-[#252223] transition-all">
+                <Phone className="w-3.5 h-3.5" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] uppercase font-semibold text-[#626061] tracking-wider">Call Our Office</span>
-                <span className="text-xs font-bold text-[#252223] group-hover:text-[#07A757] transition-colors tabular-nums">{COMPANY_INFO.primaryPhone}</span>
+                <span className="text-[9px] uppercase font-semibold text-[#626061] tracking-wider">Call Our Office</span>
+                <span className="text-[11px] font-bold text-[#252223] group-hover:text-[#07A757] transition-colors tabular-nums">{COMPANY_INFO.primaryPhone}</span>
               </div>
             </a>
 
-            <button onClick={() => onOpenConsultation()} className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-xs hover:shadow transition-all active:scale-[0.98]">
+            <button onClick={() => onOpenConsultation()} className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-xs hover:shadow transition-all active:scale-[0.98]">
               Speak With Our Team
             </button>
           </div>
 
           <div className="flex lg:hidden items-center gap-2">
             <button type="button" disabled aria-disabled="true" tabIndex={-1} className="p-2 text-[#252223] hover:text-[#07A757] hover:bg-[#F5F8F2] rounded-lg" aria-label="Toggle navigation">
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5" />
             </button>
           </div>
         </div>
