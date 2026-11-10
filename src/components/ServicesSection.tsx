@@ -4,15 +4,15 @@ import { CORE_SERVICES } from '../data/companyData';
 import { ServiceItem } from '../types';
 
 const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
-  'property-valuation': { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary residential property in Nigeria' },
-  'estate-agency-brokerage': { src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85', alt: 'Luxury Nigerian-style family residence' },
+  'property-valuation': { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary residential property' },
+  'estate-agency-brokerage': { src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85', alt: 'Modern family residence' },
   'property-facility-management': { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85', alt: 'Modern commercial high-rise property' },
-  'real-estate-consultancy': { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85', alt: 'Modern commercial office property interior' },
-  'feasibility-viability-studies': { src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85', alt: 'Architectural development and construction site' },
-  'land-use-planning': { src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85', alt: 'Urban land development and modern architecture' },
-  'compulsory-acquisition': { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85', alt: 'Detached residential property and landscaped plot' },
+  'real-estate-consultancy': { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85', alt: 'Modern commercial office interior' },
+  'feasibility-viability-studies': { src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85', alt: 'Property development architecture' },
+  'land-use-planning': { src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85', alt: 'Urban development and architecture' },
+  'compulsory-acquisition': { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85', alt: 'Detached residential property' },
   'investment-jv-consultancy': { src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary property development' },
-  'project-management': { src: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85', alt: 'Premium residential property exterior' },
+  'project-management': { src: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85', alt: 'Residential property exterior' },
 };
 
 interface ServicesSectionProps {
@@ -25,112 +25,69 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onViewServiceDetail,
 }) => {
   return (
-    <section id="services" className="py-20 lg:py-28 bg-[#F5F8F2] border-b border-[#E5E9E1]">
+    <section id="services" className="py-20 lg:py-24 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">
-              Our Services
-            </span>
+            <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">Our Services</span>
           </div>
-
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223] leading-tight">
-            Comprehensive Real Estate Solutions Designed Around Your Needs.
+            Real Estate Services to Help You Make the Right Move.
           </h2>
-
-          <p className="mt-4 text-base text-[#626061] leading-relaxed">
-            Our services are tailored to help clients protect, manage, develop, and maximize the value of their real estate investments across Nigeria.
+          <p className="mt-4 text-sm sm:text-base text-[#626061] leading-relaxed">
+            From property valuation and sales to management and development advice, we help clients protect and get more value from their property.
           </p>
         </div>
 
-        {/* 9 Numbered Services Grid with White backgrounds & subtle grey-green borders */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {CORE_SERVICES.map((service) => (
-            <div
-              key={service.id}
-              className="group bg-[#FFFFFF] rounded-2xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 relative"
-            >
+            <div key={service.id} className="group bg-white rounded-2xl p-6 flex flex-col justify-between shadow-sm border border-[#E5E9E1] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
               <div>
-                <div className="relative -mx-8 -mt-8 mb-6 h-40 overflow-hidden rounded-t-2xl bg-[#E5E9E1]">
+                <div className="-mx-6 -mt-6 mb-5 h-40 overflow-hidden rounded-t-2xl bg-[#E5E9E1]">
                   <img
-                    src={SERVICE_IMAGES[service.id]?.src ?? '/src/assets/images/property_commercial_tower_1794305810858.jpg'}
-                    alt={SERVICE_IMAGES[service.id]?.alt ?? `${service.title} in Nigeria`}
+                    src={SERVICE_IMAGES[service.id].src}
+                    alt={SERVICE_IMAGES[service.id].alt}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/35 to-transparent" />
                 </div>
-                {/* Service Number (Top right icon removed per instructions) */}
-                <div className="mb-5">
-                  <span className="text-3xl font-extrabold text-[#8ABE4B] tracking-tight tabular-nums block">
-                    {service.number}
-                  </span>
-                </div>
-
-                {/* Service Title in Charcoal */}
-                <h3 className="text-xl font-bold text-[#252223] group-hover:text-[#07A757] transition-colors mb-3 leading-snug">
-                  {service.title}
-                </h3>
-
-                {/* Short Description in Slate Grey */}
-                <p className="text-xs sm:text-sm text-[#626061] leading-relaxed mb-6">
-                  {service.shortDesc}
-                </p>
-
-                {/* Scope Preview */}
-                <div className="pt-4 border-t border-[#E5E9E1] space-y-2 text-xs text-[#626061] mb-6">
-                  {service.scope.slice(0, 2).map((s, i) => (
-                    <div key={i} className="flex items-start gap-2">
+                <span className="text-2xl font-extrabold text-[#8ABE4B] tracking-tight tabular-nums block mb-3">{service.number}</span>
+                <h3 className="text-lg font-bold text-[#252223] group-hover:text-[#07A757] transition-colors mb-3 leading-snug">{service.title}</h3>
+                <p className="text-sm text-[#626061] leading-relaxed mb-5">{service.shortDesc}</p>
+                <div className="pt-4 border-t border-[#E5E9E1] space-y-2 text-xs text-[#626061] mb-5">
+                  {service.scope.slice(0, 2).map((item, index) => (
+                    <div key={index} className="flex items-start gap-2">
                       <span className="text-[#8ABE4B] font-bold mt-0.5">•</span>
-                      <span className="line-clamp-1">{s}</span>
+                      <span>{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Action Buttons: Learn More text link + Secondary button */}
               <div className="pt-4 border-t border-[#E5E9E1] flex items-center justify-between gap-3">
-                <button
-                  onClick={() => onViewServiceDetail(service)}
-                  className="text-xs font-bold text-[#252223] hover:text-[#07A757] flex items-center gap-1.5 transition-colors group/link"
-                >
-                  <span>Learn More</span>
-                  <ChevronRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform text-[#07A757]" />
+                <button onClick={() => onViewServiceDetail(service)} className="text-xs font-bold text-[#252223] hover:text-[#07A757] flex items-center gap-1.5 transition-colors">
+                  <span>Learn More</span><ChevronRight className="w-3.5 h-3.5 text-[#07A757]" />
                 </button>
-
-                {/* Secondary Button: White background with Emerald green border and text */}
-                <button
-                  onClick={() => onSelectServiceForConsultation(service.id)}
-                  className="px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#07A757] bg-white hover:bg-[#07A757] hover:text-white border border-[#07A757] rounded-lg transition-colors"
-                >
-                  Inquire
+                <button onClick={() => onSelectServiceForConsultation(service.id)} className="px-3.5 py-2 text-xs font-semibold text-[#07A757] bg-white hover:bg-[#07A757] hover:text-white border border-[#07A757] rounded-lg transition-colors">
+                  Make Enquiry
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Banner in Charcoal #252223 with Lime Green Button (no border) */}
-        <div className="mt-16 p-8 rounded-2xl bg-[#252223] text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-md">
+        <div className="mt-12 p-7 sm:p-8 rounded-2xl bg-[#252223] text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-sm">
           <div className="max-w-2xl">
-            <h3 className="text-xl font-bold text-white mb-2">
-              Need Specialized Valuation or Joint Venture Advisory?
-            </h3>
-            <p className="text-xs sm:text-sm text-[#E5E9E1]/80">
-              Our partners consult directly with financial institutions, corporate boards, and institutional landowners to structure bespoke valuation and management mandates.
+            <h3 className="text-xl font-bold text-white mb-2">Need Help With a Property Matter?</h3>
+            <p className="text-sm text-[#E5E9E1]/85">
+              Talk to our team about valuation, property management, investment advice or your next development project.
             </p>
           </div>
-          <button
-            onClick={() => onSelectServiceForConsultation('property-valuation')}
-            className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-sm transition-colors whitespace-nowrap shrink-0"
-          >
-            Book Partner Consultation
+          <button onClick={() => onSelectServiceForConsultation('property-valuation')} className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg transition-colors whitespace-nowrap shrink-0">
+            Speak With Our Team
           </button>
         </div>
-
       </div>
     </section>
   );
