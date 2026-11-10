@@ -9,10 +9,10 @@ const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
   'property-facility-management': { src: '/src/assets/images/property_commercial_tower_1794305810858.jpg', alt: 'Commercial property managed by an estate team' },
   'real-estate-consultancy': { src: 'https://images.pexels.com/photos/30678213/pexels-photo-30678213.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Nigerian property professionals reviewing a project together' },
   'feasibility-viability-studies': { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Aerial view of Lagos urban development and property landscape' },
-  'property-development-consultancy': { src: 'https://images.pexels.com/photos/34557960/pexels-photo-34557960.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Modern residential tower in Lagos, Nigeria' },
-  'property-investment-advisory': { src: '/src/assets/images/hero_lagos_architecture_1794305808089.jpg', alt: 'Lagos commercial district architecture' },
-  'market-research': { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Lagos urban landscape illustrating property market research' },
-  'asset-management': { src: '/src/assets/images/about_boardroom_consulting_1794305809512.jpg', alt: 'Real estate professionals discussing asset management' },
+  'land-use-planning': { src: 'https://images.pexels.com/photos/34557960/pexels-photo-34557960.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Modern residential tower in Lagos, Nigeria' },
+  'compulsory-acquisition': { src: '/src/assets/images/hero_lagos_architecture_1794305808089.jpg', alt: 'Lagos commercial district architecture' },
+  'investment-jv-consultancy': { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Lagos urban landscape illustrating property market research' },
+  'project-management': { src: '/src/assets/images/about_boardroom_consulting_1794305809512.jpg', alt: 'Real estate professionals discussing asset management' },
 };
 
 interface ServicesSectionProps {
