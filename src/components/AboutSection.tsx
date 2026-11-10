@@ -68,7 +68,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             <div className="pt-2 space-y-3 text-sm text-[#626061]">
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
-                <span>Property valuation, buying and selling support, property management and real estate advice.</span>
+                <span>Valuation, buying and selling support, property management and property advice.</span>
               </div>
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
@@ -76,7 +76,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
               </div>
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
-                <span>Support for individuals, property owners, businesses and investors.</span>
+                <span>Support for individuals, businesses and investors.</span>
               </div>
             </div>
 
