@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
               onClick={() => onOpenConsultation('property-valuation')}
               className="inline-flex items-center justify-center gap-2 px-7 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98]"
             >
-              <span>Discuss Your Property Needs</span>
+              <span>Speak With Our Team</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
