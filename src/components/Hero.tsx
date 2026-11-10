@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#8ABE4B]/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-28 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28 w-full">
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="w-8 h-0.5 bg-[#8ABE4B]" />
