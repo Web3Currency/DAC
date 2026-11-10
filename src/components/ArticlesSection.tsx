@@ -8,10 +8,10 @@ interface ArticlesSectionProps {
 }
 
 const ARTICLE_IMAGES = [
-  { src: 'https://images.pexels.com/photos/20430714/pexels-photo-20430714.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Commercial office property in a Nigerian business district' },
-  { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Lagos urban property landscape' },
-  { src: 'https://images.pexels.com/photos/30678213/pexels-photo-30678213.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Property professionals collaborating on a real estate project' },
-  { src: 'https://images.pexels.com/photos/34557960/pexels-photo-34557960.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Modern residential tower in an African city' },
+  { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary Nigerian residential property' },
+  { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85', alt: 'Detached home and landscaped property' },
+  { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85', alt: 'Commercial property building exterior' },
+  { src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85', alt: 'Real estate development architecture' },
 ];
 
 export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onReadArticle }) => {
