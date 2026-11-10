@@ -18,8 +18,8 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="https://raw.githubusercontent.com/Web3Currency/DAC/main/src/assets/images/demola_logo_full.png"
-                alt="Demola Adetola & Co."
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=96&q=80"
+                alt="Modern building detail"
                 className="h-10 w-auto object-contain brightness-110"
               />
               <div className="flex flex-col">
@@ -37,8 +37,8 @@ export const Footer: React.FC = () => {
             </p>
 
             <div className="pt-2 text-[11px] text-[#E5E9E1]/70 space-y-1">
-              <div>Licensed by ESVARBON (Estate Surveyors and Valuers)</div>
-              <div>Enlisted with NIESV · Registered with CAC</div>
+              <div>Professional real estate services</div>
+              <div>Serving individuals, businesses and investors</div>
             </div>
           </div>
 
@@ -158,7 +158,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://facebook.com"
+              href="#contact"
               target="_blank"
               rel="noreferrer"
               className="hover:text-[#8ABE4B] transition-colors"
@@ -166,7 +166,7 @@ export const Footer: React.FC = () => {
               Facebook
             </a>
             <a
-              href="https://twitter.com"
+              href="#contact"
               target="_blank"
               rel="noreferrer"
               className="hover:text-[#8ABE4B] transition-colors"
@@ -174,7 +174,7 @@ export const Footer: React.FC = () => {
               X-Twitter
             </a>
             <a
-              href="https://linkedin.com"
+              href="#contact"
               target="_blank"
               rel="noreferrer"
               className="hover:text-[#8ABE4B] transition-colors"
