@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-lime: #8ABE4B;
+    --brand-emerald: #07A757;
+    --brand-charcoal: #252223;
+    --brand-slate-grey: #626061;
+    --brand-white: #FFFFFF;
+    --brand-soft-bg: #F5F8F2;
+    --brand-border: #E5E9E1;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: #626061;
+    background-color: #FFFFFF;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #252223;
+    letter-spacing: -0.02em;
+  }
+
+  .font-serif-luxury {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+/* Cinematic Ken Burns slow pan/zoom animation for Hero Estate Background */
+@keyframes estateKenBurns {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.1) translate3d(-1%, -0.8%, 0);
+  }
+  100% {
+    transform: scale(1.04) translate3d(0.8%, 0.4%, 0);
+  }
+}
+
+.animate-estate-kenburns {
+  animation: estateKenBurns 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Subtle glow for primary CTA button in lime green */
+@keyframes limeGlow {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(138, 190, 75, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 22px rgba(138, 190, 75, 0.55);
+  }
+}
+
+.animate-lime-glow {
+  animation: limeGlow 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar matching official brand palette */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F8F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #E5E9E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8ABE4B;
+}
+
+/* Hide scrollbar utility for horizontally scrollable tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
