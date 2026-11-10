@@ -115,7 +115,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         </div>
 
         {/* Properties Grid — High visual quality, bullet points, call to action */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 w-full max-w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-8 w-full max-w-full">
           {filteredProperties.map((prop) => (
             <div
               key={prop.id}
