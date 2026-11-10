@@ -48,7 +48,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   };
 
   return (
-    <section id="properties" className="py-16 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1] overflow-hidden">
+    <section id="properties" className="py-12 sm:py-14 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
         {/* Header Block — Constrained strictly to page margin, never overflowing */}
@@ -115,7 +115,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         </div>
 
         {/* Properties Grid — High visual quality, bullet points, call to action */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 w-full max-w-full">
           {filteredProperties.map((prop) => (
             <div
               key={prop.id}
