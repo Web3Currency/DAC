@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Phone, Menu, X } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
 
@@ -7,7 +7,6 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-[#FFFFFF] border-b border-[#E5E9E1] shadow-2xs">
@@ -81,90 +80,20 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
           {/* Mobile Menu Hamburger */}
           <div className="flex lg:hidden items-center gap-2">
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              type="button"
+              aria-disabled="true"
+              tabIndex={-1}
               className="p-2 text-[#252223] hover:text-[#07A757] hover:bg-[#F5F8F2] rounded-lg"
               aria-label="Toggle navigation"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <Menu className="w-6 h-6" />
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#FFFFFF] border-t border-[#E5E9E1] px-4 pt-4 pb-6 space-y-3 shadow-lg">
-          <a
-            href="#"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-semibold text-[#07A757]"
-          >
-            Home
-          </a>
-          <a
-            href="#about"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-[#252223] hover:text-[#07A757]"
-          >
-            About us
-          </a>
-          <a
-            href="#services"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-[#252223] hover:text-[#07A757]"
-          >
-            Services (9 Core Disciplines)
-          </a>
-          <a
-            href="#properties"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-[#252223] hover:text-[#07A757]"
-          >
-            Property listings
-          </a>
-          <a
-            href="#process"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-[#252223] hover:text-[#07A757]"
-          >
-            Our Process
-          </a>
-          <a
-            href="#perspectives"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-[#252223] hover:text-[#07A757]"
-          >
-            Expert Perspectives (Publications)
-          </a>
-          <a
-            href="#contact"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-[#252223] hover:text-[#07A757]"
-          >
-            Contact us
-          </a>
-
-          <div className="pt-4 border-t border-[#E5E9E1] space-y-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenConsultation();
-              }}
-              className="w-full py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-xs transition-colors"
-            >
-              Book Consultation / Request Valuation
-            </button>
-            <a
-              href={`tel:${COMPANY_INFO.primaryPhone}`}
-              className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-medium text-[#252223] bg-[#F5F8F2] border border-[#E5E9E1] rounded-lg"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#07A757]" />
-              <span>{COMPANY_INFO.primaryPhone}</span>
-            </a>
-          </div>
-        </div>
-      )}
+      {/* Mobile navigation intentionally inactive for prototype review. */}
     </header>
   );
 };
