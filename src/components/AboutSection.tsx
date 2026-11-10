@@ -17,7 +17,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-lg bg-[#F5F8F2]">
               <img
-                src="/src/assets/images/about_boardroom_consulting_1794305809512.jpg"
+                src="https://images.pexels.com/photos/30678213/pexels-photo-30678213.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Demola Adetola & Co. Chartered Surveyors and Partners reviewing valuation and property development reports"
                 className="w-full h-[400px] sm:h-[460px] object-cover"
               />
