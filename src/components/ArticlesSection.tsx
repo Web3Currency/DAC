@@ -15,7 +15,7 @@ const ARTICLE_IMAGES = [
 
 export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onReadArticle }) => {
   return (
-    <section id="perspectives" className="py-20 lg:py-24 bg-[#FFFFFF] border-b border-[#E5E9E1]">
+    <section id="perspectives" className="py-14 sm:py-16 lg:py-24 bg-[#FFFFFF] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
           <div className="max-w-3xl">
@@ -29,7 +29,7 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onReadArticle 
               Useful Advice for Property Owners and Buyers.
             </h2>
             <p className="mt-4 text-sm sm:text-base text-[#626061] leading-relaxed">
-              Simple guides to help you understand property matters, avoid common mistakes and make better decisions.
+              Practical property guides to help you avoid common mistakes and make informed decisions.
             </p>
           </div>
         </div>
