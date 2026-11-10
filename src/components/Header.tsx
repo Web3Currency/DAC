@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] uppercase font-semibold text-[#626061] tracking-wider">
-                  Call Us Phone
+                  Call Our Office
                 </span>
                 <span className="text-xs font-bold text-[#252223] group-hover:text-[#07A757] transition-colors tabular-nums">
                   {COMPANY_INFO.primaryPhone}
@@ -73,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
               onClick={() => onOpenConsultation()}
               className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-xs hover:shadow transition-all active:scale-[0.98]"
             >
-              Book Consultation
+              Speak With Our Team
             </button>
           </div>
 
