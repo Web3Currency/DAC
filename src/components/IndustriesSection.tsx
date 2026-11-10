@@ -43,7 +43,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-white border-b border-[#E5E9E1]">
+    <section className="py-14 sm:py-16 lg:py-24 bg-white border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
           <div className="max-w-3xl">
@@ -55,7 +55,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
               Property Support for Different Needs.
             </h2>
             <p className="mt-4 text-sm sm:text-base text-[#626061] leading-relaxed">
-              We work with individuals, businesses and organisations that need help with property matters.
+              We support people and organisations with their property needs.
             </p>
           </div>
           {onOpenConsultation && (
@@ -65,7 +65,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {industries.map((industry, index) => (
             <div key={industry.title} className="rounded-2xl bg-white border border-[#E5E9E1] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
               <div className="h-40 overflow-hidden bg-[#E5E9E1]">
