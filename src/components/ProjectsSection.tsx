@@ -52,7 +52,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
         {/* Header Block — Constrained strictly to page margin, never overflowing */}
-        <div className="mb-8 w-full max-w-full">
+        <div className="mb-6 sm:mb-8 w-full max-w-full">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 max-w-full">
             {/* Title & Eyebrow */}
             <div className="max-w-2xl min-w-0">
@@ -115,7 +115,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         </div>
 
         {/* Properties Grid — High visual quality, bullet points, call to action */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-8 w-full max-w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-5 sm:gap-8 w-full max-w-full">
           {filteredProperties.map((prop) => (
             <div
               key={prop.id}
