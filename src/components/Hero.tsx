@@ -13,7 +13,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   ];
 
   return (
-    <section className="relative min-h-[75vh] lg:min-h-[82vh] flex flex-col justify-center overflow-hidden bg-[#252223] border-b border-[#E5E9E1]">
+    <section className="relative min-h-[66vh] sm:min-h-[72vh] lg:min-h-[82vh] flex flex-col justify-center overflow-hidden bg-[#252223] border-b border-[#E5E9E1]">
       {/* Architectural imagery with a strong contrast overlay */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <img
@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#8ABE4B]/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-28 w-full">
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="w-8 h-0.5 bg-[#8ABE4B]" />
@@ -42,9 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
           </h1>
 
           <p className="text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed mb-8 max-w-2xl">
-            From independent property valuation to real estate advisory and management,
-            Demola Adetola &amp; Co. helps individuals, businesses and investors navigate
-            property decisions with professional insight.
+            We help individuals, businesses and investors with property valuation, buying and selling, property management and real estate advice.
           </p>
 
           <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10">
