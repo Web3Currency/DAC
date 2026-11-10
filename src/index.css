@@ -85,3 +85,35 @@
   scrollbar-width: none;
 }
 
+
+
+/* Refined scroll-reveal motion system */
+.scroll-reveal {
+  opacity: 0;
+  transition:
+    opacity 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal-up { transform: translate3d(0, 42px, 0); }
+.reveal-left { transform: translate3d(-48px, 18px, 0); }
+.reveal-right { transform: translate3d(48px, 18px, 0); }
+.reveal-card { transform: translate3d(0, 34px, 0) scale(.975); }
+.reveal-image { transform: translate3d(-28px, 18px, 0) scale(.985); filter: saturate(.82); }
+.reveal-image-alt { transform: translate3d(28px, 18px, 0) scale(.985); filter: saturate(.82); }
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal, .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+    will-change: auto;
+  }
+}
