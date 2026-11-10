@@ -355,7 +355,7 @@ export const FEATURED_PROPERTIES: PropertyItem[] = [
     location: 'Old Ikoyi Waterfront, Lagos',
     price: '₦950,000,000',
     status: 'For Sale',
-    image: '/src/assets/images/property_luxury_residence_1794305810064.jpg',
+    image: 'https://raw.githubusercontent.com/Web3Currency/DAC/main/src/assets/images/property_luxury_residence_1794305810064.jpg',
     specs: {
       bedrooms: '5 Bedrooms',
       bathrooms: '6 Bathrooms',
@@ -375,7 +375,7 @@ export const FEATURED_PROPERTIES: PropertyItem[] = [
     location: 'Ozumba Mbadiwe / Ahmadu Bello, Victoria Island, Lagos',
     price: '₦185,000 / sq.m / annum (Net)',
     status: 'For Letting',
-    image: '/src/assets/images/property_commercial_tower_1794305810858.jpg',
+    image: 'https://images.pexels.com/photos/20430714/pexels-photo-20430714.jpeg?auto=compress&cs=tinysrgb&w=1200',
     specs: {
       area: '8,500 sq.m Open Plan Lettable Space',
       tenure: 'Lagos State Governor’s Consent',
@@ -393,7 +393,7 @@ export const FEATURED_PROPERTIES: PropertyItem[] = [
     location: 'Marina Waterfront, Lagos Island, Lagos',
     price: 'Institutional Advisory Portfolio',
     status: 'Under Management',
-    image: '/src/assets/images/hero_lagos_architecture_1794305808089.jpg',
+    image: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200',
     specs: {
       area: '14,200 sq.m Total Lettable Area',
       tenure: 'Federal Certificate of Occupancy',
@@ -411,7 +411,7 @@ export const FEATURED_PROPERTIES: PropertyItem[] = [
     location: 'Lekki Phase 1 Corridor, Lagos',
     price: 'Joint Venture Proposal',
     status: 'Advisory Completed',
-    image: '/src/assets/images/about_boardroom_consulting_1794305809512.jpg',
+    image: 'https://images.pexels.com/photos/30678213/pexels-photo-30678213.jpeg?auto=compress&cs=tinysrgb&w=1200',
     specs: {
       area: '4,800 sq.m Prime Corner Parcel',
       tenure: 'Clean C of O with Title Audit',
