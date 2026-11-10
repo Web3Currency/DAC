@@ -26,7 +26,7 @@ export const PropertyFinderSection: React.FC<PropertyFinderSectionProps> = ({ on
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Container Card without border */}
-        <div className="bg-[#FFFFFF] rounded-2xl p-6 sm:p-8 shadow-md">
+        <div className="bg-[#FFFFFF] rounded-2xl p-4 sm:p-6 lg:p-8 shadow-md">
           
           {/* Header Row */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-[#E5E9E1]">
@@ -46,7 +46,7 @@ export const PropertyFinderSection: React.FC<PropertyFinderSectionProps> = ({ on
           </div>
 
           {/* Search Form */}
-          <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+          <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end">
             {/* Location Selector */}
             <div>
               <label className="block text-xs font-bold text-[#252223] mb-1.5 uppercase tracking-wider flex items-center gap-1.5">
