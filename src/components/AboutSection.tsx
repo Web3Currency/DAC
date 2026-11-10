@@ -8,9 +8,9 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }) => {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-[#E5E9E1]">
+    <section id="about" className="py-14 sm:py-18 lg:py-28 bg-[#FFFFFF] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-lg bg-[#F5F8F2]">
               <img
@@ -41,7 +41,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             </div>
           </div>
 
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-6 space-y-4 sm:space-y-5">
             <div className="flex items-center gap-2">
               <span className="w-8 h-0.5 bg-[#8ABE4B]" />
               <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">
