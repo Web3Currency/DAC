@@ -17,7 +17,7 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onReadArticle 
   return (
     <section id="perspectives" className="py-14 sm:py-16 lg:py-24 bg-[#FFFFFF] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-12">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-8 h-0.5 bg-[#8ABE4B]" />
@@ -34,7 +34,7 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onReadArticle 
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {REAL_ARTICLES.slice(0, 3).map((article, index) => (
             <article
               key={article.id}
