@@ -70,7 +70,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   <span>Learn More</span><ChevronRight className="w-3.5 h-3.5 text-[#07A757]" />
                 </button>
                 <button onClick={() => onSelectServiceForConsultation(service.id)} className="px-3.5 py-2 text-xs font-semibold text-[#07A757] bg-white hover:bg-[#07A757] hover:text-white border border-[#07A757] rounded-lg transition-colors">
-                  Make Enquiry
+                  Speak With Our Team
                 </button>
               </div>
             </div>
