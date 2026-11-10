@@ -3,10 +3,10 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const INDUSTRY_IMAGES = [
   { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85', alt: 'Commercial office tower property' },
-  { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85', alt: 'Modern corporate office property interior' },
+  { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85', alt: 'Modern corporate office interior' },
   { src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85', alt: 'Property development and construction architecture' },
-  { src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85', alt: 'Premium private family residence with landscaped grounds' },
-  { src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85', alt: 'Urban land development and residential architecture' },
+  { src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85', alt: 'Private family residence' },
+  { src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85', alt: 'Urban development and residential architecture' },
   { src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary property building exterior' },
 ];
 
@@ -17,93 +17,75 @@ interface IndustriesSectionProps {
 export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenConsultation }) => {
   const industries = [
     {
-      title: 'Commercial & Mortgage Banks',
-      bullets: ['Collateral asset valuation', 'Mortgage security appraisal', 'Annual audit balance sheet compliance'],
+      title: 'Banks & Financial Institutions',
+      bullets: ['Property and collateral valuation', 'Mortgage security assessment', 'Asset valuation for financial reports'],
     },
     {
-      title: 'Corporate & Multinationals',
-      bullets: ['Lease advisory & renegotiation', 'Corporate facility management', 'Headquarters asset optimization'],
+      title: 'Companies & Businesses',
+      bullets: ['Office and facility management', 'Property leasing advice', 'Property portfolio support'],
     },
     {
-      title: 'Property Developers & JVs',
-      bullets: ['Feasibility & viability studies', 'Highest & Best Use analysis', 'Land acquisition & title regularization'],
+      title: 'Property Developers',
+      bullets: ['Feasibility and viability studies', 'Land and site assessment', 'Development project advice'],
     },
     {
-      title: 'Private Investors & Family Offices',
-      bullets: ['Prime residential acquisition', 'Portfolio yield maximization', 'Confidential asset divestment'],
+      title: 'Private Investors & Families',
+      bullets: ['Property buying and selling advice', 'Property valuation', 'Property management'],
     },
     {
-      title: 'Government & Statutory Agencies',
-      bullets: ['Compulsory acquisition claims', 'Right-of-way compensation', 'Public land use planning'],
+      title: 'Government & Public Agencies',
+      bullets: ['Property and land valuation', 'Acquisition and compensation advice', 'Land use planning support'],
     },
     {
-      title: 'Legal Firms & Estate Executors',
-      bullets: ['Probate & estate administration', 'Court litigation expert witness', 'Statutory property rating assessment'],
+      title: 'Legal & Estate Professionals',
+      bullets: ['Probate and estate valuation', 'Property reports for legal matters', 'Property advice for estate matters'],
     },
   ];
 
   return (
-    <section className="py-16 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1]">
+    <section className="py-20 lg:py-24 bg-white border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header — Strict, few text */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-3">
               <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">
-                Sectors We Serve
-              </span>
+              <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">Who We Work With</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#252223]">
-              Tailored Real Estate Solutions Across Industries.
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223] leading-tight">
+              Property Support for Different Needs.
             </h2>
+            <p className="mt-4 text-sm sm:text-base text-[#626061] leading-relaxed">
+              We work with individuals, businesses and organisations that need help with property matters.
+            </p>
           </div>
-
           {onOpenConsultation && (
-            <button
-              onClick={onOpenConsultation}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg transition-colors shrink-0"
-            >
-              <span>Consult Our Practice</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+            <button onClick={onOpenConsultation} className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg transition-colors shrink-0">
+              <span>Make an Enquiry</span><ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
 
-        {/* 6 Industry Cards — Clean, no top-left icons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {industries.map((ind, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-2xl bg-[#F5F8F2] hover:bg-[#FFFFFF] shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="-mx-6 -mt-6 mb-5 h-36 overflow-hidden rounded-t-2xl bg-[#E5E9E1]">
-                  <img src={INDUSTRY_IMAGES[idx].src} alt={INDUSTRY_IMAGES[idx].alt} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
-                </div>
-                <h3 className="text-base font-bold text-[#252223] mb-3">
-                  {ind.title}
-                </h3>
-                <ul className="space-y-2 text-xs text-[#626061]">
-                  {ind.bullets.map((b, bIdx) => (
-                    <li key={bIdx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#07A757] shrink-0 mt-0.5" />
-                      <span>{b}</span>
+          {industries.map((industry, index) => (
+            <div key={industry.title} className="rounded-2xl bg-white border border-[#E5E9E1] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
+              <div className="h-40 overflow-hidden bg-[#E5E9E1]">
+                <img src={INDUSTRY_IMAGES[index].src} alt={INDUSTRY_IMAGES[index].alt} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
+              </div>
+              <div className="p-6 flex flex-1 flex-col">
+                <h3 className="text-lg font-bold text-[#252223] mb-4">{industry.title}</h3>
+                <ul className="space-y-2 text-sm text-[#626061]">
+                  {industry.bullets.map((bullet) => (
+                    <li key={bullet} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
+                      <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-
-              <div className="mt-5 pt-4 border-t border-[#E5E9E1]">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#07A757]">
-                  Certified Mandate Ready
-                </span>
+                <div className="mt-auto pt-5" />
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
