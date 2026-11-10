@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
 
 interface HeaderProps {
@@ -81,6 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
           <div className="flex lg:hidden items-center gap-2">
             <button
               type="button"
+              disabled
               aria-disabled="true"
               tabIndex={-1}
               className="p-2 text-[#252223] hover:text-[#07A757] hover:bg-[#F5F8F2] rounded-lg"
