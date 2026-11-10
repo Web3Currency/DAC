@@ -47,7 +47,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onOpenConsultati
           </div>
           {onOpenConsultation && (
             <button onClick={onOpenConsultation} className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg transition-colors shrink-0">
-              <span>Make an Enquiry</span><ArrowRight className="w-3.5 h-3.5" />
+              <span>Speak With Our Team</span><ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
