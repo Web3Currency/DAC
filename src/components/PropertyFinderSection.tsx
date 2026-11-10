@@ -35,13 +35,13 @@ export const PropertyFinderSection: React.FC<PropertyFinderSectionProps> = ({ on
                 Find Your Property
               </h2>
               <p className="text-xs text-[#626061]">
-                Explore verified residential, commercial, and investment portfolios across Nigeria
+                Browse illustrative residential, commercial and development property examples
               </p>
             </div>
 
             <div className="flex items-center gap-2 text-xs font-semibold text-[#07A757] self-start sm:self-auto">
               <span className="w-2 h-2 rounded-full bg-[#8ABE4B]" />
-              <span>Certified Listings Available</span>
+              <span>Illustrative Property Concepts</span>
             </div>
           </div>
 
@@ -110,7 +110,7 @@ export const PropertyFinderSection: React.FC<PropertyFinderSectionProps> = ({ on
                 className="w-full py-2.5 px-5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
               >
                 <Search className="w-4 h-4" />
-                <span>Search Properties</span>
+                <span>View Property Concepts</span>
               </button>
             </div>
           </form>
