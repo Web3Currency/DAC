@@ -355,7 +355,7 @@ export const FEATURED_PROPERTIES: PropertyItem[] = [
     location: 'Old Ikoyi Waterfront, Lagos',
     price: '₦950,000,000',
     status: 'For Sale',
-    image: 'https://raw.githubusercontent.com/Web3Currency/DAC/main/src/assets/images/property_luxury_residence_1794305810064.jpg',
+    image: 'https://raw.githubusercontent.com/Web3Currency/DAC/mainhttps://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85',
     specs: {
       bedrooms: '5 Bedrooms',
       bathrooms: '6 Bathrooms',
