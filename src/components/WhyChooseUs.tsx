@@ -15,7 +15,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
     {
       icon: <ShieldCheck className="w-5 h-5 text-[#07A757]" />,
       title: 'Professional Approach',
-      bullets: ['Clear advice and careful property assessment', 'Professional registration details available for confirmation'],
+      bullets: ['Clear advice and careful property assessment', 'Clear communication at every stage'],
     },
     {
       icon: <BriefcaseBusiness className="w-5 h-5 text-[#07A757]" />,
