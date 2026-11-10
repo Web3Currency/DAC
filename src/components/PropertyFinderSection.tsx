@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, MapPin, Building, DollarSign, Filter, ArrowRight } from 'lucide-react';
+import { Search, MapPin, Building } from 'lucide-react';
 
 interface PropertyFinderSectionProps {
   onSearchProperties: (filters: { location: string; category: string; price: string }) => void;
@@ -88,7 +88,7 @@ export const PropertyFinderSection: React.FC<PropertyFinderSectionProps> = ({ on
             {/* Budget Range */}
             <div>
               <label className="block text-xs font-bold text-[#252223] mb-1.5 uppercase tracking-wider flex items-center gap-1.5">
-                <DollarSign className="w-3.5 h-3.5 text-[#07A757]" />
+                <span className="inline-flex w-3.5 h-3.5 items-center justify-center text-sm font-bold leading-none text-[#07A757]">₦</span>
                 <span>Budget Range</span>
               </label>
               <select
