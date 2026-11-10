@@ -40,7 +40,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4 sm:gap-6">
           {CORE_SERVICES.map((service) => (
             <div key={service.id} className="group bg-white rounded-2xl p-6 flex flex-col justify-between shadow-sm border border-[#E5E9E1] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
               <div>
