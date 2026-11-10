@@ -65,7 +65,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4 sm:gap-6">
           {industries.map((industry, index) => (
             <div key={industry.title} className="rounded-2xl bg-white border border-[#E5E9E1] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
               <div className="h-40 overflow-hidden bg-[#E5E9E1]">
