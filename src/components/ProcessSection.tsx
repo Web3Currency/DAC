@@ -9,86 +9,70 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onOpenConsultati
   const steps = [
     {
       number: '01',
-      title: 'Inspection & Brief',
-      bullets: ['Site visit & physical survey', 'Beacon & boundary validation'],
+      title: 'Tell Us What You Need',
+      bullets: ['We listen to your property needs', 'We agree on the next steps'],
     },
     {
       number: '02',
-      title: 'Market & Legal Analysis',
-      bullets: ['Comparative market valuation', 'Land registry title search'],
+      title: 'Inspect & Review',
+      bullets: ['We inspect the property where needed', 'We review the relevant market and documents'],
     },
     {
       number: '03',
-      title: 'Certified Valuation',
-      bullets: ['ESVARBON & NIESV standards', 'Photographic asset inventory'],
+      title: 'Prepare Your Report or Plan',
+      bullets: ['We assess the information', 'We explain our findings and advice'],
     },
     {
       number: '04',
-      title: 'Delivery & Advisory',
-      bullets: ['Bank & court defensible report', 'Ongoing portfolio guidance'],
+      title: 'Get the Support You Need',
+      bullets: ['We present the agreed work', 'We discuss any next steps with you'],
     },
   ];
 
   return (
-    <section id="process" className="py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
+    <section id="process" className="py-20 lg:py-24 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header — Strict, few text */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-3">
               <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">
-                Valuation Process
-              </span>
+              <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">How We Work</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#252223]">
-              A Rigorous, 4-Stage Valuation &amp; Advisory Methodology.
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223] leading-tight">
+              A Clear Process, From First Talk to Delivery.
             </h2>
+            <p className="mt-4 text-sm sm:text-base text-[#626061] leading-relaxed">
+              We keep you informed at every stage, so you know what is happening and what to expect.
+            </p>
           </div>
-
           {onOpenConsultation && (
-            <button
-              onClick={onOpenConsultation}
-              className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-xs transition-colors shrink-0"
-            >
-              <span>Start Valuation</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+            <button onClick={onOpenConsultation} className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg transition-colors shrink-0">
+              <span>Make an Enquiry</span><ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
 
-        {/* 4 Process Step Cards with Bullet Points */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((st) => (
-            <div
-              key={st.number}
-              className="bg-[#FFFFFF] rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
-            >
+          {steps.map((step) => (
+            <div key={step.number} className="bg-white border border-[#E5E9E1] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
               <div>
-                <span className="text-3xl font-black text-[#8ABE4B] block mb-3 tabular-nums">
-                  {st.number}
-                </span>
-                <h3 className="text-base font-bold text-[#252223] mb-3">
-                  {st.title}
-                </h3>
-                <ul className="space-y-2 text-xs text-[#626061]">
-                  {st.bullets.map((b, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#07A757] shrink-0 mt-0.5" />
-                      <span>{b}</span>
+                <span className="text-2xl font-extrabold text-[#8ABE4B] block mb-4 tabular-nums">{step.number}</span>
+                <h3 className="text-lg font-bold text-[#252223] mb-3">{step.title}</h3>
+                <ul className="space-y-2 text-sm text-[#626061]">
+                  {step.bullets.map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-
-              <div className="mt-6 pt-3 border-t border-[#E5E9E1] text-[11px] font-bold uppercase tracking-wider text-[#07A757]">
-                Stage {st.number}
+              <div className="mt-6 pt-4 border-t border-[#E5E9E1] text-xs font-semibold text-[#626061]">
+                Step {step.number}
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
