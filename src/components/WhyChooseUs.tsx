@@ -30,7 +30,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
   ];
 
   return (
-    <section className="py-14 sm:py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
+    <section className="py-14 sm:py-14 sm:py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
           <div>
