@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
           {/* Column 4: Verified Contact (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">
-              Verified Offices
+              Office Locations
             </h4>
             
             <div className="space-y-3 text-[11px]">
@@ -138,48 +138,6 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-        </div>
-
-        {/* Legal Links Bar from Demola's real website */}
-        <div className="pt-8 pb-4 border-t border-[#383435] flex flex-wrap items-center justify-between gap-4 text-[11px] text-[#E5E9E1]/60">
-          <div className="flex flex-wrap items-center gap-4">
-            <span className="hover:text-[#8ABE4B] transition-colors cursor-pointer">Terms and Conditions</span>
-            <span>·</span>
-            <span className="hover:text-[#8ABE4B] transition-colors cursor-pointer">Group Privacy Statement</span>
-            <span>·</span>
-            <span className="hover:text-[#8ABE4B] transition-colors cursor-pointer">Fair Processing Notice</span>
-            <span>·</span>
-            <span className="hover:text-[#8ABE4B] transition-colors cursor-pointer">Cookie Policy</span>
-            <span>·</span>
-            <span className="hover:text-[#8ABE4B] transition-colors cursor-pointer">Modern Slavery Act</span>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <a
-              href="#contact"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-[#8ABE4B] transition-colors"
-            >
-              Facebook
-            </a>
-            <a
-              href="#contact"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-[#8ABE4B] transition-colors"
-            >
-              X-Twitter
-            </a>
-            <a
-              href="#contact"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-[#8ABE4B] transition-colors"
-            >
-              LinkedIn
-            </a>
-          </div>
         </div>
 
         {/* Sub-Footer Copyright */}
