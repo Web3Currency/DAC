@@ -27,7 +27,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   return (
     <section id="services" className="py-14 sm:py-16 lg:py-24 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-8 sm:mb-12">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-8 h-0.5 bg-[#8ABE4B]" />
             <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">Our Services</span>
@@ -36,11 +36,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             Real Estate Services to Help You Make the Right Move.
           </h2>
           <p className="mt-4 text-sm sm:text-base text-[#626061] leading-relaxed">
-            From property valuation and sales to management and development advice, we help clients protect and get more value from their property.
+            We help clients value, buy, sell, manage and develop property.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4 sm:gap-4 sm:gap-6">
           {CORE_SERVICES.map((service) => (
             <div key={service.id} className="group bg-white rounded-2xl p-6 flex flex-col justify-between shadow-sm border border-[#E5E9E1] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
               <div>
@@ -77,7 +77,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           ))}
         </div>
 
-        <div className="mt-12 p-7 sm:p-8 rounded-2xl bg-[#252223] text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-sm">
+        <div className="mt-12 p-7 sm:p-8 rounded-2xl bg-[#252223] text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-6 shadow-sm">
           <div className="max-w-2xl">
             <h3 className="text-xl font-bold text-white mb-2">Need Help With a Property Matter?</h3>
             <p className="text-sm text-[#E5E9E1]/85">
