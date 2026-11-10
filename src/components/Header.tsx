@@ -17,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
           {/* Logo Only: Firm name removed from header, logo completely visible and uncropped */}
           <a href="#" className="flex items-center shrink-0 py-2">
             <img
-              src="/src/assets/images/demola_logo_full.png"
+              src="https://raw.githubusercontent.com/Web3Currency/DAC/main/src/assets/images/demola_logo_full.png"
               alt="Demola Adetola & Co. Logo"
               className="h-12 sm:h-14 md:h-16 w-auto max-w-[240px] sm:max-w-[280px] object-contain transition-transform hover:scale-102"
               loading="eager"
