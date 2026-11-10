@@ -48,12 +48,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   };
 
   return (
-    <section id="properties" className="py-12 sm:py-14 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section id="properties" className="py-12 sm:py-14 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1] overflow-x-clip">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
         
         {/* Header Block — Constrained strictly to page margin, never overflowing */}
-        <div className="mb-6 sm:mb-8 w-full max-w-full">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 max-w-full">
+        <div className="mb-6 sm:mb-8 w-full max-w-full min-w-0">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 max-w-full min-w-0">
             {/* Title & Eyebrow */}
             <div className="max-w-2xl min-w-0">
               <div className="flex items-center gap-2 mb-2">
@@ -67,8 +67,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </h2>
             </div>
 
-            {/* Scrollable Category Filter Tab — Strictly bounded within right margin */}
-            <div className="relative max-w-full min-w-0 flex items-center gap-1.5 self-start md:self-auto">
+            {/* Scrollable Category Filter Tab — Strictly bounded within content column */}
+            <div className="relative w-full md:w-auto max-w-full min-w-0 flex items-center gap-1.5 self-start md:self-auto">
               {/* Optional Left Scroll Control */}
               <button
                 type="button"
@@ -82,9 +82,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               {/* Horizontally Scrollable Filter Track */}
               <div
                 ref={tabsContainerRef}
-                className="overflow-x-auto no-scrollbar scroll-smooth max-w-full flex items-center p-1 bg-[#F5F8F2] border border-[#E5E9E1] rounded-xl"
+                className="overflow-x-auto no-scrollbar scroll-smooth min-w-0 flex-1 max-w-full flex items-center p-1 bg-[#F5F8F2] border border-[#E5E9E1] rounded-xl"
               >
-                <div className="flex items-center gap-1.5 shrink-0">
+                <div className="flex items-center gap-1.5 w-max">
                   {categories.map((cat) => (
                     <button
                       key={cat}
@@ -115,11 +115,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         </div>
 
         {/* Properties Grid — High visual quality, bullet points, call to action */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-5 sm:gap-8 w-full max-w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-5 sm:gap-8 w-full max-w-full min-w-0">
           {filteredProperties.map((prop) => (
             <div
               key={prop.id}
-              className="group bg-[#FFFFFF] rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col"
+              className="group bg-[#FFFFFF] rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col min-w-0"
             >
               {/* Image & Badges */}
               <div className="relative h-64 sm:h-72 overflow-hidden bg-[#F5F8F2]">

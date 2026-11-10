@@ -75,11 +75,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
       {/* 1. Header (Mirrors Samson Agbato: Real Logo | Navigation | Phone Box + Book Consultation CTA) */}
       <Header onOpenConsultation={handleOpenConsultation} />
 
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full overflow-x-clip">
         {/* 2. Hero Section */}
         <Hero onOpenConsultation={handleOpenConsultation} />
 

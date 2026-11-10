@@ -14,12 +14,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
 
   return (
     <section className="relative min-h-[66vh] sm:min-h-[72vh] lg:min-h-[82vh] flex flex-col justify-center overflow-hidden bg-[#252223] border-b border-[#E5E9E1]">
-      {/* Architectural imagery with a strong contrast overlay */}
+      {/* Architectural imagery with a strong contrast overlay — clipped so Ken Burns cannot widen the page */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=90"
           alt="Modern commercial property and city architecture"
-          className="w-full h-full object-cover animate-estate-kenburns scale-105 origin-center"
+          className="w-full h-full object-cover animate-estate-kenburns origin-center"
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#252223]/95 via-[#252223]/78 to-[#252223]/42" />
@@ -27,8 +27,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#8ABE4B]/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28 w-full">
-        <div className="max-w-4xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28 w-full min-w-0">
+        <div className="max-w-4xl min-w-0">
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="w-8 h-0.5 bg-[#8ABE4B]" />
             <p className="text-xs sm:text-sm font-bold tracking-[0.18em] uppercase text-[#D5E8C0]">

@@ -11,10 +11,31 @@
     --brand-border: #E5E9E1;
   }
 
+  /*
+   * Mobile full-width foundation.
+   * Decorative transforms (scroll-reveal, Ken Burns) must not expand the
+   * document beyond the device width — that is what caused the right-side
+   * blank strip on Android Chrome / Mi Browser.
+   */
+  html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
   body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color: #626061;
     background-color: #FFFFFF;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6, .font-heading {
@@ -85,9 +106,11 @@
   scrollbar-width: none;
 }
 
-
-
-/* Refined scroll-reveal motion system */
+/*
+ * Scroll-reveal motion system.
+ * Horizontal offsets are intentionally modest so pre-visible states stay
+ * inside section clipping boxes and cannot widen the document.
+ */
 .scroll-reveal {
   opacity: 0;
   transition:
@@ -98,11 +121,11 @@
   will-change: opacity, transform;
 }
 .reveal-up { transform: translate3d(0, 42px, 0); }
-.reveal-left { transform: translate3d(-48px, 18px, 0); }
-.reveal-right { transform: translate3d(48px, 18px, 0); }
+.reveal-left { transform: translate3d(-20px, 12px, 0); }
+.reveal-right { transform: translate3d(20px, 12px, 0); }
 .reveal-card { transform: translate3d(0, 34px, 0) scale(.975); }
-.reveal-image { transform: translate3d(-28px, 18px, 0) scale(.985); filter: saturate(.82); }
-.reveal-image-alt { transform: translate3d(28px, 18px, 0) scale(.985); filter: saturate(.82); }
+.reveal-image { transform: translate3d(-16px, 12px, 0) scale(.985); filter: saturate(.82); }
+.reveal-image-alt { transform: translate3d(16px, 12px, 0) scale(.985); filter: saturate(.82); }
 .scroll-reveal.is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
@@ -118,6 +141,12 @@
   }
 }
 
+/* Keep decorative transforms from expanding page width */
+main,
+main section {
+  overflow-x: clip;
+  max-width: 100%;
+}
 
 /* Decorative WhatsApp badge: delayed entrance and restrained attention pulse */
 @keyframes whatsappBadgeEnter {
