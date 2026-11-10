@@ -58,15 +58,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
           <div className="mt-4 flex flex-wrap gap-y-2 gap-x-6 text-xs text-[#626061] font-semibold">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#07A757]" />
-              <span>24–48h Turnaround for Valuation Briefs</span>
+              <span>Professional property advice</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#07A757]" />
-              <span>ESVARBON Certified Advisory</span>
+              <span>Clear and careful property assessment</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#07A757]" />
-              <span>Lagos Island &amp; Abuja Branch Coverage</span>
+              <span>Lagos Island office locations</span>
             </div>
           </div>
         </div>
@@ -86,10 +86,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                   <CheckCircle2 className="w-6 h-6 text-[#07A757]" />
                 </div>
                 <h4 className="text-lg font-bold text-[#252223]">
-                  Inquiry Received
+                  Enquiry Preview
                 </h4>
                 <p className="text-xs text-[#626061] max-w-sm mx-auto">
-                  Thank you, <strong>{formData.fullName}</strong>. A partner from Demola Adetola &amp; Co. will reach out shortly.
+                  Thank you, <strong>{formData.fullName}</strong>. This is a website preview. Enquiry submission is not connected yet.
                 </p>
                 <button
                   onClick={() => {
@@ -194,7 +194,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
                   type="submit"
                   className="w-full py-3 px-5 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-sm transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
                 >
-                  <span>Submit Mandate Brief</span>
+                  <span>Preview Enquiry</span>
                   <Send className="w-3.5 h-3.5" />
                 </button>
               </form>
