@@ -38,7 +38,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServi
   };
 
   return (
-    <section id="contact" className="py-14 sm:py-12 sm:py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
+    <section id="contact" className="py-14 sm:py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header — Strict, few text */}
