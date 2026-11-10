@@ -12,24 +12,22 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
           <div className="lg:col-span-4 space-y-4">
-            {/* Footer brand lockup: firm name and designation sit beside the logo. */}
+            {/* Logo first, followed by the firm name and its designation. */}
             <div className="flex items-center gap-3">
-              <div className="w-max shrink-0">
-                <div className="text-lg font-bold tracking-tight leading-tight text-white whitespace-nowrap">
-                  DEMOLA ADETOLA &amp; CO.
-                </div>
-                <div className="flex w-full items-center justify-between gap-1 whitespace-nowrap text-[9px] font-semibold leading-tight tracking-tight text-[#8ABE4B]">
-                  <span>Chartered</span>
-                  <span>Estate</span>
-                  <span>Surveyors+Valuers</span>
-                </div>
-              </div>
               <img
                 src="https://i.imgur.com/qczlHrn.png"
                 alt="Demola Adetola & Co. Logo"
-                className="h-16 w-auto max-w-[140px] shrink object-contain"
+                className="h-16 w-auto max-w-[140px] shrink-0 object-contain"
                 loading="lazy"
               />
+              <div className="w-max min-w-0">
+                <div className="text-[17px] font-bold tracking-tight leading-tight text-white whitespace-nowrap">
+                  Demola Adetola &amp; Co.
+                </div>
+                <div className="mt-0.5 w-full whitespace-nowrap text-[10.5px] font-medium leading-tight tracking-[-0.035em] text-[#8ABE4B]">
+                  Chartered Estate Surveyors+Valuers
+                </div>
+              </div>
             </div>
 
             <p className="text-xs text-[#E5E9E1]/75 leading-relaxed pr-4">
