@@ -22,7 +22,7 @@ export const PropertyFinderSection: React.FC<PropertyFinderSectionProps> = ({ on
   };
 
   return (
-    <section id="property-finder" className="relative z-20 py-10 sm:py-12 bg-[#F5F8F2] border-b border-[#E5E9E1]">
+    <section id="property-finder" className="relative z-20 py-7 sm:py-9 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Container Card without border */}
@@ -35,7 +35,7 @@ export const PropertyFinderSection: React.FC<PropertyFinderSectionProps> = ({ on
                 Find Your Property
               </h2>
               <p className="text-xs text-[#626061]">
-                Browse illustrative residential, commercial and development property examples
+                Explore sample homes, commercial buildings and development opportunities.
               </p>
             </div>
 
