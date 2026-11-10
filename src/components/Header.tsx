@@ -9,7 +9,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
 
   return (
-    <header className="sticky top-0 z-50 bg-[#FFFFFF] border-b border-[#E5E9E1] shadow-2xs">
+    <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/50 shadow-[0_8px_30px_rgba(37,34,35,0.08)] supports-[backdrop-filter]:bg-white/60 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           
@@ -55,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
               href={`tel:${COMPANY_INFO.primaryPhone}`}
               className="flex items-center gap-3 text-left group"
             >
-              <div className="w-10 h-10 rounded-full bg-[#F5F8F2] border border-[#E5E9E1] flex items-center justify-center text-[#07A757] group-hover:bg-[#8ABE4B] group-hover:text-[#252223] transition-all">
+              <div className="w-10 h-10 rounded-full bg-[#F5F8F2]/80 border border-[#E5E9E1]/80 flex items-center justify-center text-[#07A757] group-hover:bg-[#8ABE4B] group-hover:text-[#252223] transition-all">
                 <Phone className="w-4 h-4" />
               </div>
               <div className="flex flex-col">
