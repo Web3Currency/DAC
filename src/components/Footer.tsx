@@ -16,18 +16,13 @@ export const Footer: React.FC = () => {
           
           {/* Column 1: Brand (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-[#8ABE4B] text-[#252223] flex items-center justify-center text-sm font-black tracking-tight" aria-hidden="true">
-                DAC
-              </div>
-              <div className="flex flex-col">
-                <span className="text-base font-bold text-[#FFFFFF] tracking-tight">
-                  Demola Adetola &amp; Co.
-                </span>
-                <span className="text-[10px] font-semibold text-[#8ABE4B] tracking-wider uppercase">
-                  Chartered Estate Surveyors + Valuers
-                </span>
-              </div>
+            <div className="flex flex-col items-start gap-3">
+              <img
+                src="https://i.imgur.com/czlHrn.png"
+                alt="Demola Adetola & Co. Logo"
+                className="h-16 w-auto max-w-[260px] object-contain"
+                loading="lazy"
+              />
             </div>
 
             <p className="text-xs text-[#E5E9E1]/75 leading-relaxed pr-4">
