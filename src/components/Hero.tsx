@@ -12,7 +12,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
       {/* 1. Animated Luxury Estate Background — Clearly visible with Ken Burns animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <img
-          src="https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200"
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85"
           alt="Luxury masterplanned estate in Nigeria"
           className="w-full h-full object-cover animate-estate-kenburns scale-105 origin-center"
           loading="eager"
