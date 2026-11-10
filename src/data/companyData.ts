@@ -11,13 +11,13 @@ export const COMPANY_INFO = {
   aboutIntro:
     'Real estate is one of the most significant investments you’ll ever make. Every decision, from purchasing land and valuing assets to managing facilities and developing new projects, has a lasting financial impact. That’s why having the right professional partner is essential.',
   aboutMission:
-    'Demola Adetola & Co. is a firm of Chartered Estate Surveyors and Valuers providing professional real estate services across Nigeria. Our expertise covers property valuation, agency, management, and advisory services, supported by a carefully curated portfolio of residential and commercial properties managed directly by our team.',
+    'Demola Adetola & Co. is a firm of Chartered Estate Surveyors and Valuers providing professional real estate services across Nigeria. Our expertise covers property valuation, agency, management, and advisory services, with a focus on clear advice, careful assessment and practical support for property owners, buyers, businesses and investors.',
   aboutHistory:
     'Conceived in 1992 and officially commencing operations in July 1993, the firm has grown into one of Nigeria’s respected practices of Estate Surveyors and Valuers, licensed by the Estate Surveyors and Valuers Registration Board of Nigeria (ESVARBON), enlisted with the Nigerian Institution of Estate Surveyors and Valuers (NIESV), and registered with the Corporate Affairs Commission (CAC).',
   establishedYear: 1993,
   conceivedYear: 1992,
   yearsOfExcellence: '30+',
-  email: 'info@dac-ng.com',
+  email: 'info@demolaadetola.ng',
   primaryPhone: '+234 802 814 7070',
   secondaryPhones: ['+234 809 814 7070', '+234 807 377 5522', '+234 807 377 2255'],
   website: 'https://demolaadetola.ng',
@@ -427,7 +427,7 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     landmark: 'Directly Opposite Tafawa Balewa Square (TBS), Onikan, Lagos Island',
     city: 'Lagos Island, Lagos State, Nigeria',
     phones: ['+234 802 814 7070', '+234 809 814 7070'],
-    email: 'info@dac-ng.com',
+    email: 'info@demolaadetola.ng',
     hours: 'Monday – Friday: 8:00 AM – 5:30 PM WAT',
   },
   {
@@ -438,7 +438,7 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     landmark: 'Lagos Island Commercial & Legal Hub',
     city: 'Lagos Island, Lagos State, Nigeria',
     phones: ['+234 807 377 5522', '+234 807 377 2255'],
-    email: 'info@dac-ng.com',
+    email: 'info@demolaadetola.ng',
     hours: 'Monday – Friday: 8:30 AM – 5:00 PM WAT',
   },
   {
@@ -449,7 +449,7 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     landmark: 'Nationwide Valuation Coverage & South Africa Advisory Practice',
     city: 'Nigeria & Pretoria, South Africa',
     phones: ['+234 802 814 7070'],
-    email: 'info@dac-ng.com',
+    email: 'info@demolaadetola.ng',
     hours: 'By Corporate Appointment',
   },
 ];
