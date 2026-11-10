@@ -30,7 +30,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
   ];
 
   return (
-    <section className="py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
+    <section className="py-14 sm:py-16 lg:py-20 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
           <div>
@@ -44,7 +44,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
               Property Advice You Can Rely On.
             </h2>
             <p className="mt-3 max-w-2xl text-sm sm:text-base leading-relaxed text-[#626061]">
-              Buying, selling or managing property is a big decision. Get clear guidance from a team focused on helping you understand your options and take the right next step.
+              Property decisions matter. We explain your options and help you decide on the next step.
             </p>
           </div>
 
