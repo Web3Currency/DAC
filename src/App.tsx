@@ -16,6 +16,8 @@ import { ServiceModal } from './components/ServiceModal';
 import { PropertyModal } from './components/PropertyModal';
 import { ArticleModal } from './components/ArticleModal';
 import { ScrollAnimations } from './components/ScrollAnimations';
+import { WhatsAppFloat } from './components/WhatsAppFloat';
+import { PrototypeInteractionLock } from './components/PrototypeInteractionLock';
 import { ServiceItem, PropertyItem, ArticleItem } from './types';
 
 export default function App() {
@@ -146,6 +148,8 @@ export default function App() {
       />
 
       <ScrollAnimations />
+      <WhatsAppFloat />
+      <PrototypeInteractionLock />
     </div>
   );
 }
