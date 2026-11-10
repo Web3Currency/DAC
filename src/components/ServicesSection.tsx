@@ -3,6 +3,18 @@ import { ChevronRight } from 'lucide-react';
 import { CORE_SERVICES } from '../data/companyData';
 import { ServiceItem } from '../types';
 
+const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
+  'property-valuation': { src: 'https://images.pexels.com/photos/20430714/pexels-photo-20430714.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Modern commercial office building in Lagos, Nigeria' },
+  'estate-agency-brokerage': { src: '/src/assets/images/property_luxury_residence_1794305810064.jpg', alt: 'Contemporary luxury residential property in Lagos' },
+  'property-facility-management': { src: '/src/assets/images/property_commercial_tower_1794305810858.jpg', alt: 'Commercial property managed by an estate team' },
+  'real-estate-consultancy': { src: 'https://images.pexels.com/photos/30678213/pexels-photo-30678213.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Nigerian property professionals reviewing a project together' },
+  'feasibility-viability-studies': { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Aerial view of Lagos urban development and property landscape' },
+  'property-development-consultancy': { src: 'https://images.pexels.com/photos/34557960/pexels-photo-34557960.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Modern residential tower in Lagos, Nigeria' },
+  'property-investment-advisory': { src: '/src/assets/images/hero_lagos_architecture_1794305808089.jpg', alt: 'Lagos commercial district architecture' },
+  'market-research': { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Lagos urban landscape illustrating property market research' },
+  'asset-management': { src: '/src/assets/images/about_boardroom_consulting_1794305809512.jpg', alt: 'Real estate professionals discussing asset management' },
+};
+
 interface ServicesSectionProps {
   onSelectServiceForConsultation: (serviceId: string) => void;
   onViewServiceDetail: (service: ServiceItem) => void;
@@ -42,6 +54,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               className="group bg-[#FFFFFF] rounded-2xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 relative"
             >
               <div>
+                <div className="relative -mx-8 -mt-8 mb-6 h-40 overflow-hidden rounded-t-2xl bg-[#E5E9E1]">
+                  <img
+                    src={SERVICE_IMAGES[service.id]?.src ?? '/src/assets/images/property_commercial_tower_1794305810858.jpg'}
+                    alt={SERVICE_IMAGES[service.id]?.alt ?? `${service.title} in Nigeria`}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/35 to-transparent" />
+                </div>
                 {/* Service Number (Top right icon removed per instructions) */}
                 <div className="mb-5">
                   <span className="text-3xl font-extrabold text-[#8ABE4B] tracking-tight tabular-nums block">
