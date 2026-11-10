@@ -441,15 +441,5 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     email: 'info@demolaadetola.ng',
     hours: 'Monday – Friday: 8:30 AM – 5:00 PM WAT',
   },
-  {
-    id: 'regional-network',
-    name: 'Nationwide & Regional African Advisory',
-    type: 'Regional Network',
-    address: 'Affiliate Network across Nigeria & Regional Subsidiary in Pretoria',
-    landmark: 'Nationwide Valuation Coverage & South Africa Advisory Practice',
-    city: 'Nigeria & Pretoria, South Africa',
-    phones: ['+234 802 814 7070'],
-    email: 'info@demolaadetola.ng',
-    hours: 'By Corporate Appointment',
-  },
+
 ];
