@@ -8,7 +8,7 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }) => {
   return (
-    <section id="about" className="py-14 sm:py-18 lg:py-28 bg-[#FFFFFF] border-b border-[#E5E9E1]">
+    <section id="about" className="py-12 sm:py-16 lg:py-28 bg-[#FFFFFF] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           <div className="lg:col-span-6 relative">
