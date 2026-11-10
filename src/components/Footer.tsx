@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-xs text-[#E5E9E1]/75 leading-relaxed pr-4">
-              Demola Adetola &amp; Co. is a firm of Chartered Estate Surveyors and Valuers providing professional real estate services across Nigeria. Conceived in 1992 and incorporated in July 1993.
+              Demola Adetola &amp; Co. is a firm of Chartered Estate Surveyors and Valuers providing professional real estate services across Nigeria. Conceived in 1992 and began operations in July 1993.
             </p>
 
             <div className="pt-2 text-[11px] text-[#E5E9E1]/70 space-y-1">
