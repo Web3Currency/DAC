@@ -17,11 +17,9 @@ export const Footer: React.FC = () => {
           {/* Column 1: Brand (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <img
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=96&q=80"
-                alt="Modern building detail"
-                className="h-10 w-auto object-contain brightness-110"
-              />
+              <div className="h-10 w-10 rounded-lg bg-[#8ABE4B] text-[#252223] flex items-center justify-center text-sm font-black tracking-tight" aria-hidden="true">
+                DAC
+              </div>
               <div className="flex flex-col">
                 <span className="text-base font-bold text-[#FFFFFF] tracking-tight">
                   Demola Adetola &amp; Co.
