@@ -7,6 +7,13 @@ interface ArticlesSectionProps {
   onReadArticle: (article: ArticleItem) => void;
 }
 
+const ARTICLE_IMAGES = [
+  { src: 'https://images.pexels.com/photos/20430714/pexels-photo-20430714.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Commercial office property in a Nigerian business district' },
+  { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Lagos urban property landscape' },
+  { src: 'https://images.pexels.com/photos/30678213/pexels-photo-30678213.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Property professionals collaborating on a real estate project' },
+  { src: 'https://images.pexels.com/photos/34557960/pexels-photo-34557960.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Modern residential tower in an African city' },
+];
+
 export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onReadArticle }) => {
   return (
     <section id="perspectives" className="py-16 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1]">
@@ -35,6 +42,9 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onReadArticle 
               className="p-6 rounded-2xl bg-[#F5F8F2] hover:bg-[#FFFFFF] shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               <div>
+                <div className="mb-5 -mx-6 -mt-6 h-40 overflow-hidden rounded-t-2xl bg-[#E5E9E1]">
+                  <img src={ARTICLE_IMAGES[REAL_ARTICLES.indexOf(art)]?.src ?? ARTICLE_IMAGES[0].src} alt={ARTICLE_IMAGES[REAL_ARTICLES.indexOf(art)]?.alt ?? 'Real estate editorial image'} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
+                </div>
                 <div className="flex items-center justify-between text-xs text-[#626061] mb-3">
                   <span className="font-bold text-[#07A757] uppercase tracking-wider text-[11px]">
                     {art.category}
