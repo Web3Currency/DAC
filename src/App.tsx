@@ -15,6 +15,7 @@ import { ConsultationModal } from './components/ConsultationModal';
 import { ServiceModal } from './components/ServiceModal';
 import { PropertyModal } from './components/PropertyModal';
 import { ArticleModal } from './components/ArticleModal';
+import { ScrollAnimations } from './components/ScrollAnimations';
 import { ServiceItem, PropertyItem, ArticleItem } from './types';
 
 export default function App() {
@@ -143,6 +144,8 @@ export default function App() {
         onClose={() => setActiveArticleForModal(null)}
         onConsult={() => handleOpenConsultation('property-valuation')}
       />
+
+      <ScrollAnimations />
     </div>
   );
 }
