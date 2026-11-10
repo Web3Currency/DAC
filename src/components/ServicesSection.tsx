@@ -4,15 +4,15 @@ import { CORE_SERVICES } from '../data/companyData';
 import { ServiceItem } from '../types';
 
 const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
-  'property-valuation': { src: 'https://images.pexels.com/photos/20430714/pexels-photo-20430714.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Modern commercial office building in Lagos, Nigeria' },
-  'estate-agency-brokerage': { src: '/src/assets/images/property_luxury_residence_1794305810064.jpg', alt: 'Contemporary luxury residential property in Lagos' },
-  'property-facility-management': { src: '/src/assets/images/property_commercial_tower_1794305810858.jpg', alt: 'Commercial property managed by an estate team' },
-  'real-estate-consultancy': { src: 'https://images.pexels.com/photos/30678213/pexels-photo-30678213.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Nigerian property professionals reviewing a project together' },
-  'feasibility-viability-studies': { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Aerial view of Lagos urban development and property landscape' },
-  'land-use-planning': { src: 'https://images.pexels.com/photos/34557960/pexels-photo-34557960.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Modern residential tower in Lagos, Nigeria' },
-  'compulsory-acquisition': { src: '/src/assets/images/hero_lagos_architecture_1794305808089.jpg', alt: 'Lagos commercial district architecture' },
-  'investment-jv-consultancy': { src: 'https://images.pexels.com/photos/36622171/pexels-photo-36622171.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Lagos urban landscape illustrating property market research' },
-  'project-management': { src: '/src/assets/images/about_boardroom_consulting_1794305809512.jpg', alt: 'Real estate professionals discussing asset management' },
+  'property-valuation': { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary residential property in Nigeria' },
+  'estate-agency-brokerage': { src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85', alt: 'Luxury Nigerian-style family residence' },
+  'property-facility-management': { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85', alt: 'Modern commercial high-rise property' },
+  'real-estate-consultancy': { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85', alt: 'Modern commercial office property interior' },
+  'feasibility-viability-studies': { src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85', alt: 'Architectural development and construction site' },
+  'land-use-planning': { src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85', alt: 'Urban land development and modern architecture' },
+  'compulsory-acquisition': { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85', alt: 'Detached residential property and landscaped plot' },
+  'investment-jv-consultancy': { src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary property development' },
+  'project-management': { src: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85', alt: 'Premium residential property exterior' },
 };
 
 interface ServicesSectionProps {
