@@ -13,7 +13,7 @@ export const COMPANY_INFO = {
   aboutMission:
     'Demola Adetola & Co. is a firm of Chartered Estate Surveyors and Valuers providing professional real estate services across Nigeria. Our expertise covers property valuation, agency, management, and advisory services, with a focus on clear advice, careful assessment and practical support for property owners, buyers, businesses and investors.',
   aboutHistory:
-    'Conceived in 1992 and officially commencing operations in July 1993, the firm has grown into one of Nigeria’s respected practices of Estate Surveyors and Valuers, licensed by the Estate Surveyors and Valuers Registration Board of Nigeria (ESVARBON), enlisted with the Nigerian Institution of Estate Surveyors and Valuers (NIESV), and registered with the Corporate Affairs Commission (CAC).',
+    'The firm was conceived in 1992 and began operations in July 1993. Its experience in the Nigerian property sector is part of the story we want visitors to understand. Professional registration and corporate details can be added here once confirmed by the firm.',
   establishedYear: 1993,
   conceivedYear: 1992,
   yearsOfExcellence: '30+',
