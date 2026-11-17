@@ -45,13 +45,13 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">Navigation</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-[#8ABE4B] transition-colors">Home</a></li>
-              <li><a href="#about" className="hover:text-[#8ABE4B] transition-colors">About us</a></li>
-              <li><a href="#services" className="hover:text-[#8ABE4B] transition-colors">Services</a></li>
-              <li><a href="#properties" className="hover:text-[#8ABE4B] transition-colors">Property listings</a></li>
-              <li><a href="#process" className="hover:text-[#8ABE4B] transition-colors">Our Process</a></li>
-              <li><a href="#perspectives" className="hover:text-[#8ABE4B] transition-colors">Expert Perspectives</a></li>
-              <li><a href="#contact" className="hover:text-[#8ABE4B] transition-colors">Contact us</a></li>
+              <li><a href="/" className="hover:text-[#8ABE4B] transition-colors">Home</a></li>
+              <li><a href="/#about" className="hover:text-[#8ABE4B] transition-colors">About us</a></li>
+              <li><a href="/services" className="hover:text-[#8ABE4B] transition-colors">Services</a></li>
+              <li><a href="/#properties" className="hover:text-[#8ABE4B] transition-colors">Property listings</a></li>
+              <li><a href="/#process" className="hover:text-[#8ABE4B] transition-colors">Our Process</a></li>
+              <li><a href="/#perspectives" className="hover:text-[#8ABE4B] transition-colors">Expert Perspectives</a></li>
+              <li><a href="/#contact" className="hover:text-[#8ABE4B] transition-colors">Contact us</a></li>
             </ul>
           </div>
 
