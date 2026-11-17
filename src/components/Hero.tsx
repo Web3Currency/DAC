@@ -1,11 +1,13 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useSiteMedia } from '../lib/useSiteMedia';
 
 interface HeroProps {
   onOpenConsultation: (serviceId?: string) => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
+  const siteMedia = useSiteMedia();
   const proofPoints = [
     'Established in 1993',
     'Chartered estate surveying and valuation services',
@@ -17,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
       {/* Architectural imagery with a strong contrast overlay — clipped so Ken Burns cannot widen the page */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=90"
+          src={siteMedia.homepage_hero || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=90"}
           alt="Modern commercial property and city architecture"
           className="w-full h-full object-cover animate-estate-kenburns origin-center"
           loading="eager"
