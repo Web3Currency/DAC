@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { LogOut, UploadCloud, Copy, Check, Image as ImageIcon, ShieldCheck, RefreshCw } from 'lucide-react';
+import { LogOut, UploadCloud, Copy, Check, Image as ImageIcon, ShieldCheck, RefreshCw, Trash2 } from 'lucide-react';
 import type { User } from '@supabase/supabase-js';
 import { upload } from '@vercel/blob/client';
 import { supabase } from '../lib/supabase';
@@ -64,6 +64,7 @@ export default function AdminApp() {
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [copiedUrl, setCopiedUrl] = useState('');
+  const [deletingId, setDeletingId] = useState('');
 
   useEffect(() => {
     let alive = true;
@@ -116,7 +117,36 @@ export default function AdminApp() {
     if (queryError) {
       setError(`Could not load the media library: ${queryError.message}`);
     } else {
-      setMedia((data || []) as MediaItem[]);
+      let currentMedia = (data || []) as MediaItem[];
+      const session = (await supabase.auth.getSession()).data.session;
+      if (session && currentMedia.length > 0) {
+        try {
+          const reconcileResponse = await fetch('/api/blob/reconcile', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${session.access_token}`,
+            },
+            body: JSON.stringify({ urls: currentMedia.map((item) => item.blob_url) }),
+          });
+          if (reconcileResponse.ok) {
+            const result = await reconcileResponse.json() as { missing?: string[] };
+            const missingUrls = result.missing || [];
+            if (missingUrls.length > 0) {
+              const { error: cleanupError } = await supabase.from('site_media').delete().in('blob_url', missingUrls);
+              if (!cleanupError) {
+                currentMedia = currentMedia.filter((item) => !missingUrls.includes(item.blob_url));
+                setNotice(`${missingUrls.length} unavailable media record${missingUrls.length === 1 ? '' : 's'} removed from the library.`);
+              } else {
+                setError(`Some unavailable media records could not be cleaned up: ${cleanupError.message}`);
+              }
+            }
+          }
+        } catch {
+          // Preserve the library if the availability check fails; manual refresh can retry.
+        }
+      }
+      setMedia(currentMedia);
     }
     if (serviceError) {
       setServicePlacements([]);
@@ -221,6 +251,41 @@ export default function AdminApp() {
     await loadMedia();
     const label = [...basePlacements, ...servicePlacements.map((service) => ({ value: 'service_' + service.slug, label: 'Service: ' + service.title }))].find((p) => p.value === placement)?.label || placement;
     setNotice(placement ? 'Image assigned to ' + label + '.' : 'Image placement cleared.');
+  }
+
+  async function deleteMedia(item: MediaItem) {
+    const confirmed = window.confirm(`Delete "${item.title}" permanently from Vercel Blob and the media library? This cannot be undone.`);
+    if (!confirmed) return;
+    setDeletingId(item.id);
+    setError('');
+    setNotice('');
+    try {
+      const session = (await supabase.auth.getSession()).data.session;
+      if (!session) throw new Error('Your session has expired. Sign in again.');
+      const response = await fetch('/api/blob/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ url: item.blob_url }),
+      });
+      const result = await response.json().catch(() => ({})) as { error?: string; alreadyMissing?: boolean };
+      if (!response.ok) throw new Error(result.error || 'Could not delete the media file from storage.');
+      const { error: rowError } = await supabase.from('site_media').delete().eq('id', item.id);
+      if (rowError) {
+        throw new Error(`The storage file was deleted, but its library record could not be removed: ${rowError.message}. Refresh the library to reconcile it.`);
+      }
+      setMedia((current) => current.filter((entry) => entry.id !== item.id));
+      setNotice(result.alreadyMissing
+        ? 'The file was already missing from Vercel Blob; its stale media record has been removed.'
+        : 'Media file and library record deleted successfully.');
+    } catch (deleteError) {
+      setError(deleteError instanceof Error ? deleteError.message : 'Media deletion failed.');
+      await loadMedia();
+    } finally {
+      setDeletingId('');
+    }
   }
 
   async function copyUrl(url: string) {
@@ -338,7 +403,17 @@ export default function AdminApp() {
                     </label>
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-[10px] text-[#777]">{(item.size_bytes / 1024 / 1024).toFixed(2)} MB</span>
-                      <button onClick={() => void copyUrl(item.blob_url)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07A757]">{copiedUrl === item.blob_url ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}{copiedUrl === item.blob_url ? 'Copied' : 'Copy URL'}</button>
+                      <div className="flex items-center gap-3">
+                        <button onClick={() => void copyUrl(item.blob_url)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07A757]">{copiedUrl === item.blob_url ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}{copiedUrl === item.blob_url ? 'Copied' : 'Copy URL'}</button>
+                        <button
+                          onClick={() => void deleteMedia(item)}
+                          disabled={busy || deletingId === item.id}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-600 hover:text-red-700 disabled:opacity-50"
+                          aria-label={`Delete ${item.title}`}
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />{deletingId === item.id ? 'Deleting…' : 'Delete'}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
