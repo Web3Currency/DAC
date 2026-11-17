@@ -26,6 +26,15 @@ const placements = [
   { value: 'footer_logo', label: 'Footer logo' },
   { value: 'homepage_hero', label: 'Homepage hero' },
   { value: 'about_image', label: 'About section image' },
+  { value: 'service_property-valuation', label: 'Service: Property valuation' },
+  { value: 'service_estate-agency-brokerage', label: 'Service: Estate agency & brokerage' },
+  { value: 'service_property-facility-management', label: 'Service: Property & facility management' },
+  { value: 'service_real-estate-consultancy', label: 'Service: Real estate consultancy' },
+  { value: 'service_feasibility-viability-studies', label: 'Service: Feasibility & viability' },
+  { value: 'service_land-use-planning', label: 'Service: Land use planning' },
+  { value: 'service_compulsory-acquisition', label: 'Service: Compulsory acquisition' },
+  { value: 'service_investment-jv-consultancy', label: 'Service: Investment & JV consultancy' },
+  { value: 'service_project-management', label: 'Service: Project management' },
 ];
 const folders: { value: AssetFolder; label: string; description: string }[] = [
   { value: 'logo', label: 'Logo & brand marks', description: 'Approved company logos and identity files' },
