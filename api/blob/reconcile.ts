@@ -1,5 +1,3 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
 type SupabaseUser = { app_metadata?: Record<string, unknown> };
 
 async function requireAdmin(authorization: string | undefined): Promise<void> {
@@ -25,7 +23,7 @@ function isManagedBlobUrl(value: unknown): value is string {
   } catch { return false; }
 }
 
-export default async function handler(request: VercelRequest, response: VercelResponse) {
+export default async function handler(request: any, response: any) {
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
     return response.status(405).json({ error: 'Method not allowed.' });
