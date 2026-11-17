@@ -17,15 +17,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   return (
     <section className="relative bg-white px-0 pb-5 sm:pb-7">
       <div className="relative isolate min-h-[68vh] sm:min-h-[72vh] lg:min-h-[78vh] flex items-center overflow-hidden bg-[#252223]">
-        {/* Keep the office photograph natural; use neutral charcoal only where it supports legibility. */}
+        {/* Use only the office image assigned in the admin dashboard. No stock-image fallback. */}
         <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-          <img
-            src={siteMedia.homepage_hero || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=90"}
-            alt="Demola Adetola & Co. office building"
-            className="h-full w-full object-cover object-[58%_48%] sm:object-center"
-            loading="eager"
-            fetchPriority="high"
-          />
+          {siteMedia.homepage_hero && (
+            <img
+              src={siteMedia.homepage_hero}
+              alt="Demola Adetola & Co. office building"
+              className="h-full w-full object-cover object-[58%_48%] sm:object-center"
+              loading="eager"
+              fetchPriority="high"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-[#171617]/90 via-[#252223]/72 to-[#252223]/18" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#171617]/55 via-transparent to-[#171617]/10" />
         </div>
