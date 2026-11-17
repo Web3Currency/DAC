@@ -14,32 +14,28 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg bg-[#F5F8F2]">
-              <img
-                src={siteMedia.about_image || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"}
-                alt="Modern residential property"
-                className="w-full h-[400px] sm:h-[460px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/45 via-transparent to-transparent" />
-            </div>
-
-            <div className="absolute -bottom-6 -right-2 sm:bottom-6 sm:-right-6 bg-[#FFFFFF] p-5 rounded-2xl shadow-2xl max-w-xs">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-[#F5F8F2] flex items-center justify-center">
-                  <Award className="w-5 h-5 text-[#07A757]" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#252223] block">
-                    Established in {COMPANY_INFO.establishedYear}
-                  </span>
-                  <span className="text-[11px] text-[#626061] font-medium">
-                    A Nigerian real estate practice
-                  </span>
-                </div>
-              </div>
-              <p className="text-xs text-[#626061] leading-normal">
-                Serving the Nigerian property sector since 1993.
-              </p>
+            <div className="relative rounded-2xl overflow-hidden shadow-lg bg-[#F5F8F2] min-h-[300px] sm:min-h-[400px]">
+              {siteMedia.about_image && (
+                <>
+                  <img
+                    src={siteMedia.about_image}
+                    alt="Demola Adetola & Co. office"
+                    className="w-full h-[400px] sm:h-[460px] object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/35 via-transparent to-transparent" />
+                  <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6">
+                    <div className="inline-flex items-center gap-3 rounded-xl bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm">
+                      <div className="w-10 h-10 rounded-xl bg-[#F5F8F2] flex items-center justify-center">
+                        <Award className="w-5 h-5 text-[#07A757]" />
+                      </div>
+                      <span className="text-xs sm:text-sm font-bold tracking-wide text-[#252223]">
+                        Our Practice. Our People.
+                      </span>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
