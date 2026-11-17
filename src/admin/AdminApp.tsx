@@ -21,21 +21,13 @@ type MediaItem = {
   placement_key: string | null;
 };
 
-const placements = [
+const basePlacements = [
   { value: 'header_logo', label: 'Header logo' },
   { value: 'footer_logo', label: 'Footer logo' },
   { value: 'homepage_hero', label: 'Homepage hero' },
   { value: 'about_image', label: 'About section image' },
-  { value: 'service_property-valuation', label: 'Service: Property valuation' },
-  { value: 'service_estate-agency-brokerage', label: 'Service: Estate agency & brokerage' },
-  { value: 'service_property-facility-management', label: 'Service: Property & facility management' },
-  { value: 'service_real-estate-consultancy', label: 'Service: Real estate consultancy' },
-  { value: 'service_feasibility-viability-studies', label: 'Service: Feasibility & viability' },
-  { value: 'service_land-use-planning', label: 'Service: Land use planning' },
-  { value: 'service_compulsory-acquisition', label: 'Service: Compulsory acquisition' },
-  { value: 'service_investment-jv-consultancy', label: 'Service: Investment & JV consultancy' },
-  { value: 'service_project-management', label: 'Service: Project management' },
 ];
+type ServicePlacement = { slug: string; title: string; display_order: number; is_active: boolean };
 const folders: { value: AssetFolder; label: string; description: string }[] = [
   { value: 'logo', label: 'Logo & brand marks', description: 'Approved company logos and identity files' },
   { value: 'hero', label: 'Hero imagery', description: 'Homepage banners and lead imagery' },
@@ -58,6 +50,7 @@ export default function AdminApp() {
   const [folder, setFolder] = useState<AssetFolder>('company');
   const [files, setFiles] = useState<File[]>([]);
   const [media, setMedia] = useState<MediaItem[]>([]);
+  const [servicePlacements, setServicePlacements] = useState<ServicePlacement[]>([]);
   const [busy, setBusy] = useState(false);
   const [loadingMedia, setLoadingMedia] = useState(false);
   const [error, setError] = useState('');
@@ -103,14 +96,25 @@ export default function AdminApp() {
 
   async function loadMedia() {
     setLoadingMedia(true);
-    const { data, error: queryError } = await supabase
-      .from('site_media')
-      .select('id,title,folder,blob_url,pathname,mime_type,size_bytes,alt_text,caption,is_active,created_at,placement_key')
-      .order('created_at', { ascending: false });
+    const [{ data, error: queryError }, { data: services, error: serviceError }] = await Promise.all([
+      supabase.from('site_media')
+        .select('id,title,folder,blob_url,pathname,mime_type,size_bytes,alt_text,caption,is_active,created_at,placement_key')
+        .order('created_at', { ascending: false }),
+      supabase.from('service_catalog')
+        .select('slug,title,display_order,is_active')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true }),
+    ]);
     if (queryError) {
       setError(`Could not load the media library: ${queryError.message}`);
     } else {
       setMedia((data || []) as MediaItem[]);
+    }
+    if (serviceError) {
+      setServicePlacements([]);
+      setError(`Could not load the active service list. Service image assignments are disabled until the catalog is available: ${serviceError.message}`);
+    } else {
+      setServicePlacements((services || []) as ServicePlacement[]);
     }
     setLoadingMedia(false);
   }
@@ -200,7 +204,7 @@ export default function AdminApp() {
     const { error: updateError } = await supabase.from('site_media').update({ placement_key: placement || null }).eq('id', item.id);
     if (updateError) { setError('Could not assign image: ' + updateError.message); return; }
     await loadMedia();
-    const label = placements.find((p) => p.value === placement)?.label || placement;
+    const label = [...basePlacements, ...servicePlacements.map((service) => ({ value: 'service_' + service.slug, label: 'Service: ' + service.title }))].find((p) => p.value === placement)?.label || placement;
     setNotice(placement ? 'Image assigned to ' + label + '.' : 'Image placement cleared.');
   }
 
@@ -312,7 +316,8 @@ export default function AdminApp() {
                       <span className="text-[10px] font-semibold uppercase tracking-wide text-[#626061]">Website placement</span>
                       <select value={item.placement_key || ""} onChange={(event) => void assignPlacement(item, event.target.value)} className="w-full rounded-lg border border-[#D9DED5] bg-white px-2.5 py-2 text-xs">
                         <option value="">Not assigned</option>
-                        {placements.map((placement) => <option key={placement.value} value={placement.value}>{placement.label}</option>)}
+                        {basePlacements.map((placement) => <option key={placement.value} value={placement.value}>{placement.label}</option>)}
+                        {servicePlacements.map((service) => <option key={service.slug} value={'service_' + service.slug}>Service: {service.title}</option>)}
                       </select>
                     </label>
                     <div className="flex items-center justify-between gap-2">
