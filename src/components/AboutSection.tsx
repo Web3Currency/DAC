@@ -1,95 +1,241 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, Award } from 'lucide-react';
-import { COMPANY_INFO } from '../data/companyData';
+import {
+  ArrowRight,
+  Building2,
+  CheckCircle2,
+  Eye,
+  Handshake,
+  Lightbulb,
+  ShieldCheck,
+  Target,
+  Users,
+} from 'lucide-react';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
 interface AboutSectionProps {
   onOpenConsultation: () => void;
 }
 
+const practiceAreas = [
+  'Property agency and brokerage',
+  'Property valuation and appraisal',
+  'Property management',
+  'Investment advisory',
+  'Facility management',
+  'Real estate consultancy',
+];
+
+const values = [
+  {
+    title: 'Integrity',
+    description: 'We act honestly and put our clients’ interests at the centre of every engagement.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Professionalism',
+    description: 'We bring care, competence and accountability to every property assignment.',
+    icon: Building2,
+  },
+  {
+    title: 'Transparency',
+    description: 'We communicate clearly so clients can make decisions with confidence.',
+    icon: Eye,
+  },
+  {
+    title: 'Excellence',
+    description: 'We pursue high standards in our advice, service and delivery.',
+    icon: Lightbulb,
+  },
+  {
+    title: 'Client satisfaction',
+    description: 'We listen, understand each brief and work towards outcomes that serve our clients.',
+    icon: Users,
+  },
+];
+
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }) => {
   const siteMedia = useSiteMedia();
-  return (
-    <section id="about" className="py-12 sm:py-16 lg:py-28 bg-[#FFFFFF] border-b border-[#E5E9E1]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-          <div className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg bg-[#F5F8F2] min-h-[300px] sm:min-h-[400px]">
-              {siteMedia.about_image && (
-                <>
-                  <img
-                    src={siteMedia.about_image}
-                    alt="Demola Adetola & Co. office"
-                    className="w-full h-[400px] sm:h-[460px] object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/35 via-transparent to-transparent" />
-                  <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6">
-                    <div className="inline-flex items-center gap-3 rounded-xl bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm">
-                      <div className="w-10 h-10 rounded-xl bg-[#F5F8F2] flex items-center justify-center">
-                        <Award className="w-5 h-5 text-[#07A757]" />
-                      </div>
-                      <span className="text-xs sm:text-sm font-bold tracking-wide text-[#252223]">
-                        Our Practice. Our People.
-                      </span>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
 
-          <div className="lg:col-span-6 space-y-4 sm:space-y-5">
-            <div className="flex items-center gap-2">
+  return (
+    <div className="w-full bg-white">
+      <section className="relative overflow-hidden border-b border-[#E5E9E1] bg-[#F5F8F2]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28">
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-2 mb-5">
               <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">
-                About Demola Adetola &amp; Co.
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#07A757]">
+                About our firm
               </span>
             </div>
-
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223] leading-tight">
-              Helping Nigerians Make Better Property Decisions.
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#626061] leading-relaxed">
-              {COMPANY_INFO.aboutIntro}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] text-[#252223]">
+              Real Estate Expertise.
+              <span className="block text-[#07A757]">Trusted Property Solutions.</span>
+            </h1>
+            <p className="mt-7 max-w-3xl text-base sm:text-lg leading-relaxed text-[#626061]">
+              Demola Adetola &amp; Co. is a professional real estate and valuation firm committed to
+              delivering trusted property solutions across residential, commercial, and investment
+              sectors.
             </p>
+          </div>
+        </div>
+      </section>
 
-            <p className="text-sm sm:text-base text-[#626061] leading-relaxed">
-              {COMPANY_INFO.aboutHistory}
-            </p>
-
-            <p className="text-sm sm:text-base text-[#626061] leading-relaxed">
-              {COMPANY_INFO.aboutMission}
-            </p>
-
-            <div className="pt-2 space-y-3 text-sm text-[#626061]">
-              <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
-                <span>Valuation, buying and selling support, property management and property advice.</span>
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-5">
+            {siteMedia.about_image ? (
+              <div className="overflow-hidden rounded-2xl bg-[#F5F8F2]">
+                <img
+                  src={siteMedia.about_image}
+                  alt="Demola Adetola & Co. real estate practice"
+                  className="w-full aspect-[4/5] object-cover"
+                  loading="lazy"
+                />
               </div>
-              <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
-                <span>Office locations listed in Onikan and Campbell Street, Lagos Island.</span>
+            ) : (
+              <div className="aspect-[4/5] rounded-2xl bg-[#F5F8F2] flex items-center justify-center">
+                <Building2 className="w-16 h-16 text-[#8ABE4B]" strokeWidth={1.2} />
               </div>
-              <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
-                <span>Support for individuals, businesses and investors.</span>
-              </div>
+            )}
+          </div>
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#07A757]">
+                Who we are
+              </span>
             </div>
-
-            <div className="pt-4">
-              <button
-                onClick={onOpenConsultation}
-                className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-xs hover:shadow transition-colors"
-              >
-                <span>Speak With Our Team</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
+              More than property agents. Partners in real estate growth.
+            </h2>
+            <div className="mt-6 space-y-4 text-sm sm:text-base leading-relaxed text-[#626061]">
+              <p>
+                With a deep understanding of the property market, we provide expert guidance that
+                helps individuals, investors, and institutions make informed and profitable real
+                estate decisions.
+              </p>
+              <p>
+                Our approach is rooted in professionalism, transparency, and integrity, ensuring
+                that every transaction is handled with accuracy and confidence.
+              </p>
+              <p>
+                We are a fully registered real estate practice offering a connected range of
+                property services. We are not just property agents; we are strategic partners in
+                real estate growth and wealth creation.
+              </p>
+            </div>
+            <div className="mt-8">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-[#252223] mb-4">
+                Our practice areas
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                {practiceAreas.map((area) => (
+                  <div key={area} className="flex items-start gap-2.5 text-sm text-[#626061]">
+                    <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
+                    <span>{area}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="py-16 sm:py-20 bg-[#F5F8F2] border-y border-[#E5E9E1]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-10">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#07A757]">
+                Our direction
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
+              Guided by purpose. Focused on lasting value.
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-7">
+            <article className="rounded-2xl bg-white border border-[#E5E9E1] p-7 sm:p-9">
+              <div className="w-11 h-11 rounded-xl bg-[#F5F8F2] flex items-center justify-center mb-6">
+                <Target className="w-5 h-5 text-[#07A757]" />
+              </div>
+              <h3 className="text-xl font-bold text-[#252223] mb-3">Our mission</h3>
+              <p className="text-sm sm:text-base leading-relaxed text-[#626061]">
+                To provide reliable, transparent, and value-driven real estate services that
+                empower clients to make confident property decisions.
+              </p>
+            </article>
+            <article className="rounded-2xl bg-white border border-[#E5E9E1] p-7 sm:p-9">
+              <div className="w-11 h-11 rounded-xl bg-[#F5F8F2] flex items-center justify-center mb-6">
+                <Eye className="w-5 h-5 text-[#07A757]" />
+              </div>
+              <h3 className="text-xl font-bold text-[#252223] mb-3">Our vision</h3>
+              <p className="text-sm sm:text-base leading-relaxed text-[#626061]">
+                To become one of the most trusted and respected real estate firms, known for
+                excellence, integrity, and innovation.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-10">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#07A757]">
+                What guides us
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
+              Our core values
+            </h2>
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#626061]">
+              The standards behind how we advise, work and build relationships.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-7 lg:gap-6">
+            {values.map(({ title, description, icon: Icon }) => (
+              <article key={title} className="border-t-2 border-[#8ABE4B] pt-5">
+                <div className="w-10 h-10 rounded-xl bg-[#F5F8F2] flex items-center justify-center mb-5">
+                  <Icon className="w-5 h-5 text-[#07A757]" />
+                </div>
+                <h3 className="text-base font-bold text-[#252223] mb-2">{title}</h3>
+                <p className="text-sm leading-relaxed text-[#626061]">{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20 bg-[#252223]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#8ABE4B]">
+                Work with us
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              Let’s build value through real estate.
+            </h2>
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-white/70">
+              Speak with our team about your property needs, investment goals or next real estate
+              decision.
+            </p>
+          </div>
+          <button
+            onClick={onOpenConsultation}
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-[#8ABE4B] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
+          >
+            <Handshake className="w-4 h-4" />
+            <span>Speak with our team</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </section>
+    </div>
   );
 };
