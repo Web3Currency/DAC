@@ -20,6 +20,7 @@ import { ServiceModal } from './components/ServiceModal';
 import { PropertyDetailPage } from './components/PropertyModal';
 import { ScrollAnimations } from './components/ScrollAnimations';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
+import { ExpertPerspectivesSection } from './components/ExpertPerspectivesSection';
 import { ServiceItem, PropertyItem } from './types';
 
 export default function App() {
@@ -73,6 +74,7 @@ export default function App() {
             <GeographicalReachSection />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
             <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
+            <ExpertPerspectivesSection />
             <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
           </>
         )}
