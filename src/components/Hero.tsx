@@ -15,62 +15,64 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   ];
 
   return (
-    <section className="relative min-h-[66vh] sm:min-h-[72vh] lg:min-h-[82vh] flex flex-col justify-center overflow-hidden bg-[#252223] border-b border-[#E5E9E1]">
-      {/* Architectural imagery with a strong contrast overlay — clipped so Ken Burns cannot widen the page */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img
-          src={siteMedia.homepage_hero || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=90"}
-          alt="Modern commercial property and city architecture"
-          className="w-full h-full object-cover animate-estate-kenburns origin-center"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#252223]/95 via-[#252223]/78 to-[#252223]/42" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/85 via-transparent to-black/25" />
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#8ABE4B]/15 rounded-full blur-3xl" />
-      </div>
+    <section className="relative bg-white px-0 pb-5 sm:pb-7">
+      <div className="relative isolate min-h-[68vh] sm:min-h-[72vh] lg:min-h-[78vh] flex items-center overflow-hidden bg-[#252223]">
+        {/* Keep the office photograph natural; use neutral charcoal only where it supports legibility. */}
+        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+          <img
+            src={siteMedia.homepage_hero || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=90"}
+            alt="Demola Adetola & Co. office building"
+            className="h-full w-full object-cover object-[58%_48%] sm:object-center"
+            loading="eager"
+            fetchPriority="high"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#171617]/90 via-[#252223]/72 to-[#252223]/18" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#171617]/55 via-transparent to-[#171617]/10" />
+        </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28 w-full min-w-0">
-        <div className="max-w-4xl min-w-0">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-            <p className="text-xs sm:text-sm font-bold tracking-[0.18em] uppercase text-[#D5E8C0]">
-              Chartered Estate Surveyors &amp; Valuers
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
+          <div className="max-w-3xl">
+            <div className="mb-6 inline-flex items-center gap-3">
+              <span className="h-0.5 w-9 bg-[#8ABE4B]" />
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#D5E8C0] sm:text-sm">
+                Chartered Estate Surveyors &amp; Valuers
+              </p>
+            </div>
+
+            <h1 className="mb-6 max-w-3xl text-[2.55rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-7xl">
+              Make Better Property Decisions.
+              <span className="mt-2 block text-[#A9D477]">Build Lasting Value.</span>
+            </h1>
+
+            <p className="mb-8 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg lg:text-xl">
+              We help individuals, businesses and investors with property valuation, buying and selling, property management and real estate advice.
             </p>
-          </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6 max-w-4xl">
-            Make Better Property Decisions.
-            <span className="block text-[#A9D477] mt-2">Build Lasting Value.</span>
-          </h1>
+            <div className="mb-8 flex flex-col gap-3 sm:mb-9 sm:flex-row sm:flex-wrap sm:gap-x-7 sm:gap-y-3">
+              {proofPoints.map((point) => (
+                <div key={point} className="flex items-center gap-2.5 text-sm font-medium text-white/95 sm:text-[0.925rem]">
+                  <CheckCircle2 className="h-[18px] w-[18px] shrink-0 text-[#A9D477]" />
+                  <span>{point}</span>
+                </div>
+              ))}
+            </div>
 
-          <p className="text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed mb-8 max-w-2xl">
-            We help individuals, businesses and investors with property valuation, buying and selling, property management and real estate advice.
-          </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <button
+                onClick={() => onOpenConsultation('property-valuation')}
+                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-[#8ABE4B] px-7 py-4 text-xs font-bold uppercase tracking-wider text-[#252223] shadow-lg shadow-black/15 transition-colors duration-300 hover:bg-[#07A757] hover:text-white active:scale-[0.99] sm:text-sm"
+              >
+                <span>Speak With Our Team</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
 
-          <div className="flex flex-wrap gap-x-6 gap-y-3 mb-7">
-            {proofPoints.map((point) => (
-              <div key={point} className="flex items-center gap-2 text-sm font-medium text-white/90">
-                <CheckCircle2 className="w-4 h-4 text-[#A9D477] shrink-0" />
-                <span>{point}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <button
-              onClick={() => onOpenConsultation('property-valuation')}
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98]"
-            >
-              <span>Speak With Our Team</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <a
-              href="#services"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/35 rounded-lg backdrop-blur-sm transition-all duration-300"
-            >
-              <span>Explore Our Services</span>
-            </a>
+              <a
+                href="#services"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border border-white/55 bg-[#252223]/35 px-6 py-4 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/15 sm:text-sm"
+              >
+                <span>Explore Our Services</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
