@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { MapPin, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
-import { FEATURED_PROPERTIES } from '../data/companyData';
+import { supabase } from '../lib/supabase';
 import { PropertyItem } from '../types';
 
 interface ProjectsSectionProps {
@@ -19,11 +19,40 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   filterCriteria,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [properties, setProperties] = useState<PropertyItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState('');
+
+  useEffect(() => {
+    let active = true;
+    async function loadProperties() {
+      setLoading(true);
+      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,listing_status,location,city,state,country,price_amount,price_currency,price_label,price_frequency,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,units,title_tenure,features,property_images(image_url,display_order,is_cover)').eq('is_published', true).order('display_order', { ascending: true }).order('created_at', { ascending: false });
+      if (!active) return;
+      if (error) {
+        setLoadError('Property listings are temporarily unavailable.');
+        setProperties([]);
+      } else {
+        const mapped = (data || []).map((row: any) => {
+          const photos = [...(row.property_images || [])].sort((a: any, b: any) => Number(b.is_cover) - Number(a.is_cover) || a.display_order - b.display_order).map((photo: any) => photo.image_url).filter(Boolean);
+          const amount = row.price_amount == null ? '' : new Intl.NumberFormat('en-NG', { style: 'currency', currency: row.price_currency || 'NGN', maximumFractionDigits: 0 }).format(Number(row.price_amount));
+          const status = row.listing_status === 'under_offer' ? 'Under Offer' : row.listing_status === 'sold' ? 'Sold' : row.listing_status === 'let' ? 'Let' : row.listing_status === 'off_market' ? 'Off Market' : row.listing_type === 'letting' ? 'For Letting' : 'For Sale';
+          const location = [row.location, row.city, row.state, row.country].filter((value, index, values) => value && values.indexOf(value) === index).join(', ');
+          return { id: row.id, title: row.title, category: row.category, location, price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Price on request', status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined, bedrooms: row.bedrooms != null ? String(row.bedrooms) + ' bedrooms' : undefined, bathrooms: row.bathrooms != null ? String(row.bathrooms) + ' bathrooms' : undefined, tenure: row.title_tenure || undefined, parking: row.parking_spaces != null ? String(row.parking_spaces) + ' spaces' : undefined, units: row.units != null ? String(row.units) + ' units' : undefined }, summary: row.summary || row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale' } as PropertyItem;
+        });
+        setProperties(mapped);
+        setLoadError('');
+      }
+      setLoading(false);
+    }
+    void loadProperties();
+    return () => { active = false; };
+  }, []);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
 
   const categories = ['All', 'Residential', 'Commercial', 'Development'];
 
-  const filteredProperties = FEATURED_PROPERTIES.filter((item) => {
+  const filteredProperties = properties.filter((item) => {
     if (filterCriteria) {
       if (filterCriteria.category !== 'Any' && item.category !== filterCriteria.category) {
         return false;
@@ -116,6 +145,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
         {/* Properties Grid — High visual quality, bullet points, call to action */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-5 sm:gap-8 w-full max-w-full min-w-0">
+          {loading && <p className="col-span-full py-12 text-center text-sm text-[#626061]">Loading verified property listings…</p>}
+          {!loading && loadError && <p className="col-span-full py-12 text-center text-sm text-[#626061]">{loadError}</p>}
+          {!loading && !loadError && filteredProperties.length === 0 && <div className="col-span-full py-12 text-center"><p className="text-base font-semibold text-[#252223]">Property listings are being prepared.</p><p className="mt-2 text-sm text-[#626061]">Contact our team for current sale and letting opportunities.</p></div>}
           {filteredProperties.map((prop) => (
             <div
               key={prop.id}
@@ -123,11 +155,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             >
               {/* Image & Badges */}
               <div className="relative h-64 sm:h-72 overflow-hidden bg-[#F5F8F2]">
-                <img
+                {prop.image ? <img
                   src={prop.image}
                   alt={prop.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
+                /> : <div className="w-full h-full grid place-items-center text-sm text-[#626061]">Image coming soon</div>}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
 
                 {/* Badge */}
