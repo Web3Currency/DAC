@@ -50,7 +50,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   }, []);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
 
-  const categories = ['All', 'Residential', 'Commercial', 'Development'];
+  const categories = ['All', 'Residential', 'Commercial', 'Development', 'Industrial'];
 
   const filteredProperties = properties.filter((item) => {
     if (filterCriteria) {
