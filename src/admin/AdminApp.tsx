@@ -3,6 +3,7 @@ import { LogOut, UploadCloud, Copy, Check, Image as ImageIcon, ShieldCheck, Refr
 import type { User } from '@supabase/supabase-js';
 import { upload } from '@vercel/blob/client';
 import { supabase } from '../lib/supabase';
+import PropertiesAdmin from './PropertiesAdmin';
 
 type AssetFolder = 'logo' | 'hero' | 'services' | 'projects' | 'team' | 'company';
 type MediaItem = {
@@ -311,6 +312,7 @@ export default function AdminApp() {
             </div>
           )}
         </section>
+        <PropertiesAdmin user={user} />
       </div>
     </main>
   );
