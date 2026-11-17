@@ -7,11 +7,11 @@ interface HeaderProps {
 }
 
 const navigation = [
-  { label: 'Home', href: '#home' },
-  { label: 'Properties', href: '#properties' },
-  { label: 'Services', href: '#services' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Properties', href: '/#properties' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
     <header className="sticky top-0 z-[100] isolate w-full shrink-0 bg-white/90 backdrop-blur-xl border-b border-[#E9ECE7] shadow-[0_4px_20px_rgba(37,34,35,0.06)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-[76px]">
-          <a href="#home" onClick={closeMobileMenu} className="flex items-center shrink-0 py-2" aria-label="Demola Adetola & Co. home">
+          <a href="/" onClick={closeMobileMenu} className="flex items-center shrink-0 py-2" aria-label="Demola Adetola & Co. home">
             <img
               src={siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
               alt="Demola Adetola & Co. Logo"
