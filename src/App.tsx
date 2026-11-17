@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { PropertyFinderSection } from './components/PropertyFinderSection';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
+import { PropertiesPage } from './pages/PropertiesPage';
 import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -29,14 +29,12 @@ export default function App() {
   const [propertyReturnScroll, setPropertyReturnScroll] = useState(0);
   useEffect(() => { if (!activePropertyForModal) window.scrollTo({ top: propertyReturnScroll, behavior: 'instant' }); }, [activePropertyForModal, propertyReturnScroll]);
   const [activeArticleForModal, setActiveArticleForModal] = useState<ArticleItem | null>(null);
-  const [propertyFilter, setPropertyFilter] = useState<{ location: string; category: string; price: string } | undefined>(undefined);
 
   const handleOpenConsultation = (serviceId?: string) => {
     setSelectedServiceId(serviceId);
     setIntakeData(undefined);
     setConsultationOpen(true);
   };
-  const handleSearchProperties = (filters: { location: string; category: string; price: string }) => setPropertyFilter(filters);
   const handleViewService = (service: ServiceItem) => setActiveServiceForModal(service);
   const handleSelectProperty = (property: PropertyItem) => {
     setPropertyReturnScroll(window.scrollY);
@@ -61,15 +59,15 @@ export default function App() {
           <ServicesPage onOpenConsultation={handleOpenConsultation} onViewServiceDetail={handleViewService} />
         ) : currentPath === '/about' ? (
           <AboutPage onOpenConsultation={() => handleOpenConsultation()} />
+        ) : currentPath === '/properties' ? (
+          <PropertiesPage onSelectProperty={handleSelectProperty} onRequestViewing={handleRequestViewing} />
         ) : currentPath === '/contact' ? (
           <><ContactSection preselectedServiceId={selectedServiceId} /><AddressSection /></>
         ) : (
           <>
             <Hero onOpenConsultation={handleOpenConsultation} />
-            <PropertyFinderSection onSearchProperties={handleSearchProperties} />
             <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
-            <ProjectsSection onSelectProperty={handleSelectProperty} onRequestViewing={handleRequestViewing} filterCriteria={propertyFilter} />
             <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
             <ArticlesSection onReadArticle={handleReadArticle} />
           </>
