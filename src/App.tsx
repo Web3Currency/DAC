@@ -7,7 +7,6 @@ import { PropertiesPage } from './pages/PropertiesPage';
 import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
-import { ProjectsSection } from './components/ProjectsSection';
 import { ProcessSection } from './components/ProcessSection';
 import { ArticlesSection } from './components/ArticlesSection';
 import { ContactSection } from './components/ContactSection';
