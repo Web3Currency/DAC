@@ -98,6 +98,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <p className="text-sm text-[#626061]">Explore a selection of properties currently available through DAC.</p>
           </div>
         ) : (
+          <>
           {/* Header Block — Constrained strictly to page margin, never overflowing */}
         <div className="mb-6 sm:mb-8 w-full max-w-full min-w-0">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 max-w-full min-w-0">
@@ -160,6 +161,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </div>
           </div>
         </div>
+          </>
         )}
 
         {homepagePreview ? (
@@ -210,6 +212,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 </div>
               );
             })}
+            <div className="pt-2 text-center">
+              <a href="/properties" className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#252223] px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#07A757]">
+                View All Properties <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         ) : (
           {/* Properties Grid — High visual quality, bullet points, call to action */}
