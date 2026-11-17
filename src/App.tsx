@@ -15,6 +15,7 @@ import { ServiceModal } from './components/ServiceModal';
 import { PropertyDetailPage } from './components/PropertyModal';
 import { ScrollAnimations } from './components/ScrollAnimations';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
+import { ServiceItem, PropertyItem } from './types';
 
 export default function App() {
   const [consultationOpen, setConsultationOpen] = useState(false);
