@@ -43,8 +43,11 @@ export default async function handler(request: any, response: any) {
     if (!isManagedBlobUrl(url)) {
       return response.status(400).json({ error: 'This media URL is not a managed DAC Blob asset.' });
     }
-    await del(url);
-    return response.status(200).json({ success: true });
+    const head = await fetch(url, { method: 'HEAD' });
+    if (head.status !== 404 && head.status !== 410) {
+      await del(url);
+    }
+    return response.status(200).json({ success: true, alreadyMissing: head.status === 404 || head.status === 410 });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Media deletion failed.';
     const status = /administrator|authentication|session|access/i.test(message) ? 401 : 500;
