@@ -74,6 +74,11 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
         {/* Content Body */}
         <div className="p-6 space-y-6 max-h-[60vh] overflow-y-auto">
           
+          {galleryImages.length > 1 && <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1" aria-label="Property photographs">
+            {galleryImages.map((image, index) => <button key={image + index} type="button" onClick={() => setActiveImage(index)} aria-label={"View photograph " + (index + 1)} aria-current={activeImage === index} className={"shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 " + (activeImage === index ? "border-[#07A757]" : "border-transparent")}>
+              <img src={image} alt="" className="w-full h-full object-cover" loading="lazy" />
+            </button>)}
+          </div>}
           <div className="flex items-center justify-between pb-4 border-b border-[#E5E9E1] flex-wrap gap-2">
             <div className="flex items-center gap-1.5 text-xs text-[#626061]">
               <MapPin className="w-4 h-4 text-[#07A757] shrink-0" />
