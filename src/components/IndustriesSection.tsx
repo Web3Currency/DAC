@@ -1,79 +1,64 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Building2,
+  Building,
+  Construction,
+  UsersRound,
+  Landmark,
+  Scale,
+} from 'lucide-react';
 
 interface IndustriesSectionProps {
   onOpenConsultation?: () => void;
 }
 
-export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenConsultation }) => {
-  const industries = [
-    {
-      title: 'Banks & Financial Institutions',
-      bullets: ['Property and collateral valuation', 'Mortgage security assessment', 'Asset valuation for financial reports'],
-    },
-    {
-      title: 'Companies & Businesses',
-      bullets: ['Office and facility management', 'Property leasing advice', 'Property portfolio support'],
-    },
-    {
-      title: 'Property Developers',
-      bullets: ['Feasibility and viability studies', 'Land and site assessment', 'Development project advice'],
-    },
-    {
-      title: 'Private Investors & Families',
-      bullets: ['Property buying and selling advice', 'Property valuation', 'Property management'],
-    },
-    {
-      title: 'Government & Public Agencies',
-      bullets: ['Property and land valuation', 'Acquisition and compensation advice', 'Land use planning support'],
-    },
-    {
-      title: 'Legal & Estate Professionals',
-      bullets: ['Probate and estate valuation', 'Property reports for legal matters', 'Property advice for estate matters'],
-    },
-  ];
+const industries = [
+  { title: 'Banks & Financial Institutions', Icon: Landmark },
+  { title: 'Companies & Businesses', Icon: Building2 },
+  { title: 'Property Developers', Icon: Construction },
+  { title: 'Private Investors & Families', Icon: UsersRound },
+  { title: 'Government & Public Agencies', Icon: Building },
+  { title: 'Legal & Estate Professionals', Icon: Scale },
+];
 
-  return (
-    <section className="py-14 sm:py-16 lg:py-24 bg-white border-b border-[#E5E9E1]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-12">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">Who We Work With</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223] leading-tight">
-              Property Support for Different Needs.
-            </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#626061] leading-relaxed">
-              We support people and organisations with their property needs.
-            </p>
+export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenConsultation }) => (
+  <section className="bg-white py-10 sm:py-12 lg:py-14 border-b border-[#E5E9E1]">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mb-7 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <div className="mb-2 flex items-center gap-2">
+            <span className="h-0.5 w-8 bg-[#8ABE4B]" />
+            <span className="text-xs font-bold uppercase tracking-widest text-[#07A757]">Who We Work With</span>
           </div>
-          {onOpenConsultation && (
-            <button onClick={onOpenConsultation} className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg transition-colors shrink-0">
-              <span>Speak With Our Team</span><ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          )}
+          <h2 className="text-2xl font-bold leading-tight tracking-tight text-[#252223] sm:text-3xl">
+            Property Support for Different Needs.
+          </h2>
         </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
-          {industries.map((industry) => (
-            <div key={industry.title} className="rounded-xl bg-[#F7F9F5] hover:bg-[#F0F4EB] transition-colors duration-200 flex flex-col min-w-0">
-              <div className="p-3 sm:p-4 flex flex-1 flex-col min-w-0">
-                <h3 className="text-sm sm:text-base font-bold text-[#252223] leading-snug mb-2">{industry.title}</h3>
-                <ul className="space-y-1.5 text-[11px] sm:text-xs text-[#626061] leading-snug">
-                  {industry.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-1.5">
-                      <span className="w-1 h-1 rounded-full bg-[#07A757] shrink-0 mt-1.5" />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
+        {onOpenConsultation && (
+          <button
+            onClick={onOpenConsultation}
+            className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg bg-[#8ABE4B] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white sm:self-auto"
+          >
+            <span>Speak With Our Team</span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </button>
+        )}
       </div>
-    </section>
-  );
-};
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
+        {industries.map(({ title, Icon }) => (
+          <article
+            key={title}
+            className="flex min-h-[142px] flex-col items-center justify-center rounded-xl border border-[#E5E9E1] bg-[#F7F9F5] px-3 py-5 text-center transition-colors duration-200 hover:border-[#C8D9B8] hover:bg-[#F0F4EB] sm:min-h-[158px] sm:px-4"
+          >
+            <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#07A757] shadow-sm sm:h-16 sm:w-16">
+              <Icon className="h-8 w-8 sm:h-9 sm:w-9" strokeWidth={1.7} aria-hidden="true" />
+            </div>
+            <h3 className="text-xs font-bold leading-snug text-[#252223] sm:text-sm">{title}</h3>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+);
