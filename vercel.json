@@ -18,6 +18,14 @@
       "destination": "/index.html"
     },
     {
+      "source": "/contact",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/contact/:path*",
+      "destination": "/index.html"
+    },
+    {
       "source": "/admin",
       "destination": "/index.html"
     },
