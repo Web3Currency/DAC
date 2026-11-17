@@ -33,7 +33,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
             />
           </a>
 
-          {/* Five primary desktop navigation links */}
           <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-7 text-[13px] font-medium text-[#252223]">
             {navigation.map((item, index) => (
               <a
@@ -55,9 +54,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
             </button>
           </div>
 
-          {/* Mobile menu toggle */}
           <button
             type="button"
+            data-prototype-allow="true"
             onClick={() => setMobileMenuOpen((open) => !open)}
             className="lg:hidden inline-flex items-center justify-center rounded-lg p-2.5 text-[#252223] transition-colors hover:bg-[#F5F8F2] hover:text-[#07A757]"
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -69,43 +68,63 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
         </div>
       </div>
 
-      {/* Functional mobile side drawer with the same five navigation links */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-16 md:top-[76px] z-[110]">
-          <button
-            type="button"
-            aria-label="Close navigation menu"
-            onClick={closeMobileMenu}
-            className="absolute inset-0 h-full w-full bg-[#171617]/45"
-          />
-          <nav
-            id="mobile-navigation"
-            aria-label="Mobile navigation"
-            className="absolute right-0 top-0 flex h-full w-[min(86vw,360px)] flex-col border-l border-[#E9ECE7] bg-white px-6 py-7 shadow-2xl"
-          >
-            <p className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-[#858885]">Navigation</p>
+        <div
+          id="mobile-navigation"
+          className="lg:hidden fixed inset-0 z-[200] flex min-h-[100dvh] flex-col overflow-y-auto bg-white"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation menu"
+        >
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-[#E9ECE7] px-5 sm:px-7">
+            <a href="#home" onClick={closeMobileMenu} className="flex items-center" aria-label="Demola Adetola & Co. home">
+              <img
+                src={siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
+                alt="Demola Adetola & Co. Logo"
+                className="h-10 w-auto max-w-[210px] object-contain"
+              />
+            </a>
+            <button
+              type="button"
+              data-prototype-allow="true"
+              onClick={closeMobileMenu}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[#252223] transition-colors hover:bg-[#F5F8F2] hover:text-[#07A757]"
+              aria-label="Close navigation menu"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+
+          <nav aria-label="Mobile navigation" className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center px-7 py-10 sm:px-10">
+            <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.22em] text-[#858885]">Explore DAC</p>
             <div className="flex flex-col">
               {navigation.map((item, index) => (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={closeMobileMenu}
-                  className={`border-b border-[#EEF0EC] py-4 text-base font-semibold transition-colors hover:text-[#07A757] ${index === 0 ? 'text-[#07A757]' : 'text-[#252223]'}`}
+                  className={`flex items-center justify-between border-b border-[#E9ECE7] py-5 text-2xl font-semibold tracking-tight transition-colors hover:text-[#07A757] sm:text-3xl ${index === 0 ? 'text-[#07A757]' : 'text-[#252223]'}`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  <span className="text-sm font-medium text-[#A4A8A1]">0{index + 1}</span>
                 </a>
               ))}
             </div>
             <button
+              type="button"
+              data-prototype-allow="true"
               onClick={() => {
                 closeMobileMenu();
                 onOpenConsultation();
               }}
-              className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#8ABE4B] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
+              className="mt-9 inline-flex min-h-14 w-full items-center justify-center rounded-lg bg-[#8ABE4B] px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
             >
               Speak With Our Team
             </button>
           </nav>
+          <div className="px-7 pb-8 text-center text-xs text-[#858885] sm:px-10">
+            Demola Adetola &amp; Co. · Chartered Estate Surveyors &amp; Valuers
+          </div>
         </div>
       )}
     </header>
