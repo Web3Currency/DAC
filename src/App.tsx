@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PropertyFinderSection } from './components/PropertyFinderSection';
-import { AboutSection } from './components/AboutSection';
+import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -87,6 +87,8 @@ export default function App() {
       <main className="flex-1 w-full max-w-full overflow-x-clip">
         {window.location.pathname.replace(/\/$/, '') === '/services' ? (
           <ServicesPage onOpenConsultation={handleOpenConsultation} onViewServiceDetail={handleViewService} />
+        ) : window.location.pathname.replace(/\/$/, '') === '/about' ? (
+          <AboutPage onOpenConsultation={() => handleOpenConsultation()} />
         ) : (
           <>
         {/* 2. Hero Section */}
@@ -94,9 +96,6 @@ export default function App() {
 
         {/* 2b. Standalone Property Finder Section */}
         <PropertyFinderSection onSearchProperties={handleSearchProperties} />
-
-        {/* 3. About Section */}
-        <AboutSection onOpenConsultation={() => handleOpenConsultation()} />
 
         {/* 5. Industries We Serve (Direct from Samson Agbato: Supporting Diverse Clients Across Nigeria) */}
         <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
