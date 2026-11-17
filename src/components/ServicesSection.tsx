@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { CORE_SERVICES } from '../data/companyData';
 import { ServiceItem } from '../types';
+import { useSiteMedia } from '../lib/useSiteMedia';
 
 const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
   'property-valuation': { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary residential property' },
@@ -24,6 +25,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onSelectServiceForConsultation,
   onViewServiceDetail,
 }) => {
+  const siteMedia = useSiteMedia();
   return (
     <section id="services" className="py-14 sm:py-16 lg:py-24 bg-[#F5F8F2] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +48,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               <div>
                 <div className="-mx-6 -mt-6 mb-5 h-40 overflow-hidden rounded-t-2xl bg-[#E5E9E1]">
                   <img
-                    src={SERVICE_IMAGES[service.id].src}
+                    src={siteMedia['service_' + service.id] || SERVICE_IMAGES[service.id].src}
                     alt={SERVICE_IMAGES[service.id].alt}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Phone, Mail, ArrowUp } from 'lucide-react';
 import { COMPANY_INFO, CORE_SERVICES } from '../data/companyData';
+import { useSiteMedia } from '../lib/useSiteMedia';
 
 export const Footer: React.FC = () => {
+  const siteMedia = useSiteMedia();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -15,7 +17,7 @@ export const Footer: React.FC = () => {
             {/* Logo first, followed by the firm name and its designation. */}
             <div className="flex items-center gap-3">
               <img
-                src="https://i.imgur.com/qczlHrn.png"
+                src={siteMedia.footer_logo || siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
                 alt="Demola Adetola & Co. Logo"
                 className="h-16 w-auto max-w-[140px] shrink-0 object-contain"
                 loading="lazy"

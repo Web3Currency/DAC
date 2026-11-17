@@ -1,12 +1,14 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2, Award } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
+import { useSiteMedia } from '../lib/useSiteMedia';
 
 interface AboutSectionProps {
   onOpenConsultation: () => void;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }) => {
+  const siteMedia = useSiteMedia();
   return (
     <section id="about" className="py-12 sm:py-16 lg:py-28 bg-[#FFFFFF] border-b border-[#E5E9E1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +16,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-lg bg-[#F5F8F2]">
               <img
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"
+                src={siteMedia.about_image || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"}
                 alt="Modern residential property"
                 className="w-full h-[400px] sm:h-[460px] object-cover"
               />

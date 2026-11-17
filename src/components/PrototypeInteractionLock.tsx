@@ -11,6 +11,10 @@ export function PrototypeInteractionLock() {
       const target = event.target;
       if (!(target instanceof Element)) return;
 
+      // Explicitly allow essential navigation controls while retaining the
+      // prototype interaction guard for the remaining demo controls.
+      if (target.closest('[data-prototype-allow="true"]')) return;
+
       const control = target.closest('button, input[type="submit"], input[type="button"], [role="button"], a[href^="tel:"], a[href^="mailto:"]');
       if (!control) return;
 

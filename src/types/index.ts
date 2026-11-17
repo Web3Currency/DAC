@@ -16,8 +16,9 @@ export interface PropertyItem {
   category: 'Residential' | 'Commercial' | 'Industrial' | 'Development' | 'Land';
   location: string;
   price: string;
-  status: 'For Sale' | 'For Letting' | 'Under Management' | 'Advisory Completed';
+  status: 'For Sale' | 'For Letting' | 'Under Management' | 'Advisory Completed' | 'Under Offer' | 'Sold' | 'Let' | 'Off Market';
   image: string;
+  images?: string[];
   specs: {
     area?: string;
     bedrooms?: string;

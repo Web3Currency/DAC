@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, MapPin, ShieldCheck, Download, ArrowRight, CheckCircle2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { X, MapPin, ShieldCheck, Download, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PropertyItem } from '../types';
 
 interface PropertyModalProps {
@@ -14,8 +14,13 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
   onInquire,
 }) => {
   const [downloadSuccess, setDownloadSuccess] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
+  useEffect(() => { setActiveImage(0); }, [property?.id]);
 
   if (!property) return null;
+  const galleryImages = property.images?.length ? property.images : property.image ? [property.image] : [];
+  const showPrevious = () => setActiveImage((current) => (current - 1 + galleryImages.length) % galleryImages.length);
+  const showNext = () => setActiveImage((current) => (current + 1) % galleryImages.length);
 
   const handleDownloadBrochure = () => {
     setDownloadSuccess(true);
@@ -30,11 +35,16 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
         
         {/* Modal Hero Image */}
         <div className="relative h-64 sm:h-72 w-full bg-gray-900">
-          <img
-            src={property.image}
-            alt={property.title}
-            className="w-full h-full object-cover"
-          />
+          {galleryImages.length > 0 ? <img
+  src={galleryImages[activeImage] || galleryImages[0]}
+  alt={property.title + " — photograph " + (activeImage + 1)}
+  className="w-full h-full object-cover"
+/> : <div className="w-full h-full grid place-items-center text-sm text-white/70">Property photographs coming soon</div>}
+{galleryImages.length > 1 && <>
+  <button type="button" onClick={showPrevious} aria-label="Previous property photograph" className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white hover:bg-black"><ChevronLeft className="w-5 h-5" /></button>
+  <button type="button" onClick={showNext} aria-label="Next property photograph" className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white hover:bg-black"><ChevronRight className="w-5 h-5" /></button>
+  <div className="absolute bottom-3 right-4 rounded-full bg-black/65 px-2.5 py-1 text-[11px] text-white">{activeImage + 1} / {galleryImages.length}</div>
+</>}
           <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
           
           <button
@@ -64,6 +74,11 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
         {/* Content Body */}
         <div className="p-6 space-y-6 max-h-[60vh] overflow-y-auto">
           
+          {galleryImages.length > 1 && <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1" aria-label="Property photographs">
+            {galleryImages.map((image, index) => <button key={image + index} type="button" onClick={() => setActiveImage(index)} aria-label={"View photograph " + (index + 1)} aria-current={activeImage === index} className={"shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 " + (activeImage === index ? "border-[#07A757]" : "border-transparent")}>
+              <img src={image} alt="" className="w-full h-full object-cover" loading="lazy" />
+            </button>)}
+          </div>}
           <div className="flex items-center justify-between pb-4 border-b border-[#E5E9E1] flex-wrap gap-2">
             <div className="flex items-center gap-1.5 text-xs text-[#626061]">
               <MapPin className="w-4 h-4 text-[#07A757] shrink-0" />
@@ -91,19 +106,19 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
                 <span className="text-[#626061] block text-[10px] uppercase font-bold">Total Area</span>
-                <span className="font-semibold text-[#252223]">{property.specs.area || 'Upon Application'}</span>
+                <span className="font-semibold text-[#252223]">{property.specs.area || 'Not provided'}</span>
               </div>
               <div>
                 <span className="text-[#626061] block text-[10px] uppercase font-bold">Title Tenure</span>
-                <span className="font-semibold text-[#252223]">{property.specs.tenure || 'Registered Title'}</span>
+                <span className="font-semibold text-[#252223]">{property.specs.tenure || 'Not provided'}</span>
               </div>
               <div>
                 <span className="text-[#626061] block text-[10px] uppercase font-bold">Configuration</span>
-                <span className="font-semibold text-[#252223]">{property.specs.bedrooms || property.specs.units || 'Open Plan'}</span>
+                <span className="font-semibold text-[#252223]">{property.specs.bedrooms || property.specs.units || 'Not provided'}</span>
               </div>
               <div>
                 <span className="text-[#626061] block text-[10px] uppercase font-bold">Parking / Access</span>
-                <span className="font-semibold text-[#252223]">{property.specs.parking || 'Secure Access'}</span>
+                <span className="font-semibold text-[#252223]">{property.specs.parking || 'Not provided'}</span>
               </div>
             </div>
           </div>
