@@ -5,6 +5,7 @@ import { ProfessionalCredentialsSection } from './components/ProfessionalCredent
 import { AboutDACIntroduction } from './components/AboutDACIntroduction';
 import { HomeServicesGallery } from './components/HomeServicesGallery';
 import { ProjectsSection } from './components/ProjectsSection';
+import { GeographicalReachSection } from './components/GeographicalReachSection';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PropertiesPage } from './pages/PropertiesPage';
@@ -69,6 +70,7 @@ export default function App() {
             <AboutDACIntroduction />
             <HomeServicesGallery />
             <ProjectsSection onSelectProperty={handleSelectProperty} onRequestViewing={handleRequestViewing} homepagePreview />
+            <GeographicalReachSection />
             <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
             <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
