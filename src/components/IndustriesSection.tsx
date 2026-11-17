@@ -1,14 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
-
-const INDUSTRY_IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85', alt: 'Commercial office tower property' },
-  { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85', alt: 'Modern corporate office interior' },
-  { src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85', alt: 'Property development and construction architecture' },
-  { src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85', alt: 'Private family residence' },
-  { src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85', alt: 'Urban development and residential architecture' },
-  { src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85', alt: 'Contemporary property building exterior' },
-];
+import { ArrowRight } from 'lucide-react';
 
 interface IndustriesSectionProps {
   onOpenConsultation?: () => void;
@@ -65,25 +56,20 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4 sm:gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
           {industries.map((industry, index) => (
-            <div key={industry.title} className="rounded-2xl bg-white border border-[#E5E9E1] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
-              <div className="h-40 overflow-hidden bg-[#E5E9E1]">
-                <img src={INDUSTRY_IMAGES[index].src} alt={INDUSTRY_IMAGES[index].alt} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
-              </div>
-              <div className="p-6 flex flex-1 flex-col">
-                <h3 className="text-lg font-bold text-[#252223] mb-4">{industry.title}</h3>
-                <ul className="space-y-2 text-sm text-[#626061]">
+            <div key={industry.title} className="rounded-xl bg-[#F7F9F5] hover:bg-[#F0F4EB] transition-colors duration-200 flex flex-col min-w-0">
+              <div className="p-3 sm:p-4 flex flex-1 flex-col min-w-0">
+                <h3 className="text-sm sm:text-base font-bold text-[#252223] leading-snug mb-2">{industry.title}</h3>
+                <ul className="space-y-1.5 text-[11px] sm:text-xs text-[#626061] leading-snug">
                   {industry.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
+                    <li key={bullet} className="flex items-start gap-1.5">
+                      <span className="w-1 h-1 rounded-full bg-[#07A757] shrink-0 mt-1.5" />
                       <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-auto pt-5" />
-              </div>
-            </div>
+              </div>           </div>
           ))}
         </div>
       </div>
