@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PropertyFinderSection } from './components/PropertyFinderSection';
@@ -13,7 +13,7 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
 import { ServiceModal } from './components/ServiceModal';
-import { PropertyModal } from './components/PropertyModal';
+import { PropertyDetailPage } from './components/PropertyModal';
 import { ArticleModal } from './components/ArticleModal';
 import { ScrollAnimations } from './components/ScrollAnimations';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
@@ -31,6 +31,8 @@ export default function App() {
 
   const [activeServiceForModal, setActiveServiceForModal] = useState<ServiceItem | null>(null);
   const [activePropertyForModal, setActivePropertyForModal] = useState<PropertyItem | null>(null);
+  const [propertyReturnScroll, setPropertyReturnScroll] = useState(0);
+  useEffect(() => { if (!activePropertyForModal) window.scrollTo({ top: propertyReturnScroll, behavior: 'instant' }); }, [activePropertyForModal, propertyReturnScroll]);
   const [activeArticleForModal, setActiveArticleForModal] = useState<ArticleItem | null>(null);
 
   // Search filter state from hero
@@ -56,7 +58,9 @@ export default function App() {
   };
 
   const handleSelectProperty = (property: PropertyItem) => {
+    setPropertyReturnScroll(window.scrollY);
     setActivePropertyForModal(property);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   const handleRequestViewing = (property: PropertyItem) => {
@@ -72,6 +76,8 @@ export default function App() {
   const handleReadArticle = (article: ArticleItem) => {
     setActiveArticleForModal(article);
   };
+
+  if (activePropertyForModal) return <div className="min-h-screen w-full bg-white text-[#252223] antialiased"><PropertyDetailPage property={activePropertyForModal} onClose={() => setActivePropertyForModal(null)} onInquire={handleRequestViewing} /></div>;
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
@@ -134,11 +140,7 @@ export default function App() {
         onInquire={handleOpenConsultation}
       />
 
-      <PropertyModal
-        property={activePropertyForModal}
-        onClose={() => setActivePropertyForModal(null)}
-        onInquire={handleRequestViewing}
-      />
+ />
 
       <ArticleModal
         article={activeArticleForModal}
