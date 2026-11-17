@@ -12,6 +12,7 @@ import { PropertiesPage } from './pages/PropertiesPage';
 import { PropertyValuationArticlePage } from './pages/PropertyValuationArticlePage';
 import { PropertyManagementArticlePage } from './pages/PropertyManagementArticlePage';
 import { BuyingPropertyArticlePage } from './pages/BuyingPropertyArticlePage';
+import { RealEstateInvestmentArticlePage } from './pages/RealEstateInvestmentArticlePage';
 import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -58,6 +59,7 @@ export default function App() {
   const isValuationArticle = currentPath === '/insights/property-valuation';
   const isPropertyManagementArticle = currentPath === '/insights/property-management';
   const isBuyingPropertyArticle = currentPath === '/insights/buying-property-in-nigeria';
+  const isRealEstateInvestmentArticle = currentPath === '/insights/real-estate-investment-2026';
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
       <Header onOpenConsultation={handleOpenConsultation} />
@@ -68,6 +70,8 @@ export default function App() {
           <PropertyManagementArticlePage />
         ) : isBuyingPropertyArticle ? (
           <BuyingPropertyArticlePage />
+        ) : isRealEstateInvestmentArticle ? (
+          <RealEstateInvestmentArticlePage />
         ) : currentPath === '/services' ? (
           <ServicesPage onOpenConsultation={handleOpenConsultation} onViewServiceDetail={handleViewService} />
         ) : currentPath === '/about' ? (
