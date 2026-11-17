@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ProfessionalCredentialsSection } from './components/ProfessionalCredentialsSection';
 import { AboutDACIntroduction } from './components/AboutDACIntroduction';
+import { HomeServicesGallery } from './components/HomeServicesGallery';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PropertiesPage } from './pages/PropertiesPage';
@@ -65,6 +66,7 @@ export default function App() {
             <Hero onOpenConsultation={handleOpenConsultation} />
             <ProfessionalCredentialsSection />
             <AboutDACIntroduction />
+            <HomeServicesGallery />
             <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
             <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
