@@ -48,7 +48,7 @@ export const ProfessionalCredentialsSection: React.FC = () => (
                 alt={item.fullName}
                 title={item.fullName}
                 loading="lazy"
-                className="max-h-full w-full max-w-[150px] object-contain grayscale transition duration-300 ease-out hover:grayscale-0 sm:max-w-[170px] lg:max-w-[155px]"
+                className={`max-h-full w-full max-w-[150px] object-contain transition duration-300 ease-out sm:max-w-[170px] lg:max-w-[155px] ${item.name === 'RICS' ? 'grayscale brightness-0 hover:brightness-0 hover:grayscale' : 'grayscale hover:grayscale-0'} ${item.name === 'NIESV' ? 'mix-blend-multiply' : ''}`}
               />
             </div>
           ))}
