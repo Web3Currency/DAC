@@ -106,19 +106,19 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
                 <span className="text-[#626061] block text-[10px] uppercase font-bold">Total Area</span>
-                <span className="font-semibold text-[#252223]">{property.specs.area || 'Upon Application'}</span>
+                <span className="font-semibold text-[#252223]">{property.specs.area || 'Not provided'}</span>
               </div>
               <div>
                 <span className="text-[#626061] block text-[10px] uppercase font-bold">Title Tenure</span>
-                <span className="font-semibold text-[#252223]">{property.specs.tenure || 'Registered Title'}</span>
+                <span className="font-semibold text-[#252223]">{property.specs.tenure || 'Not provided'}</span>
               </div>
               <div>
                 <span className="text-[#626061] block text-[10px] uppercase font-bold">Configuration</span>
-                <span className="font-semibold text-[#252223]">{property.specs.bedrooms || property.specs.units || 'Open Plan'}</span>
+                <span className="font-semibold text-[#252223]">{property.specs.bedrooms || property.specs.units || 'Not provided'}</span>
               </div>
               <div>
                 <span className="text-[#626061] block text-[10px] uppercase font-bold">Parking / Access</span>
-                <span className="font-semibold text-[#252223]">{property.specs.parking || 'Secure Access'}</span>
+                <span className="font-semibold text-[#252223]">{property.specs.parking || 'Not provided'}</span>
               </div>
             </div>
           </div>
