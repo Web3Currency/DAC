@@ -1,10 +1,23 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { LogOut, UploadCloud, Copy, Check, Image as ImageIcon, ShieldCheck } from 'lucide-react';
-import { upload } from '@vercel/blob/client';
+import { LogOut, UploadCloud, Copy, Check, Image as ImageIcon, ShieldCheck, RefreshCw } from 'lucide-react';
 import type { User } from '@supabase/supabase-js';
+import { upload } from '@vercel/blob/client';
 import { supabase } from '../lib/supabase';
 
 type AssetFolder = 'logo' | 'hero' | 'services' | 'projects' | 'team' | 'company';
+type MediaItem = {
+  id: string;
+  title: string;
+  folder: AssetFolder;
+  blob_url: string;
+  pathname: string;
+  mime_type: string;
+  size_bytes: number;
+  alt_text: string | null;
+  caption: string | null;
+  is_active: boolean;
+  created_at: string;
+};
 
 const folders: { value: AssetFolder; label: string; description: string }[] = [
   { value: 'logo', label: 'Logo & brand marks', description: 'Approved company logos and identity files' },
@@ -15,6 +28,11 @@ const folders: { value: AssetFolder; label: string; description: string }[] = [
   { value: 'company', label: 'Company', description: 'Office, activities and general company imagery' },
 ];
 
+function readableTitle(pathname: string) {
+  const filename = pathname.split('/').pop() || 'Website image';
+  return filename.replace(/^[0-9a-f-]{36}-/i, '').replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+}
+
 export default function AdminApp() {
   const [user, setUser] = useState<User | null>(null);
   const [checking, setChecking] = useState(true);
@@ -22,10 +40,11 @@ export default function AdminApp() {
   const [password, setPassword] = useState('');
   const [folder, setFolder] = useState<AssetFolder>('company');
   const [files, setFiles] = useState<File[]>([]);
+  const [media, setMedia] = useState<MediaItem[]>([]);
   const [busy, setBusy] = useState(false);
+  const [loadingMedia, setLoadingMedia] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
-  const [uploaded, setUploaded] = useState<{ url: string; pathname: string; size: number }[]>([]);
   const [copiedUrl, setCopiedUrl] = useState('');
 
   useEffect(() => {
@@ -65,6 +84,24 @@ export default function AdminApp() {
     [folder],
   );
 
+  async function loadMedia() {
+    setLoadingMedia(true);
+    const { data, error: queryError } = await supabase
+      .from('site_media')
+      .select('id,title,folder,blob_url,pathname,mime_type,size_bytes,alt_text,caption,is_active,created_at')
+      .order('created_at', { ascending: false });
+    if (queryError) {
+      setError(`Could not load the media library: ${queryError.message}`);
+    } else {
+      setMedia((data || []) as MediaItem[]);
+    }
+    setLoadingMedia(false);
+  }
+
+  useEffect(() => {
+    if (user) void loadMedia();
+  }, [user]);
+
   async function signIn(event: React.FormEvent) {
     event.preventDefault();
     setError('');
@@ -101,7 +138,7 @@ export default function AdminApp() {
       return;
     }
 
-    const results: { url: string; pathname: string; size: number }[] = [];
+    let savedCount = 0;
     try {
       for (const file of files) {
         const safeName = file.name.normalize('NFKD').replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/^-+|-+$/g, '').slice(-100);
@@ -111,13 +148,26 @@ export default function AdminApp() {
           handleUploadUrl: '/api/blob/upload',
           headers: { Authorization: `Bearer ${token}` },
         });
-        results.push({ url: blob.url, pathname: blob.pathname, size: file.size });
+        const { error: insertError } = await supabase.from('site_media').insert({
+          title: readableTitle(blob.pathname),
+          folder,
+          blob_url: blob.url,
+          pathname: blob.pathname,
+          mime_type: file.type,
+          size_bytes: file.size,
+          created_by: user.id,
+        });
+        if (insertError) {
+          throw new Error(`The image uploaded, but its media record could not be saved: ${insertError.message}. The image URL is ${blob.url}`);
+        }
+        savedCount += 1;
       }
-      setUploaded((current) => [...results, ...current]);
       setFiles([]);
-      setNotice(`${results.length} image${results.length === 1 ? '' : 's'} uploaded successfully.`);
+      await loadMedia();
+      setNotice(`${savedCount} image${savedCount === 1 ? '' : 's'} uploaded and saved to the media library.`);
     } catch (uploadError) {
       setError(uploadError instanceof Error ? uploadError.message : 'Upload failed. Please try again.');
+      await loadMedia();
     } finally {
       setBusy(false);
     }
@@ -132,7 +182,7 @@ export default function AdminApp() {
   async function signOut() {
     await supabase.auth.signOut();
     setUser(null);
-    setUploaded([]);
+    setMedia([]);
   }
 
   if (checking) {
@@ -187,7 +237,7 @@ export default function AdminApp() {
               <p className="text-xs text-[#626061] mt-1">JPEG, PNG, WebP or AVIF · maximum 10 MB per image</p>
             </div>
           </div>
-          {error && <p role="alert" className="rounded-lg bg-red-50 text-red-700 text-sm p-3">{error}</p>}
+          {error && <p role="alert" className="rounded-lg bg-red-50 text-red-700 text-sm p-3 break-words">{error}</p>}
           {notice && <p role="status" className="rounded-lg bg-emerald-50 text-emerald-800 text-sm p-3">{notice}</p>}
           <form onSubmit={handleUpload} className="space-y-4">
             <label className="block space-y-1.5">
@@ -209,20 +259,27 @@ export default function AdminApp() {
         </section>
 
         <section className="rounded-2xl bg-white border border-[#E5E9E1] p-5 sm:p-7 space-y-4">
-          <div>
-            <h2 className="font-bold text-[#252223]">Recently uploaded</h2>
-            <p className="text-xs text-[#626061] mt-1">Public image URLs are ready to use in the website and content records.</p>
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <h2 className="font-bold text-[#252223]">Media library</h2>
+              <p className="text-xs text-[#626061] mt-1">Saved records remain available after signing out or refreshing the page.</p>
+            </div>
+            <button onClick={() => void loadMedia()} disabled={loadingMedia} aria-label="Refresh media library" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07A757] disabled:opacity-50"><RefreshCw className={`w-3.5 h-3.5 ${loadingMedia ? 'animate-spin' : ''}`} /> Refresh</button>
           </div>
-          {uploaded.length === 0 ? <p className="text-sm text-[#777] py-5">No images uploaded in this session yet.</p> : (
+          {loadingMedia && media.length === 0 ? <p className="text-sm text-[#777] py-5">Loading media library…</p> : media.length === 0 ? <p className="text-sm text-[#777] py-5">No media records yet. Uploaded images will appear here.</p> : (
             <div className="grid sm:grid-cols-2 gap-4">
-              {uploaded.map((item) => (
-                <article key={item.url} className="rounded-xl border border-[#E5E9E1] overflow-hidden">
-                  <img src={item.url} alt="" className="w-full h-40 object-cover bg-[#F5F8F2]" />
+              {media.map((item) => (
+                <article key={item.id} className="rounded-xl border border-[#E5E9E1] overflow-hidden">
+                  <img src={item.blob_url} alt={item.alt_text || item.title} className="w-full h-40 object-cover bg-[#F5F8F2]" loading="lazy" />
                   <div className="p-3 space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-sm font-semibold text-[#252223] capitalize truncate">{item.title}</p>
+                      <span className="shrink-0 rounded-full bg-[#F5F8F2] px-2 py-1 text-[10px] text-[#626061] capitalize">{item.folder}</span>
+                    </div>
                     <p className="text-[11px] text-[#626061] break-all">{item.pathname}</p>
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] text-[#777]">{(item.size / 1024 / 1024).toFixed(2)} MB</span>
-                      <button onClick={() => copyUrl(item.url)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07A757]">{copiedUrl === item.url ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}{copiedUrl === item.url ? 'Copied' : 'Copy URL'}</button>
+                      <span className="text-[10px] text-[#777]">{(item.size_bytes / 1024 / 1024).toFixed(2)} MB</span>
+                      <button onClick={() => void copyUrl(item.blob_url)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07A757]">{copiedUrl === item.blob_url ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}{copiedUrl === item.blob_url ? 'Copied' : 'Copy URL'}</button>
                     </div>
                   </div>
                 </article>
