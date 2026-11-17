@@ -11,6 +11,7 @@ import { ServicesPage } from './pages/ServicesPage';
 import { PropertiesPage } from './pages/PropertiesPage';
 import { PropertyValuationArticlePage } from './pages/PropertyValuationArticlePage';
 import { PropertyManagementArticlePage } from './pages/PropertyManagementArticlePage';
+import { BuyingPropertyArticlePage } from './pages/BuyingPropertyArticlePage';
 import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -56,6 +57,7 @@ export default function App() {
   const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   const isValuationArticle = currentPath === '/insights/property-valuation';
   const isPropertyManagementArticle = currentPath === '/insights/property-management';
+  const isBuyingPropertyArticle = currentPath === '/insights/buying-property-in-nigeria';
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
       <Header onOpenConsultation={handleOpenConsultation} />
@@ -64,6 +66,8 @@ export default function App() {
           <PropertyValuationArticlePage />
         ) : isPropertyManagementArticle ? (
           <PropertyManagementArticlePage />
+        ) : isBuyingPropertyArticle ? (
+          <BuyingPropertyArticlePage />
         ) : currentPath === '/services' ? (
           <ServicesPage onOpenConsultation={handleOpenConsultation} onViewServiceDetail={handleViewService} />
         ) : currentPath === '/about' ? (
