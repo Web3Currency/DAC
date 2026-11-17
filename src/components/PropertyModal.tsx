@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { X, MapPin, ShieldCheck, Download, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, MapPin, ShieldCheck, Download, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PropertyItem } from '../types';
 
-interface PropertyModalProps {
+interface PropertyDetailPageProps {
   property: PropertyItem | null;
   onClose: () => void;
   onInquire: (property: PropertyItem) => void;
 }
 
-export const PropertyModal: React.FC<PropertyModalProps> = ({
+export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
   property,
   onClose,
   onInquire,
@@ -30,11 +30,15 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#252223]/70 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="relative bg-[#FFFFFF] rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+    <main className="min-h-screen w-full bg-white text-[#252223]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8">
+        <button type="button" onClick={onClose} className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-[#252223] bg-[#F5F8F2] hover:bg-[#E5E9E1] transition-colors"><ArrowLeft className="w-4 h-4" /> Back to properties</button>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      <article className="relative bg-white w-full overflow-hidden">
         
         {/* Modal Hero Image */}
-        <div className="relative h-64 sm:h-72 w-full bg-gray-900">
+        <div className="relative h-[280px] sm:h-[420px] lg:h-[560px] w-full bg-gray-900 rounded-2xl overflow-hidden">
           {galleryImages.length > 0 ? <img
   src={galleryImages[activeImage] || galleryImages[0]}
   alt={property.title + " — photograph " + (activeImage + 1)}
@@ -47,13 +51,6 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
 </>}
           <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
           
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-black/60 text-white hover:bg-black transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
           {/* Tag Notice in Lime Green #8ABE4B */}
           <div className="absolute top-4 left-4">
             <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] rounded-md shadow-xs">
@@ -72,7 +69,7 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
         </div>
 
         {/* Content Body */}
-        <div className="p-6 space-y-6 max-h-[60vh] overflow-y-auto">
+        <div className="py-6 sm:py-8 lg:py-10 space-y-7 sm:space-y-9 max-w-5xl mx-auto">
           
           {galleryImages.length > 1 && <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1" aria-label="Property photographs">
             {galleryImages.map((image, index) => <button key={image + index} type="button" onClick={() => setActiveImage(index)} aria-label={"View photograph " + (index + 1)} aria-current={activeImage === index} className={"shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 " + (activeImage === index ? "border-[#07A757]" : "border-transparent")}>
@@ -141,7 +138,7 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="px-6 py-4 bg-[#F5F8F2] flex flex-wrap items-center justify-between gap-3">
+        <div className="py-5 sm:py-6 bg-[#F5F8F2] rounded-2xl px-4 sm:px-6 flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={handleDownloadBrochure}
             className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-[#252223] bg-white shadow-2xs hover:bg-[#F5F8F2] rounded-lg transition-colors"
@@ -162,7 +159,8 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
           </button>
         </div>
 
+      </article>
       </div>
-    </div>
+    </main>
   );
 };
