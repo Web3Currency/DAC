@@ -1,26 +1,25 @@
 import React from 'react';
-import { Landmark } from 'lucide-react';
 
 const affiliations = [
   {
-    acronym: 'ESVARBON',
-    name: 'Estate Surveyors and Valuers Registration Board of Nigeria',
-    status: 'Licensed professional practice',
+    name: 'ESVARBON',
+    fullName: 'Estate Surveyors and Valuers Registration Board of Nigeria',
+    logo: 'https://portal.esvarbon.gov.ng/assets/images/esvarbon_logo.png',
   },
   {
-    acronym: 'NIESV',
-    name: 'Nigerian Institution of Estate Surveyors and Valuers',
-    status: 'Member / enlisted professional firm',
+    name: 'NIESV',
+    fullName: 'Nigerian Institution of Estate Surveyors and Valuers',
+    logo: 'https://global.ariseplay.com/amg/www.thisdaylive.com/uploads/NIESV.jpg',
   },
   {
-    acronym: 'RICS',
-    name: 'Royal Institution of Chartered Surveyors · United Kingdom',
-    status: 'Professional membership',
+    name: 'RICS',
+    fullName: 'Royal Institution of Chartered Surveyors',
+    logo: 'https://www.rics.org/content/dam/ricsglobal/images/logos/footer_logo.png',
   },
   {
-    acronym: 'IFMA',
-    name: 'International Facility Management Association',
-    status: 'Professional membership',
+    name: 'IFMA',
+    fullName: 'International Facility Management Association',
+    logo: 'https://www.ifma.org/media/n11i0lzg/ifma-logo-qualifier-tagline.png',
   },
 ];
 
@@ -41,28 +40,28 @@ export const ProfessionalCredentialsSection: React.FC = () => (
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-[0.72fr_1.28fr] sm:gap-5">
-          <div className="flex flex-row items-center gap-4 rounded-xl bg-[#252223] px-5 py-5 text-white sm:flex-col sm:items-start sm:justify-center sm:px-6 sm:py-6">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#A9D477]">
-              <Landmark className="h-5 w-5" />
+        <div className="grid grid-cols-2 items-center gap-x-5 gap-y-6 sm:gap-x-8 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-6">
+          {affiliations.map((item) => (
+            <div key={item.name} className="flex h-24 items-center justify-center sm:h-28 lg:h-24">
+              <img
+                src={item.logo}
+                alt={item.fullName}
+                title={item.fullName}
+                loading="lazy"
+                className="max-h-full w-full max-w-[150px] object-contain grayscale transition duration-300 ease-out hover:grayscale-0 sm:max-w-[170px] lg:max-w-[155px]"
+              />
             </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/65">Established</p>
-              <p className="mt-0.5 text-4xl font-bold leading-none tracking-tight text-[#A9D477] tabular-nums">1992</p>
-              <p className="mt-2 text-xs font-medium text-white/75">Over three decades of professional practice</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {affiliations.map((item) => (
-              <div key={item.acronym} className="flex min-h-[94px] flex-col justify-center rounded-xl border border-[#E5E9E1] bg-white px-4 py-3.5">
-                <p className="text-base font-extrabold tracking-wide text-[#252223]">{item.acronym}</p>
-                <p className="mt-1 text-[10px] leading-snug text-[#626061]">{item.name}</p>
-                <p className="mt-1.5 text-[10px] font-semibold text-[#07894B]">{item.status}</p>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
+      </div>
+
+      <div className="mt-8 flex items-center gap-4 border-t border-[#DDE4D7] pt-6 sm:mt-9">
+        <div className="shrink-0">
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#626061]">Established</p>
+          <p className="mt-0.5 text-3xl font-bold leading-none tracking-tight text-[#252223] tabular-nums">1992</p>
+        </div>
+        <div className="h-10 w-px bg-[#DDE4D7]" />
+        <p className="text-xs font-medium leading-relaxed text-[#626061]">Over three decades of professional practice</p>
       </div>
     </div>
   </section>
