@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { ProfessionalCredentialsSection } from './components/ProfessionalCredentialsSection';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PropertiesPage } from './pages/PropertiesPage';
@@ -61,6 +62,7 @@ export default function App() {
         ) : (
           <>
             <Hero onOpenConsultation={handleOpenConsultation} />
+            <ProfessionalCredentialsSection />
             <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
             <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
