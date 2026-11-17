@@ -3,7 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PropertyFinderSection } from './components/PropertyFinderSection';
 import { AboutSection } from './components/AboutSection';
-import { ServicesSection } from './components/ServicesSection';
+import { ServicesPage } from './pages/ServicesPage';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ProjectsSection } from './components/ProjectsSection';
@@ -85,6 +85,10 @@ export default function App() {
       <Header onOpenConsultation={handleOpenConsultation} />
 
       <main className="flex-1 w-full max-w-full overflow-x-clip">
+        {window.location.pathname.replace(/\/$/, '') === '/services' ? (
+          <ServicesPage onOpenConsultation={handleOpenConsultation} onViewServiceDetail={handleViewService} />
+        ) : (
+          <>
         {/* 2. Hero Section */}
         <Hero onOpenConsultation={handleOpenConsultation} />
 
@@ -93,12 +97,6 @@ export default function App() {
 
         {/* 3. About Section */}
         <AboutSection onOpenConsultation={() => handleOpenConsultation()} />
-
-        {/* 4. Services Section (Mirrors Samson Agbato: 01-09 Numbered Cards with Gold Accents) */}
-        <ServicesSection
-          onSelectServiceForConsultation={handleOpenConsultation}
-          onViewServiceDetail={handleViewService}
-        />
 
         {/* 5. Industries We Serve (Direct from Samson Agbato: Supporting Diverse Clients Across Nigeria) */}
         <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
@@ -121,6 +119,8 @@ export default function App() {
 
         {/* 10. Contact Us (Mirrors Samson Agbato: Have A Project In Mind? Let's Make It Happen) */}
         <ContactSection preselectedServiceId={selectedServiceId} />
+          </>
+        )}
       </main>
 
       {/* 11. Footer with Real Logo, Verified Offices, Legal Notices, and Copyright */}
