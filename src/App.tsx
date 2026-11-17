@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { PropertyFinderSection } from './components/PropertyFinderSection';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
+import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ProjectsSection } from './components/ProjectsSection';
@@ -20,132 +21,64 @@ import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { ServiceItem, PropertyItem, ArticleItem } from './types';
 
 export default function App() {
-  // Modal states
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [selectedServiceId, setSelectedServiceId] = useState<string | undefined>(undefined);
-  const [intakeData, setIntakeData] = useState<{
-    assetType?: string;
-    purpose?: string;
-    location?: string;
-  } | undefined>(undefined);
-
+  const [intakeData, setIntakeData] = useState<{ assetType?: string; purpose?: string; location?: string } | undefined>(undefined);
   const [activeServiceForModal, setActiveServiceForModal] = useState<ServiceItem | null>(null);
   const [activePropertyForModal, setActivePropertyForModal] = useState<PropertyItem | null>(null);
   const [propertyReturnScroll, setPropertyReturnScroll] = useState(0);
   useEffect(() => { if (!activePropertyForModal) window.scrollTo({ top: propertyReturnScroll, behavior: 'instant' }); }, [activePropertyForModal, propertyReturnScroll]);
   const [activeArticleForModal, setActiveArticleForModal] = useState<ArticleItem | null>(null);
+  const [propertyFilter, setPropertyFilter] = useState<{ location: string; category: string; price: string } | undefined>(undefined);
 
-  // Search filter state from hero
-  const [propertyFilter, setPropertyFilter] = useState<{
-    location: string;
-    category: string;
-    price: string;
-  } | undefined>(undefined);
-
-  // Handlers
   const handleOpenConsultation = (serviceId?: string) => {
     setSelectedServiceId(serviceId);
     setIntakeData(undefined);
     setConsultationOpen(true);
   };
-
-  const handleSearchProperties = (filters: { location: string; category: string; price: string }) => {
-    setPropertyFilter(filters);
-  };
-
-  const handleViewService = (service: ServiceItem) => {
-    setActiveServiceForModal(service);
-  };
-
+  const handleSearchProperties = (filters: { location: string; category: string; price: string }) => setPropertyFilter(filters);
+  const handleViewService = (service: ServiceItem) => setActiveServiceForModal(service);
   const handleSelectProperty = (property: PropertyItem) => {
     setPropertyReturnScroll(window.scrollY);
     setActivePropertyForModal(property);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
-
   const handleRequestViewing = (property: PropertyItem) => {
-    setIntakeData({
-      assetType: property.category,
-      purpose: `Inquiry regarding ${property.title} (${property.status})`,
-      location: property.location,
-    });
+    setIntakeData({ assetType: property.category, purpose: `Inquiry regarding ${property.title} (${property.status})`, location: property.location });
     setSelectedServiceId('estate-agency-brokerage');
     setConsultationOpen(true);
   };
-
-  const handleReadArticle = (article: ArticleItem) => {
-    setActiveArticleForModal(article);
-  };
+  const handleReadArticle = (article: ArticleItem) => setActiveArticleForModal(article);
 
   if (activePropertyForModal) return <div className="min-h-screen w-full bg-white text-[#252223] antialiased"><PropertyDetailPage property={activePropertyForModal} onClose={() => setActivePropertyForModal(null)} onInquire={handleRequestViewing} /></div>;
 
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
-      {/* 1. Header (Mirrors Samson Agbato: Real Logo | Navigation | Phone Box + Book Consultation CTA) */}
       <Header onOpenConsultation={handleOpenConsultation} />
-
       <main className="flex-1 w-full max-w-full overflow-x-clip">
-        {window.location.pathname.replace(/\/$/, '') === '/services' ? (
+        {currentPath === '/services' ? (
           <ServicesPage onOpenConsultation={handleOpenConsultation} onViewServiceDetail={handleViewService} />
-        ) : window.location.pathname.replace(/\/$/, '') === '/about' ? (
+        ) : currentPath === '/about' ? (
           <AboutPage onOpenConsultation={() => handleOpenConsultation()} />
+        ) : currentPath === '/contact' ? (
+          <><ContactSection preselectedServiceId={selectedServiceId} /><AddressSection /></>
         ) : (
           <>
-        {/* 2. Hero Section */}
-        <Hero onOpenConsultation={handleOpenConsultation} />
-
-        {/* 2b. Standalone Property Finder Section */}
-        <PropertyFinderSection onSearchProperties={handleSearchProperties} />
-
-        {/* 5. Industries We Serve (Direct from Samson Agbato: Supporting Diverse Clients Across Nigeria) */}
-        <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
-
-        {/* 6. Why Choose Us (Mirrors Samson Agbato: Experience That Delivers Confidence) */}
-        <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
-
-        {/* 7. Our Projects & Featured Listings (Mirrors Samson Agbato: Delivering Real Estate Excellence) */}
-        <ProjectsSection
-          onSelectProperty={handleSelectProperty}
-          onRequestViewing={handleRequestViewing}
-          filterCriteria={propertyFilter}
-        />
-
-        {/* 8. Our Process (Mirrors Samson Agbato: A Proven Approach to Successful Property Solutions) */}
-        <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
-
-        {/* 9. Expert Perspectives (Demola Adetola's 4 Real Published Articles) */}
-        <ArticlesSection onReadArticle={handleReadArticle} />
-
-        {/* 10. Contact Us (Mirrors Samson Agbato: Have A Project In Mind? Let's Make It Happen) */}
-        <ContactSection preselectedServiceId={selectedServiceId} />
+            <Hero onOpenConsultation={handleOpenConsultation} />
+            <PropertyFinderSection onSearchProperties={handleSearchProperties} />
+            <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
+            <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
+            <ProjectsSection onSelectProperty={handleSelectProperty} onRequestViewing={handleRequestViewing} filterCriteria={propertyFilter} />
+            <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
+            <ArticlesSection onReadArticle={handleReadArticle} />
           </>
         )}
       </main>
-
-      {/* 11. Footer with Real Logo, Verified Offices, Legal Notices, and Copyright */}
       <Footer />
-
-      {/* Interactive Modal Dialogs */}
-      <ConsultationModal
-        isOpen={consultationOpen}
-        onClose={() => setConsultationOpen(false)}
-        defaultServiceId={selectedServiceId}
-        initialData={intakeData}
-      />
-
-      <ServiceModal
-        service={activeServiceForModal}
-        onClose={() => setActiveServiceForModal(null)}
-        onInquire={handleOpenConsultation}
-      />
-
-
-      <ArticleModal
-        article={activeArticleForModal}
-        onClose={() => setActiveArticleForModal(null)}
-        onConsult={() => handleOpenConsultation('property-valuation')}
-      />
-
+      <ConsultationModal isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} defaultServiceId={selectedServiceId} initialData={intakeData} />
+      <ServiceModal service={activeServiceForModal} onClose={() => setActiveServiceForModal(null)} onInquire={handleOpenConsultation} />
+      <ArticleModal article={activeArticleForModal} onClose={() => setActiveArticleForModal(null)} onConsult={() => handleOpenConsultation('property-valuation')} />
       <ScrollAnimations />
       <WhatsAppFloat />
     </div>
