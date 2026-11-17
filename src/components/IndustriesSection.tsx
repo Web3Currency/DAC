@@ -57,7 +57,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
-          {industries.map((industry, index) => (
+          {industries.map((industry) => (
             <div key={industry.title} className="rounded-xl bg-[#F7F9F5] hover:bg-[#F0F4EB] transition-colors duration-200 flex flex-col min-w-0">
               <div className="p-3 sm:p-4 flex flex-1 flex-col min-w-0">
                 <h3 className="text-sm sm:text-base font-bold text-[#252223] leading-snug mb-2">{industry.title}</h3>
@@ -69,7 +69,8 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
                     </li>
                   ))}
                 </ul>
-              </div>           </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
