@@ -46,7 +46,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">Navigation</h4>
             <ul className="space-y-2">
               <li><a href="/" className="hover:text-[#8ABE4B] transition-colors">Home</a></li>
-              <li><a href="/#about" className="hover:text-[#8ABE4B] transition-colors">About us</a></li>
+              <li><a href="/about" className="hover:text-[#8ABE4B] transition-colors">About us</a></li>
               <li><a href="/services" className="hover:text-[#8ABE4B] transition-colors">Services</a></li>
               <li><a href="/#properties" className="hover:text-[#8ABE4B] transition-colors">Property listings</a></li>
               <li><a href="/#process" className="hover:text-[#8ABE4B] transition-colors">Our Process</a></li>
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-1.5 text-[11px]">
               {CORE_SERVICES.map((s) => (
                 <li key={s.id}>
-                  <a href="#services" className="hover:text-[#8ABE4B] transition-colors block line-clamp-1">{s.title}</a>
+                  <a href="/services" className="hover:text-[#8ABE4B] transition-colors block line-clamp-1">{s.title}</a>
                 </li>
               ))}
             </ul>
