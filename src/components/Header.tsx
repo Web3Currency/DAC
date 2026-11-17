@@ -11,7 +11,7 @@ const navigation = [
   { label: 'Properties', href: '/#properties' },
   { label: 'Services', href: '/services' },
   { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
