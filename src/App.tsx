@@ -71,8 +71,8 @@ export default function App() {
             <HomeServicesGallery />
             <ProjectsSection onSelectProperty={handleSelectProperty} onRequestViewing={handleRequestViewing} homepagePreview />
             <GeographicalReachSection />
-            <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
+            <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
             <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
           </>
         )}
