@@ -1,12 +1,14 @@
 import React from 'react';
 import { Phone, Menu } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
+import { useSiteMedia } from '../lib/useSiteMedia';
 
 interface HeaderProps {
   onOpenConsultation: (serviceId?: string) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
+  const siteMedia = useSiteMedia();
 
   return (
     <header className="sticky top-0 z-[100] isolate self-start w-full shrink-0 bg-white/75 backdrop-blur-xl border-b border-white/60 shadow-[0_6px_24px_rgba(37,34,35,0.07)] supports-[backdrop-filter]:bg-white/65 transition-colors duration-300">
@@ -16,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
           {/* Logo displayed directly without a container, background or outline */}
           <a href="#" className="flex items-center shrink-0 py-2">
             <img
-              src="https://i.imgur.com/qczlHrn.png"
+              src={siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
               alt="Demola Adetola & Co. Logo"
               className="h-10 sm:h-11 md:h-12 w-auto max-w-[210px] sm:max-w-[230px] object-contain"
               loading="eager"
