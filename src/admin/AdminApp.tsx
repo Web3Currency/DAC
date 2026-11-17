@@ -184,6 +184,10 @@ export default function AdminApp() {
   async function assignPlacement(item: MediaItem, placement: string) {
     setError('');
     setNotice('');
+    if (placement) {
+      const { error: clearError } = await supabase.from('site_media').update({ placement_key: null }).eq('placement_key', placement).neq('id', item.id);
+      if (clearError) { setError('Could not replace the existing placement: ' + clearError.message); return; }
+    }
     const { error: updateError } = await supabase.from('site_media').update({ placement_key: placement || null }).eq('id', item.id);
     if (updateError) { setError('Could not assign image: ' + updateError.message); return; }
     await loadMedia();
