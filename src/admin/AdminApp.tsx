@@ -28,6 +28,14 @@ const basePlacements = [
   { value: 'about_image', label: 'About section image' },
 ];
 type ServicePlacement = { slug: string; title: string; display_order: number; is_active: boolean };
+const APPROVED_SERVICE_SLUGS = [
+  'estate-agency-brokerage',
+  'property-valuation',
+  'property-facility-management',
+  'facility-management',
+  'investment-jv-consultancy',
+  'real-estate-consultancy',
+] as const;
 const folders: { value: AssetFolder; label: string; description: string }[] = [
   { value: 'logo', label: 'Logo & brand marks', description: 'Approved company logos and identity files' },
   { value: 'hero', label: 'Hero imagery', description: 'Homepage banners and lead imagery' },
@@ -114,7 +122,14 @@ export default function AdminApp() {
       setServicePlacements([]);
       setError(`Could not load the active service list. Service image assignments are disabled until the catalog is available: ${serviceError.message}`);
     } else {
-      setServicePlacements((services || []) as ServicePlacement[]);
+      const approved = new Set<string>(APPROVED_SERVICE_SLUGS);
+      const activeServices = ((services || []) as ServicePlacement[])
+        .filter((service) => approved.has(service.slug))
+        .sort((a, b) => a.display_order - b.display_order);
+      setServicePlacements(activeServices);
+      if (activeServices.length !== APPROVED_SERVICE_SLUGS.length) {
+        setError(`Service catalogue mismatch: expected 6 approved services, but found ${activeServices.length}. Please refresh or check the database catalogue before assigning service images.`);
+      }
     }
     setLoadingMedia(false);
   }
@@ -314,6 +329,7 @@ export default function AdminApp() {
                     <p className="text-[11px] text-[#626061] break-all">{item.pathname}</p>
                     <label className="block space-y-1">
                       <span className="text-[10px] font-semibold uppercase tracking-wide text-[#626061]">Website placement</span>
+                      <span className="block text-[10px] text-[#07A757]">6 approved services · legacy service placements hidden</span>
                       <select value={item.placement_key || ""} onChange={(event) => void assignPlacement(item, event.target.value)} className="w-full rounded-lg border border-[#D9DED5] bg-white px-2.5 py-2 text-xs">
                         <option value="">Not assigned</option>
                         {basePlacements.map((placement) => <option key={placement.value} value={placement.value}>{placement.label}</option>)}
