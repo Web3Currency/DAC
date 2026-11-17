@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, Building2, Globe2, Landmark } from 'lucide-react';
+import { Landmark } from 'lucide-react';
 
 const affiliations = [
   {
