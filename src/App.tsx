@@ -140,7 +140,6 @@ export default function App() {
         onInquire={handleOpenConsultation}
       />
 
- />
 
       <ArticleModal
         article={activeArticleForModal}
