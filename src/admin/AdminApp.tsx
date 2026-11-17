@@ -17,8 +17,15 @@ type MediaItem = {
   caption: string | null;
   is_active: boolean;
   created_at: string;
+  placement_key: string | null;
 };
 
+const placements = [
+  { value: 'header_logo', label: 'Header logo' },
+  { value: 'footer_logo', label: 'Footer logo' },
+  { value: 'homepage_hero', label: 'Homepage hero' },
+  { value: 'about_image', label: 'About section image' },
+];
 const folders: { value: AssetFolder; label: string; description: string }[] = [
   { value: 'logo', label: 'Logo & brand marks', description: 'Approved company logos and identity files' },
   { value: 'hero', label: 'Hero imagery', description: 'Homepage banners and lead imagery' },
@@ -88,7 +95,7 @@ export default function AdminApp() {
     setLoadingMedia(true);
     const { data, error: queryError } = await supabase
       .from('site_media')
-      .select('id,title,folder,blob_url,pathname,mime_type,size_bytes,alt_text,caption,is_active,created_at')
+      .select('id,title,folder,blob_url,pathname,mime_type,size_bytes,alt_text,caption,is_active,created_at,placement_key')
       .order('created_at', { ascending: false });
     if (queryError) {
       setError(`Could not load the media library: ${queryError.message}`);
@@ -171,6 +178,16 @@ export default function AdminApp() {
     } finally {
       setBusy(false);
     }
+  }
+
+  async function assignPlacement(item: MediaItem, placement: string) {
+    setError('');
+    setNotice('');
+    const { error: updateError } = await supabase.from('site_media').update({ placement_key: placement || null }).eq('id', item.id);
+    if (updateError) { setError('Could not assign image: ' + updateError.message); return; }
+    await loadMedia();
+    const label = placements.find((p) => p.value === placement)?.label || placement;
+    setNotice(placement ? 'Image assigned to ' + label + '.' : 'Image placement cleared.');
   }
 
   async function copyUrl(url: string) {
@@ -277,6 +294,13 @@ export default function AdminApp() {
                       <span className="shrink-0 rounded-full bg-[#F5F8F2] px-2 py-1 text-[10px] text-[#626061] capitalize">{item.folder}</span>
                     </div>
                     <p className="text-[11px] text-[#626061] break-all">{item.pathname}</p>
+                    <label className="block space-y-1">
+                      <span className="text-[10px] font-semibold uppercase tracking-wide text-[#626061]">Website placement</span>
+                      <select value={item.placement_key || ""} onChange={(event) => void assignPlacement(item, event.target.value)} className="w-full rounded-lg border border-[#D9DED5] bg-white px-2.5 py-2 text-xs">
+                        <option value="">Not assigned</option>
+                        {placements.map((placement) => <option key={placement.value} value={placement.value}>{placement.label}</option>)}
+                      </select>
+                    </label>
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-[10px] text-[#777]">{(item.size_bytes / 1024 / 1024).toFixed(2)} MB</span>
                       <button onClick={() => void copyUrl(item.blob_url)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07A757]">{copiedUrl === item.blob_url ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}{copiedUrl === item.blob_url ? 'Copied' : 'Copy URL'}</button>
