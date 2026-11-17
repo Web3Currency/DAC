@@ -8,16 +8,13 @@ import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ProcessSection } from './components/ProcessSection';
-import { ArticlesSection } from './components/ArticlesSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
 import { ServiceModal } from './components/ServiceModal';
 import { PropertyDetailPage } from './components/PropertyModal';
-import { ArticleModal } from './components/ArticleModal';
 import { ScrollAnimations } from './components/ScrollAnimations';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
-import { ServiceItem, PropertyItem, ArticleItem } from './types';
 
 export default function App() {
   const [consultationOpen, setConsultationOpen] = useState(false);
@@ -27,7 +24,6 @@ export default function App() {
   const [activePropertyForModal, setActivePropertyForModal] = useState<PropertyItem | null>(null);
   const [propertyReturnScroll, setPropertyReturnScroll] = useState(0);
   useEffect(() => { if (!activePropertyForModal) window.scrollTo({ top: propertyReturnScroll, behavior: 'instant' }); }, [activePropertyForModal, propertyReturnScroll]);
-  const [activeArticleForModal, setActiveArticleForModal] = useState<ArticleItem | null>(null);
 
   const handleOpenConsultation = (serviceId?: string) => {
     setSelectedServiceId(serviceId);
@@ -45,7 +41,6 @@ export default function App() {
     setSelectedServiceId('estate-agency-brokerage');
     setConsultationOpen(true);
   };
-  const handleReadArticle = (article: ArticleItem) => setActiveArticleForModal(article);
 
   if (activePropertyForModal) return <div className="min-h-screen w-full bg-white text-[#252223] antialiased"><PropertyDetailPage property={activePropertyForModal} onClose={() => setActivePropertyForModal(null)} onInquire={handleRequestViewing} /></div>;
 
@@ -68,14 +63,12 @@ export default function App() {
             <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
             <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
-            <ArticlesSection onReadArticle={handleReadArticle} />
           </>
         )}
       </main>
       <Footer />
       <ConsultationModal isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} defaultServiceId={selectedServiceId} initialData={intakeData} />
       <ServiceModal service={activeServiceForModal} onClose={() => setActiveServiceForModal(null)} onInquire={handleOpenConsultation} />
-      <ArticleModal article={activeArticleForModal} onClose={() => setActiveArticleForModal(null)} onConsult={() => handleOpenConsultation('property-valuation')} />
       <ScrollAnimations />
       <WhatsAppFloat />
     </div>
