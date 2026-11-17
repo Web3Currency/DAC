@@ -219,6 +219,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </div>
           </div>
         ) : (
+          <>
           {/* Properties Grid — High visual quality, bullet points, call to action */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-5 sm:gap-8 w-full max-w-full min-w-0">
           {loading && <p className="col-span-full py-12 text-center text-sm text-[#626061]">Loading verified property listings…</p>}
@@ -314,6 +315,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </div>
           ))}
         </div>
+          </>
         )}
 
 
