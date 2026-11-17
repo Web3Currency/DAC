@@ -6,6 +6,7 @@ import { PropertyItem } from '../types';
 interface ProjectsSectionProps {
   onSelectProperty: (property: PropertyItem) => void;
   onRequestViewing: (property: PropertyItem) => void;
+  homepagePreview?: boolean;
   filterCriteria?: {
     location: string;
     category: string;
@@ -17,6 +18,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   onSelectProperty,
   onRequestViewing,
   filterCriteria,
+  homepagePreview = false,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [properties, setProperties] = useState<PropertyItem[]>([]);
@@ -27,7 +29,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     let active = true;
     async function loadProperties() {
       setLoading(true);
-      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,listing_status,location,city,state,country,price_amount,price_currency,price_label,price_frequency,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,units,title_tenure,features,property_images(image_url,display_order,is_cover)').eq('is_published', true).order('display_order', { ascending: true }).order('created_at', { ascending: false });
+      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,listing_status,is_featured,created_at,location,city,state,country,price_amount,price_currency,price_label,price_frequency,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,units,title_tenure,features,property_images(image_url,display_order,is_cover)').eq('is_published', true).order('display_order', { ascending: true }).order('created_at', { ascending: false });
       if (!active) return;
       if (error) {
         setLoadError('Property listings are temporarily unavailable.');
@@ -38,7 +40,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           const amount = row.price_amount == null ? '' : new Intl.NumberFormat('en-NG', { style: 'currency', currency: row.price_currency || 'NGN', maximumFractionDigits: 0 }).format(Number(row.price_amount));
           const status = row.listing_status === 'under_offer' ? 'Under Offer' : row.listing_status === 'sold' ? 'Sold' : row.listing_status === 'let' ? 'Let' : row.listing_status === 'off_market' ? 'Off Market' : row.listing_type === 'letting' ? 'For Letting' : 'For Sale';
           const location = [row.location, row.city, row.state, row.country].filter((value, index, values) => value && values.indexOf(value) === index).join(', ');
-          return { id: row.id, title: row.title, category: row.category, location, price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Price on request', status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined, bedrooms: row.bedrooms != null ? String(row.bedrooms) + ' bedrooms' : undefined, bathrooms: row.bathrooms != null ? String(row.bathrooms) + ' bathrooms' : undefined, tenure: row.title_tenure || undefined, parking: row.parking_spaces != null ? String(row.parking_spaces) + ' spaces' : undefined, units: row.units != null ? String(row.units) + ' units' : undefined }, summary: row.summary || row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale' } as PropertyItem;
+          return { id: row.id, slug: row.slug, title: row.title, category: row.category, location, price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Price on request', status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined, bedrooms: row.bedrooms != null ? String(row.bedrooms) + ' bedrooms' : undefined, bathrooms: row.bathrooms != null ? String(row.bathrooms) + ' bathrooms' : undefined, tenure: row.title_tenure || undefined, parking: row.parking_spaces != null ? String(row.parking_spaces) + ' spaces' : undefined, units: row.units != null ? String(row.units) + ' units' : undefined }, summary: row.summary || row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
         });
         setProperties(mapped);
         setLoadError('');
@@ -66,6 +68,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     return item.category === activeCategory;
   });
 
+  const homepageProperties = ['sale', 'letting'].flatMap((type) =>
+    properties
+      .filter((property: any) => property.listingType === type && property.listingStatus === 'available')
+      .sort((a: any, b: any) => Number(b.isFeatured) - Number(a.isFeatured) || new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .slice(0, 2)
+  );
   const scrollTabs = (direction: 'left' | 'right') => {
     if (tabsContainerRef.current) {
       const scrollAmount = 140;
@@ -77,10 +85,20 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   };
 
   return (
-    <section id="properties" className="py-12 sm:py-14 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1] overflow-x-clip">
+    <section id={homepagePreview ? "featured-properties" : "properties"} className={`py-12 sm:py-14 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1] overflow-x-clip ${homepagePreview ? "homepage-featured-properties" : ""}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
         
-        {/* Header Block — Constrained strictly to page margin, never overflowing */}
+        {homepagePreview ? (
+          <div className="mb-7 flex flex-col gap-2 sm:mb-9">
+            <div className="flex items-center gap-2">
+              <span className="h-0.5 w-8 bg-[#8ABE4B]" />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#07A757]">DAC Property Portfolio</span>
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl lg:text-4xl">Featured Properties</h2>
+            <p className="text-sm text-[#626061]">Explore a selection of properties currently available through DAC.</p>
+          </div>
+        ) : (
+          {/* Header Block — Constrained strictly to page margin, never overflowing */}
         <div className="mb-6 sm:mb-8 w-full max-w-full min-w-0">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 max-w-full min-w-0">
             {/* Title & Eyebrow */}
@@ -142,8 +160,59 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </div>
           </div>
         </div>
+        )}
 
-        {/* Properties Grid — High visual quality, bullet points, call to action */}
+        {homepagePreview ? (
+          <div className="space-y-8">
+            {loading && <p className="py-10 text-center text-sm text-[#626061]">Loading available properties…</p>}
+            {!loading && loadError && <p className="py-10 text-center text-sm text-[#626061]">{loadError}</p>}
+            {!loading && !loadError && ['sale', 'letting'].map((type) => {
+              const items = homepageProperties.filter((property: any) => property.listingType === type);
+              if (!items.length) return null;
+              return (
+                <div key={type}>
+                  <div className="mb-4 flex items-center gap-3">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#252223]">{type === 'sale' ? 'For Sale' : 'For Rent / Let'}</h3>
+                    <span className="h-px flex-1 bg-[#E5E9E1]" />
+                  </div>
+                  <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3 md:grid md:grid-cols-2 md:overflow-visible md:pb-0">
+                    {items.map((prop) => (
+                      <div key={prop.id} className="w-[84vw] max-w-[390px] shrink-0 snap-start md:w-auto md:max-w-none md:min-w-0">
+                        <div className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-2xl">
+                          <div className="relative h-56 overflow-hidden bg-[#F5F8F2] sm:h-64">
+                            {prop.image ? <img src={prop.image} alt={prop.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /> : <div className="grid h-full w-full place-items-center text-sm text-[#626061]">Image coming soon</div>}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
+                            <span className="absolute left-4 top-4 rounded-md bg-[#8ABE4B] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#252223]">{prop.category}</span>
+                            <span className="absolute right-4 top-4 rounded-md bg-[#252223]/85 px-3 py-1 text-[11px] font-semibold text-white">{prop.status}</span>
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <h3 className="line-clamp-1 text-lg font-bold text-white">{prop.title}</h3>
+                              <div className="mt-1 flex items-center gap-1.5 text-xs text-[#E5E9E1]"><MapPin className="h-3.5 w-3.5 shrink-0 text-[#8ABE4B]" /><span>{prop.location}</span></div>
+                            </div>
+                          </div>
+                          <div className="flex flex-1 flex-col justify-between p-5">
+                            <ul className="mb-5 space-y-2 text-xs text-[#626061]">
+                              {prop.specs.area && <li><strong>Area:</strong> {prop.specs.area}</li>}
+                              {prop.specs.tenure && <li><strong>Title:</strong> {prop.specs.tenure}</li>}
+                              {prop.specs.bedrooms && <li><strong>Configuration:</strong> {prop.specs.bedrooms}{prop.specs.bathrooms ? ' · ' + prop.specs.bathrooms : ''}</li>}
+                            </ul>
+                            <div className="flex items-center justify-between gap-3 border-t border-[#E5E9E1] pt-4">
+                              <span className="text-sm font-bold text-[#252223]">{prop.price}</span>
+                              <div className="flex items-center gap-2">
+                                <button onClick={() => onSelectProperty(prop)} className="rounded-lg bg-[#F5F8F2] px-3 py-1.5 text-xs font-semibold text-[#252223] transition-colors hover:bg-[#E5E9E1] hover:text-[#07A757]">Details</button>
+                                <button onClick={() => onRequestViewing(prop)} className="flex items-center gap-1.5 rounded-lg bg-[#8ABE4B] px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"><span>Inquire</span><ArrowRight className="h-3.5 w-3.5" /></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          {/* Properties Grid — High visual quality, bullet points, call to action */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-5 sm:gap-8 w-full max-w-full min-w-0">
           {loading && <p className="col-span-full py-12 text-center text-sm text-[#626061]">Loading verified property listings…</p>}
           {!loading && loadError && <p className="col-span-full py-12 text-center text-sm text-[#626061]">{loadError}</p>}
@@ -238,6 +307,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </div>
           ))}
         </div>
+        )}
+
 
       </div>
     </section>
