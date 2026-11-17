@@ -9,6 +9,7 @@ import { GeographicalReachSection } from './components/GeographicalReachSection'
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PropertiesPage } from './pages/PropertiesPage';
+import { PropertyValuationArticlePage } from './pages/PropertyValuationArticlePage';
 import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -52,11 +53,14 @@ export default function App() {
   if (activePropertyForModal) return <div className="min-h-screen w-full bg-white text-[#252223] antialiased"><PropertyDetailPage property={activePropertyForModal} onClose={() => setActivePropertyForModal(null)} onInquire={handleRequestViewing} /></div>;
 
   const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  const isValuationArticle = currentPath === '/insights/property-valuation';
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
       <Header onOpenConsultation={handleOpenConsultation} />
       <main className="flex-1 w-full max-w-full overflow-x-clip">
-        {currentPath === '/services' ? (
+        {isValuationArticle ? (
+          <PropertyValuationArticlePage />
+        ) : currentPath === '/services' ? (
           <ServicesPage onOpenConsultation={handleOpenConsultation} onViewServiceDetail={handleViewService} />
         ) : currentPath === '/about' ? (
           <AboutPage onOpenConsultation={() => handleOpenConsultation()} />
