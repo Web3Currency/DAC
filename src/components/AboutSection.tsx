@@ -58,20 +58,23 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
 
   return (
     <div className="w-full bg-white">
-      <section className="relative overflow-hidden border-b border-[#E5E9E1] bg-[#F5F8F2]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28">
+      <section className="relative isolate flex min-h-[300px] items-center overflow-hidden border-b border-[#E5E9E1] bg-[#252223] text-white sm:min-h-[360px] lg:min-h-[420px]">
+        {siteMedia.about_image && <img src={siteMedia.about_image} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/40" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#171617]/35 to-transparent" />
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
           <div className="max-w-4xl">
             <div className="flex items-center gap-2 mb-5">
               <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#07A757]">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#D5E8C0]">
                 About our firm
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] text-[#252223]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] text-white">
               Real Estate Expertise.
-              <span className="block text-[#07A757]">Trusted Property Solutions.</span>
+              <span className="block text-[#A9D477]">Trusted Property Solutions.</span>
             </h1>
-            <p className="mt-7 max-w-3xl text-base sm:text-lg leading-relaxed text-[#626061]">
+            <p className="mt-7 max-w-3xl text-base sm:text-lg leading-relaxed text-white/85">
               Demola Adetola &amp; Co. is a professional real estate and valuation firm committed to
               delivering trusted property solutions across residential, commercial, and investment
               sectors.
