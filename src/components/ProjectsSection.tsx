@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { MapPin, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MapPin, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { PropertyItem } from '../types';
 
@@ -9,7 +9,7 @@ interface ProjectsSectionProps {
   homepagePreview?: boolean;
   filterCriteria?: {
     location: string;
-    category: string;
+    listingType: string;
     price: string;
   };
 }
@@ -20,7 +20,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   filterCriteria,
   homepagePreview = false,
 }) => {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
   const [properties, setProperties] = useState<PropertyItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
@@ -40,7 +39,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           const amount = row.price_amount == null ? '' : new Intl.NumberFormat('en-NG', { style: 'currency', currency: row.price_currency || 'NGN', maximumFractionDigits: 0 }).format(Number(row.price_amount));
           const status = row.listing_status === 'under_offer' ? 'Under Offer' : row.listing_status === 'sold' ? 'Sold' : row.listing_status === 'let' ? 'Let' : row.listing_status === 'off_market' ? 'Off Market' : row.listing_type === 'letting' ? 'For Letting' : 'For Sale';
           const location = [row.location, row.city, row.state, row.country].filter((value, index, values) => value && values.indexOf(value) === index).join(', ');
-          return { id: row.id, slug: row.slug, title: row.title, category: row.category, location, price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Price on request', status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined, bedrooms: row.bedrooms != null ? String(row.bedrooms) + ' bedrooms' : undefined, bathrooms: row.bathrooms != null ? String(row.bathrooms) + ' bathrooms' : undefined, tenure: row.title_tenure || undefined, parking: row.parking_spaces != null ? String(row.parking_spaces) + ' spaces' : undefined, units: row.units != null ? String(row.units) + ' units' : undefined }, summary: row.summary || row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
+          return { id: row.id, slug: row.slug, title: row.title, category: row.category, location, price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Price on request', priceAmount: row.price_amount == null ? null : Number(row.price_amount), status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined, bedrooms: row.bedrooms != null ? String(row.bedrooms) + ' bedrooms' : undefined, bathrooms: row.bathrooms != null ? String(row.bathrooms) + ' bathrooms' : undefined, tenure: row.title_tenure || undefined, parking: row.parking_spaces != null ? String(row.parking_spaces) + ' spaces' : undefined, units: row.units != null ? String(row.units) + ' units' : undefined }, summary: row.summary || row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
         });
         setProperties(mapped);
         setLoadError('');
@@ -50,22 +49,20 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     void loadProperties();
     return () => { active = false; };
   }, []);
-  const tabsContainerRef = useRef<HTMLDivElement>(null);
-
-  const categories = ['All', 'Residential', 'Commercial', 'Development', 'Industrial'];
-
   const filteredProperties = properties.filter((item) => {
+    const listing = item as PropertyItem & { listingType?: string; priceAmount?: number | null };
     if (filterCriteria) {
-      if (filterCriteria.category !== 'Any' && item.category !== filterCriteria.category) {
-        return false;
-      }
-      if (filterCriteria.location !== 'Any' && !item.location.toLowerCase().includes(filterCriteria.location.toLowerCase())) {
-        return false;
+      if (filterCriteria.listingType !== 'Any' && listing.listingType !== filterCriteria.listingType) return false;
+      if (filterCriteria.location !== 'Any' && !item.location.toLowerCase().includes(filterCriteria.location.toLowerCase())) return false;
+      if (filterCriteria.price !== 'Any' && listing.priceAmount != null) {
+        const amount = Number(listing.priceAmount);
+        if (filterCriteria.price === 'under-100m' && amount >= 100_000_000) return false;
+        if (filterCriteria.price === '100m-250m' && (amount < 100_000_000 || amount > 250_000_000)) return false;
+        if (filterCriteria.price === '250m-500m' && (amount < 250_000_000 || amount > 500_000_000)) return false;
+        if (filterCriteria.price === '500m-plus' && amount < 500_000_000) return false;
       }
     }
-
-    if (activeCategory === 'All') return true;
-    return item.category === activeCategory;
+    return true;
   });
 
   const homepageProperties = ['sale', 'letting'].flatMap((type) =>
@@ -74,16 +71,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       .sort((a: any, b: any) => Number(b.isFeatured) - Number(a.isFeatured) || new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       .slice(0, 2)
   );
-  const scrollTabs = (direction: 'left' | 'right') => {
-    if (tabsContainerRef.current) {
-      const scrollAmount = 140;
-      tabsContainerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
-
   return (
     <section id={homepagePreview ? "featured-properties" : "properties"} className={`py-12 sm:py-14 lg:py-20 bg-[#FFFFFF] border-b border-[#E5E9E1] overflow-x-clip ${homepagePreview ? "homepage-featured-properties" : ""}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
@@ -107,58 +94,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-8 h-0.5 bg-[#8ABE4B]" />
                 <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">
-                  Featured Portfolio
+                  Available Listings
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#252223]">
-                Properties &amp; Managed Assets Across Nigeria.
+                Available Properties for Sale &amp; Letting.
               </h2>
             </div>
 
-            {/* Scrollable Category Filter Tab — Strictly bounded within content column */}
-            <div className="relative w-full md:w-auto max-w-full min-w-0 flex items-center gap-1.5 self-start md:self-auto">
-              {/* Optional Left Scroll Control */}
-              <button
-                type="button"
-                onClick={() => scrollTabs('left')}
-                className="hidden sm:flex items-center justify-center w-7 h-7 rounded-lg bg-[#F5F8F2] border border-[#E5E9E1] text-[#626061] hover:text-[#252223] hover:border-[#8ABE4B] transition-colors shrink-0"
-                aria-label="Scroll filters left"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-
-              {/* Horizontally Scrollable Filter Track */}
-              <div
-                ref={tabsContainerRef}
-                className="overflow-x-auto no-scrollbar scroll-smooth min-w-0 flex-1 max-w-full flex items-center p-1 bg-[#F5F8F2] border border-[#E5E9E1] rounded-xl"
-              >
-                <div className="flex items-center gap-1.5 w-max">
-                  {categories.map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => setActiveCategory(cat)}
-                      className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 ${
-                        activeCategory === cat
-                          ? 'bg-white text-[#252223] font-bold shadow-xs border border-[#E5E9E1]'
-                          : 'text-[#626061] hover:text-[#252223]'
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Optional Right Scroll Control */}
-              <button
-                type="button"
-                onClick={() => scrollTabs('right')}
-                className="hidden sm:flex items-center justify-center w-7 h-7 rounded-lg bg-[#F5F8F2] border border-[#E5E9E1] text-[#626061] hover:text-[#252223] hover:border-[#8ABE4B] transition-colors shrink-0"
-                aria-label="Scroll filters right"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+            <p className="max-w-sm text-sm leading-relaxed text-[#626061]">Browse every currently available DAC property listing, whether for purchase or letting.</p>
           </div>
         </div>
           </>
