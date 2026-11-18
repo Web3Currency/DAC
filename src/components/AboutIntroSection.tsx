@@ -70,18 +70,12 @@ export const AboutIntroSection: React.FC = () => (
 
         <div className="order-1 lg:order-2">
           <div className="relative overflow-hidden rounded-2xl bg-[#252223]">
-            <img
-              src="https://images.pexels.com/photos/20430714/pexels-photo-20430714/free-photo-of-exterior-of-a-modern-office-building.jpeg?auto=compress&dpr=1&h=1100&w=1500"
-              alt="Contemporary commercial office tower in Lagos, representing the professional real estate environment in which DAC operates"
-              loading="lazy"
-              className="aspect-[4/3] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
-            />
+            {/* Hardcoded stock photograph removed; no image is shown without an approved media asset. */}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#171717]/80 via-[#171717]/25 to-transparent px-5 pb-5 pt-16 sm:px-6 sm:pb-6">
               <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/75">Professional real estate consultancy</p>
               <p className="mt-1 text-lg font-semibold text-white">Built on knowledge. Guided by integrity.</p>
             </div>
           </div>
-          <p className="mt-2 text-[10px] text-[#8A8787]">Illustrative commercial architecture · Photo by Ebenezer Idowu / Pexels</p>
         </div>
       </div>
     </div>
