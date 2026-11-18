@@ -9,6 +9,7 @@ import { GeographicalReachSection } from './components/GeographicalReachSection'
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PropertiesPage } from './pages/PropertiesPage';
+import { InsightsPage } from './pages/InsightsPage';
 import { PropertyValuationArticlePage } from './pages/PropertyValuationArticlePage';
 import { PropertyManagementArticlePage } from './pages/PropertyManagementArticlePage';
 import { BuyingPropertyArticlePage } from './pages/BuyingPropertyArticlePage';
@@ -60,6 +61,7 @@ export default function App() {
   if (activePropertyForModal) return <div className="min-h-screen w-full bg-white text-[#252223] antialiased"><PropertyDetailPage property={activePropertyForModal} onClose={() => setActivePropertyForModal(null)} onInquire={handleRequestViewing} /></div>;
 
   const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  const isInsightsIndex = currentPath === '/insights';
   const isValuationArticle = currentPath === '/insights/property-valuation';
   const isPropertyManagementArticle = currentPath === '/insights/property-management';
   const isBuyingPropertyArticle = currentPath === '/insights/buying-property-in-nigeria';
@@ -69,7 +71,9 @@ export default function App() {
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
       <Header onOpenConsultation={handleOpenConsultation} />
       <main className="flex-1 w-full max-w-full overflow-x-clip">
-        {isCmsArticle ? (
+        {isInsightsIndex ? (
+          <InsightsPage />
+        ) : isCmsArticle ? (
           <CmsArticlePage slug={currentPath.slice('/insights/'.length)} />
         ) : isValuationArticle ? (
           <PropertyValuationArticlePage />
