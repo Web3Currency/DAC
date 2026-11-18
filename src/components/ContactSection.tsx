@@ -7,7 +7,7 @@ interface ContactSectionProps {
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServiceId }) => {
-  const [formData, setFormData] = useState({ fullName: '', phone: '', email: '', serviceId: preselectedServiceId || 'property-valuation', message: '' });
+  const [formData, setFormData] = useState(() => { const params = new URLSearchParams(window.location.search); return { fullName: '', phone: '', email: '', serviceId: preselectedServiceId || params.get('service') || 'property-valuation', message: params.get('message') || '' }; });
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 

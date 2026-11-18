@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, MapPin, ShieldCheck, Download, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, MapPin, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PropertyItem } from '../types';
 
 interface PropertyDetailPageProps {
@@ -13,7 +13,6 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
   onClose,
   onInquire,
 }) => {
-  const [downloadSuccess, setDownloadSuccess] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
   useEffect(() => { setActiveImage(0); }, [property?.id]);
 
@@ -22,12 +21,7 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
   const showPrevious = () => setActiveImage((current) => (current - 1 + galleryImages.length) % galleryImages.length);
   const showNext = () => setActiveImage((current) => (current + 1) % galleryImages.length);
 
-  const handleDownloadBrochure = () => {
-    setDownloadSuccess(true);
-    setTimeout(() => {
-      setDownloadSuccess(false);
-    }, 4000);
-  };
+
 
   return (
     <main className="min-h-screen w-full bg-white text-[#252223]">
@@ -82,43 +76,12 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
               <span>{property.location}</span>
             </div>
             <div className="text-base font-bold text-[#252223] tabular-nums">
-              {property.price}
+              Price: {property.price}
             </div>
           </div>
 
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#626061] mb-2">
-              Asset &amp; Advisory Summary
-            </h4>
-            <p className="text-sm text-[#252223] leading-relaxed">
-              {property.summary}
-            </p>
-          </div>
-
-          {/* Specifications Table (no border) */}
-          <div className="p-4 bg-[#F5F8F2] rounded-xl shadow-xs">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#252223] mb-3">
-              Technical Asset Parameters
-            </h4>
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div>
-                <span className="text-[#626061] block text-[10px] uppercase font-bold">Total Area</span>
-                <span className="font-semibold text-[#252223]">{property.specs.area || 'Not provided'}</span>
-              </div>
-              <div>
-                <span className="text-[#626061] block text-[10px] uppercase font-bold">Title Tenure</span>
-                <span className="font-semibold text-[#252223]">{property.specs.tenure || 'Not provided'}</span>
-              </div>
-              <div>
-                <span className="text-[#626061] block text-[10px] uppercase font-bold">Configuration</span>
-                <span className="font-semibold text-[#252223]">{property.specs.bedrooms || property.specs.units || 'Not provided'}</span>
-              </div>
-              <div>
-                <span className="text-[#626061] block text-[10px] uppercase font-bold">Parking / Access</span>
-                <span className="font-semibold text-[#252223]">{property.specs.parking || 'Not provided'}</span>
-              </div>
-            </div>
-          </div>
+          {property.specs.area && <div className="flex flex-wrap items-center gap-3 border-b border-[#E5E9E1] pb-5"><span className="text-xs font-bold uppercase tracking-wider text-[#626061]">Property Area</span><span className="text-sm font-semibold text-[#252223]">{property.specs.area}</span></div>}
+          <div><h4 className="text-xs font-bold uppercase tracking-wider text-[#626061] mb-2">Full Property Description</h4><div className="whitespace-pre-line text-sm leading-relaxed text-[#252223]">{property.description}</div></div>
 
           {/* Due Diligence Stamp (no border) */}
           <div className="flex items-start gap-3 p-3.5 rounded-xl bg-[#F5F8F2] shadow-2xs text-xs text-[#252223]">
@@ -128,36 +91,11 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
             </div>
           </div>
 
-          {downloadSuccess && (
-            <div className="p-3 bg-emerald-50 rounded-lg text-xs text-emerald-800 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Investment Memorandum brief downloaded to your device.</span>
-            </div>
-          )}
+
 
         </div>
 
-        {/* Footer Actions */}
-        <div className="py-5 sm:py-6 bg-[#F5F8F2] rounded-2xl px-4 sm:px-6 flex flex-wrap items-center justify-between gap-3">
-          <button
-            onClick={handleDownloadBrochure}
-            className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-[#252223] bg-white shadow-2xs hover:bg-[#F5F8F2] rounded-lg transition-colors"
-          >
-            <Download className="w-3.5 h-3.5 text-[#07A757]" />
-            <span>Download Asset Brief</span>
-          </button>
-
-          <button
-            onClick={() => {
-              onClose();
-              onInquire(property);
-            }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-2xs transition-colors"
-          >
-            <span>Book Private Inspection / Valuation</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
+        <div className="pb-8 pt-2"><button type="button" onClick={() => { onClose(); onInquire(property); }} className="inline-flex items-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] shadow-2xs transition-colors hover:bg-[#07A757] hover:text-white"><span>Book Private Inspection / Valuation</span><ArrowRight className="h-3.5 w-3.5" /></button></div>
 
       </article>
       </div>

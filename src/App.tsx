@@ -48,9 +48,11 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
   const handleRequestViewing = (property: PropertyItem) => {
-    setIntakeData({ assetType: property.category, purpose: `Inquiry regarding ${property.title} (${property.status})`, location: property.location });
-    setSelectedServiceId('estate-agency-brokerage');
-    setConsultationOpen(true);
+    const params = new URLSearchParams({
+      service: 'estate-agency-brokerage',
+      message: ['I would like to book a private inspection / valuation for this property.','Property: ' + property.title,'Property category: ' + property.category,'Listing status: ' + property.status,'Location: ' + property.location,'Price: ' + property.price,'','Please contact me to arrange the next steps.'].join('\n'),
+    });
+    window.location.assign('/contact?' + params.toString() + '#contact');
   };
 
   if (activePropertyForModal) return <div className="min-h-screen w-full bg-white text-[#252223] antialiased"><PropertyDetailPage property={activePropertyForModal} onClose={() => setActivePropertyForModal(null)} onInquire={handleRequestViewing} /></div>;

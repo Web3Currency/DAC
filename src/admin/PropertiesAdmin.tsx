@@ -43,14 +43,9 @@ export default function PropertiesAdmin({ user }: { user: User }) {
   const [state, setState] = useState('Lagos');
   const [price, setPrice] = useState('');
   const [priceLabel, setPriceLabel] = useState('');
-  const [summary, setSummary] = useState('');
   const [description, setDescription] = useState('');
   const [area, setArea] = useState('');
   const [areaUnit, setAreaUnit] = useState('sqm');
-  const [bedrooms, setBedrooms] = useState('');
-  const [bathrooms, setBathrooms] = useState('');
-  const [parking, setParking] = useState('');
-  const [tenure, setTenure] = useState('');
   const [photos, setPhotos] = useState<File[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -106,14 +101,9 @@ export default function PropertiesAdmin({ user }: { user: User }) {
       price_amount: price ? Number(price) : null,
       price_currency: 'NGN',
       price_label: priceLabel || null,
-      summary: summary || null,
       description: description || null,
       area_value: area ? Number(area) : null,
       area_unit: areaUnit,
-      bedrooms: bedrooms ? Number(bedrooms) : null,
-      bathrooms: bathrooms ? Number(bathrooms) : null,
-      parking_spaces: parking ? Number(parking) : null,
-      title_tenure: tenure || null,
       ...(editingId ? {} : { is_featured: false, is_published: false }),
     };
     const { error: insertError } = editingId
@@ -152,8 +142,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
       if (imageError) throw new Error('Property saved as draft, but its photographs could not be linked: ' + imageError.message);
       setMessage(editingId ? 'Property details updated successfully.' : 'Property saved as an unpublished draft with ' + photos.length + ' photographs. Review it below and publish when the details are verified.');
       setTitle(''); setLocation(''); setCity(''); setPrice(''); setPriceLabel('');
-      setSummary(''); setDescription(''); setArea(''); setBedrooms(''); setBathrooms('');
-      setParking(''); setTenure(''); setPhotos([]); setEditingId(null); setListingStatus('available');
+      setDescription(''); setArea(''); setPhotos([]); setEditingId(null); setListingStatus('available');
       await refresh();
     } catch (uploadError) {
       setError(uploadError instanceof Error ? uploadError.message : 'Photo upload failed. The property details may have been saved; review the listing before retrying.');
@@ -173,14 +162,9 @@ export default function PropertiesAdmin({ user }: { user: User }) {
     setState(item.state || '');
     setPrice(item.price_amount == null ? '' : String(item.price_amount));
     setPriceLabel(item.price_label || '');
-    setSummary(item.summary || '');
     setDescription(item.description || '');
     setArea(item.area_value == null ? '' : String(item.area_value));
     setAreaUnit(item.area_unit || 'sqm');
-    setBedrooms(item.bedrooms == null ? '' : String(item.bedrooms));
-    setBathrooms(item.bathrooms == null ? '' : String(item.bathrooms));
-    setParking(item.parking_spaces == null ? '' : String(item.parking_spaces));
-    setTenure(item.title_tenure || '');
     setListingStatus(item.listing_status || 'available');
     setPhotos([]);
     setError('');
@@ -191,8 +175,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
   function cancelEditing() {
     setEditingId(null);
     setTitle(''); setLocation(''); setCity(''); setPrice(''); setPriceLabel('');
-    setSummary(''); setDescription(''); setArea(''); setBedrooms(''); setBathrooms('');
-    setParking(''); setTenure(''); setPhotos([]); setListingStatus('available');
+    setDescription(''); setArea(''); setPhotos([]); setListingStatus('available');
     setMessage('Editing cancelled.');
   }
 
@@ -273,14 +256,9 @@ export default function PropertiesAdmin({ user }: { user: User }) {
         <label className="text-xs font-semibold text-[#252223]">State<input value={state} onChange={e => setState(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
         <label className="text-xs font-semibold text-[#252223]">Price (NGN)<input type="number" min="0" value={price} onChange={e => setPrice(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
         <label className="text-xs font-semibold text-[#252223]">Price display override<input value={priceLabel} onChange={e => setPriceLabel(e.target.value)} placeholder="e.g. ₦250m or ₦5m per annum" className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
-        <label className="sm:col-span-2 text-xs font-semibold text-[#252223]">Short summary<textarea value={summary} onChange={e => setSummary(e.target.value)} rows={2} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
-        <label className="sm:col-span-2 text-xs font-semibold text-[#252223]">Full description<textarea required value={description} onChange={e => setDescription(e.target.value)} rows={3} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
+        <label className="sm:col-span-2 text-xs font-semibold text-[#252223]">Full description<textarea required value={description} onChange={e => setDescription(e.target.value)} rows={8} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
         <label className="text-xs font-semibold text-[#252223]">Area<input type="number" min="0" value={area} onChange={e => setArea(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
         <label className="text-xs font-semibold text-[#252223]">Area unit<select value={areaUnit} onChange={e => setAreaUnit(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] bg-white px-3 py-2.5 text-sm font-normal"><option>sqm</option><option>sqft</option><option>acre</option><option>hectare</option></select></label>
-        <label className="text-xs font-semibold text-[#252223]">Bedrooms<input type="number" min="0" value={bedrooms} onChange={e => setBedrooms(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
-        <label className="text-xs font-semibold text-[#252223]">Bathrooms<input type="number" min="0" value={bathrooms} onChange={e => setBathrooms(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
-        <label className="text-xs font-semibold text-[#252223]">Parking spaces<input type="number" min="0" value={parking} onChange={e => setParking(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
-        <label className="text-xs font-semibold text-[#252223]">Title / tenure<input value={tenure} onChange={e => setTenure(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
         <label className="sm:col-span-2 block rounded-xl border-2 border-dashed border-[#C9D4C1] bg-[#FAFCF8] p-5 text-center cursor-pointer">
           <Upload className="w-6 h-6 text-[#07A757] mx-auto mb-2" />
           <span className="block text-sm font-semibold text-[#252223]">Select property photographs</span>

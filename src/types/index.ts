@@ -27,7 +27,7 @@ export interface PropertyItem {
     parking?: string;
     units?: string;
   };
-  summary: string;
+  description: string;
   isReplaceableSample: boolean;
   sampleTypeBadge: string;
 }

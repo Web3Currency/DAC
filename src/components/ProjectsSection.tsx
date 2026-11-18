@@ -28,7 +28,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     let active = true;
     async function loadProperties() {
       setLoading(true);
-      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,listing_status,is_featured,created_at,location,city,state,country,price_amount,price_currency,price_label,price_frequency,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,units,title_tenure,features,property_images(image_url,display_order,is_cover)').eq('is_published', true).eq('listing_status', 'available').order('display_order', { ascending: true }).order('created_at', { ascending: false });
+      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,listing_status,is_featured,created_at,location,city,state,country,price_amount,price_currency,price_label,price_frequency,description,area_value,area_unit,property_images(image_url,display_order,is_cover)').eq('is_published', true).eq('listing_status', 'available').order('display_order', { ascending: true }).order('created_at', { ascending: false });
       if (!active) return;
       if (error) {
         setLoadError('Property listings are temporarily unavailable.');
@@ -39,7 +39,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           const amount = row.price_amount == null ? '' : new Intl.NumberFormat('en-NG', { style: 'currency', currency: row.price_currency || 'NGN', maximumFractionDigits: 0 }).format(Number(row.price_amount));
           const status = row.listing_status === 'under_offer' ? 'Under Offer' : row.listing_status === 'sold' ? 'Sold' : row.listing_status === 'let' ? 'Let' : row.listing_status === 'off_market' ? 'Off Market' : row.listing_type === 'letting' ? 'For Letting' : 'For Sale';
           const location = [row.location, row.city, row.state, row.country].filter((value, index, values) => value && values.indexOf(value) === index).join(', ');
-          return { id: row.id, slug: row.slug, title: row.title, category: row.category, location, price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Price on request', priceAmount: row.price_amount == null ? null : Number(row.price_amount), status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined, bedrooms: row.bedrooms != null ? String(row.bedrooms) + ' bedrooms' : undefined, bathrooms: row.bathrooms != null ? String(row.bathrooms) + ' bathrooms' : undefined, tenure: row.title_tenure || undefined, parking: row.parking_spaces != null ? String(row.parking_spaces) + ' spaces' : undefined, units: row.units != null ? String(row.units) + ' units' : undefined }, summary: row.summary || row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
+          return { id: row.id, slug: row.slug, title: row.title, category: row.category, location, price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Upon request', priceAmount: row.price_amount == null ? null : Number(row.price_amount), status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined }, description: row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
         });
         setProperties(mapped);
         setLoadError('');
@@ -142,7 +142,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                               {prop.specs.bedrooms && <li><strong>Configuration:</strong> {prop.specs.bedrooms}{prop.specs.bathrooms ? ' · ' + prop.specs.bathrooms : ''}</li>}
                             </ul>
                             <div className="flex items-center justify-between gap-3 border-t border-[#E5E9E1] pt-4">
-                              <span className="text-sm font-bold text-[#252223]">{prop.price}</span>
+                              <span className="text-sm font-bold text-[#252223]">Price: {prop.price}</span>
                               <div className="flex items-center gap-2">
                                 <button onClick={() => onSelectProperty(prop)} className="rounded-lg bg-[#F5F8F2] px-3 py-1.5 text-xs font-semibold text-[#252223] transition-colors hover:bg-[#E5E9E1] hover:text-[#07A757]">Details</button>
                                 <button onClick={() => onRequestViewing(prop)} className="flex items-center gap-1.5 rounded-lg bg-[#8ABE4B] px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"><span>Inquire</span><ArrowRight className="h-3.5 w-3.5" /></button>
@@ -236,7 +236,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 {/* Price & CTA */}
                 <div className="pt-4 border-t border-[#E5E9E1] flex items-center justify-between gap-3">
                   <div className="text-sm font-bold text-[#252223] tabular-nums">
-                    {prop.price}
+                    Price: {prop.price}
                   </div>
 
                   <div className="flex items-center gap-2">
