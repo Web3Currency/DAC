@@ -27,10 +27,6 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mb-7 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <div className="mb-2 flex items-center gap-2">
-            <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-            <span className="text-xs font-bold uppercase tracking-widest text-[#07A757]">Who We Work With</span>
-          </div>
           <h2 className="text-2xl font-bold leading-tight tracking-tight text-[#252223] sm:text-3xl">
             Property Support for Different Needs.
           </h2>
