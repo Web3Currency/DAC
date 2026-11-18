@@ -16,14 +16,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   const siteMedia = useSiteMedia();
   return (
     <>
-    <section className="relative isolate flex min-h-[280px] items-center overflow-hidden bg-[#252223] text-white sm:min-h-[340px] lg:min-h-[390px]">
+    <section className="relative isolate flex h-[280px] items-center overflow-hidden bg-[#252223] text-white sm:h-[340px] lg:h-[390px]">
       {siteMedia['service_property-valuation'] && <img src={siteMedia['service_property-valuation']} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/35" />
-      <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
         <div className="max-w-3xl">
           <div className="mb-3 flex items-center gap-2"><span className="h-0.5 w-8 bg-[#8ABE4B]" /><span className="text-xs font-bold uppercase tracking-widest text-[#D5E8C0]">Our Services</span></div>
           <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">Real Estate Services to Help You Make the Right Move.</h1>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85 sm:text-base">We help clients value, buy, sell, manage and develop property.</p>
+          <p className="mt-3 max-w-2xl text-xs leading-relaxed text-white/85 sm:mt-4 sm:text-sm lg:text-base">We help clients value, buy, sell, manage and develop property.</p>
         </div>
       </div>
     </section>
