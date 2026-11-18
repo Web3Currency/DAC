@@ -82,7 +82,6 @@ export const PropertyFinderSection: React.FC<PropertyFinderSectionProps> = ({ on
                 <option value="250m-500m">₦250m – ₦500 million</option>
                 <option value="500m-plus">₦500 million and above</option>
               </select>
-              <p className="mt-1 text-[11px] text-[#8A8585]">Listings without a published price remain included.</p>
             </div>
             <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-sm font-bold uppercase tracking-wider text-[#252223] shadow-sm transition-all hover:bg-[#07A757] hover:text-white active:scale-[0.98]">
               <Search className="h-4 w-4" /><span>Find Properties</span>
