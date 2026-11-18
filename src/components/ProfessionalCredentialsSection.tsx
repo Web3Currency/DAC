@@ -7,10 +7,10 @@ export const ProfessionalCredentialsSection: React.FC = () => {
   const siteMedia = useSiteMedia();
   const affiliations = [
     { name: 'ESVARBON', fullName: 'Estate Surveyors and Valuers Registration Board of Nigeria', logo: siteMedia.credentials_esvarbon || 'https://portal.esvarbon.gov.ng/assets/images/esvarbon_logo.png' },
-    { name: 'NIESV', fullName: 'Nigerian Institution of Estate Surveyors and Valuers', logo: siteMedia.credentials_niesv || 'https://global.ariseplay.com/amg/www.thisdaylive.com/uploads/NIESV.jpg' },
+    { name: 'NIESV', fullName: 'Nigerian Institution of Estate Surveyors and Valuers', logo: siteMedia.credentials_niesv },
     { name: 'RICS', fullName: 'Royal Institution of Chartered Surveyors', logo: siteMedia.credentials_rics || 'https://www.rics.org/content/dam/ricsglobal/images/logos/footer_logo.png' },
     { name: 'IFMA', fullName: 'International Facility Management Association', logo: siteMedia.credentials_ifma || 'https://www.ifma.org/media/n11i0lzg/ifma-logo-qualifier-tagline.png' },
-  ];
+  ].filter((item) => Boolean(item.logo));
   return (
   <section aria-labelledby="professional-credentials-heading" className="bg-[#F5F8F2] py-10 sm:py-12 lg:py-14 border-y border-[#E5E9E1]">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
