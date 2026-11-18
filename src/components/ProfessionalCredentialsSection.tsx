@@ -1,28 +1,7 @@
 import React from 'react';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
-const affiliations = [
-  {
-    name: 'ESVARBON',
-    fullName: 'Estate Surveyors and Valuers Registration Board of Nigeria',
-    logo: 'https://portal.esvarbon.gov.ng/assets/images/esvarbon_logo.png',
-  },
-  {
-    name: 'NIESV',
-    fullName: 'Nigerian Institution of Estate Surveyors and Valuers',
-    logo: 'https://global.ariseplay.com/amg/www.thisdaylive.com/uploads/NIESV.jpg',
-  },
-  {
-    name: 'RICS',
-    fullName: 'Royal Institution of Chartered Surveyors',
-    logo: 'https://www.rics.org/content/dam/ricsglobal/images/logos/footer_logo.png',
-  },
-  {
-    name: 'IFMA',
-    fullName: 'International Facility Management Association',
-    logo: 'https://www.ifma.org/media/n11i0lzg/ifma-logo-qualifier-tagline.png',
-  },
-];
+
 
 export const ProfessionalCredentialsSection: React.FC = () => {
   const siteMedia = useSiteMedia();
