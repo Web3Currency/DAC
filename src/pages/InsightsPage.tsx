@@ -39,14 +39,20 @@ export const InsightsPage: React.FC = () => {
   })) : fallback;
 
   return (
-    <section aria-labelledby="insights-page-heading" className="min-h-[65vh] bg-[#F8F9F7] py-14 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <header className="mb-10 max-w-3xl sm:mb-14">
-          <div className="mb-3 flex items-center gap-2"><span className="h-0.5 w-8 bg-[#8ABE4B]" /><span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#07A757]">Knowledge &amp; perspectives</span></div>
-          <h1 id="insights-page-heading" className="text-3xl font-bold leading-tight tracking-tight text-[#252223] sm:text-4xl lg:text-5xl">Insights &amp; Publications</h1>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#626061] sm:text-base">Explore property insights, professional perspectives and publications from Demola Adetola &amp; Co. to support informed real estate decisions.</p>
+    <>
+    <section aria-labelledby="insights-page-heading" className="relative isolate flex min-h-[280px] items-center overflow-hidden bg-[#252223] text-white sm:min-h-[340px] lg:min-h-[390px]">
+      {siteMedia.expert_perspectives_default && <img src={siteMedia.expert_perspectives_default} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/35" />
+      <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <header className="max-w-3xl">
+          <div className="mb-3 flex items-center gap-2"><span className="h-0.5 w-8 bg-[#8ABE4B]" /><span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#D5E8C0]">Knowledge &amp; perspectives</span></div>
+          <h1 id="insights-page-heading" className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">Insights &amp; Publications</h1>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85 sm:text-base">Explore property insights, professional perspectives and publications from Demola Adetola &amp; Co. to support informed real estate decisions.</p>
         </header>
-
+      </div>
+    </section>
+    <section className="min-h-[45vh] bg-[#F8F9F7] py-14 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {loaded && source.length === 0 ? (
           <div className="rounded-sm border border-[#E5E9E1] bg-white px-6 py-16 text-center">
             <BookOpen className="mx-auto mb-4 h-8 w-8 text-[#8ABE4B]" />
@@ -73,5 +79,6 @@ export const InsightsPage: React.FC = () => {
         )}
       </div>
     </section>
+    </>
   );
 };
