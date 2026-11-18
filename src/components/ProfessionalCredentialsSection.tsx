@@ -16,10 +16,6 @@ export const ProfessionalCredentialsSection: React.FC = () => {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_2.1fr] lg:items-center lg:gap-12">
         <div>
-          <div className="mb-3 flex items-center gap-2">
-            <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#07A757]">Professional Credentials &amp; Heritage</span>
-          </div>
           <h2 id="professional-credentials-heading" className="max-w-xl text-2xl font-bold leading-tight tracking-tight text-[#252223] sm:text-3xl">
             A Legacy of Professional Excellence.
           </h2>
