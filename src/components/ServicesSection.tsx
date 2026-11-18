@@ -39,7 +39,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           <path d="M780 520L1120 0M950 520L1290 0M1120 520L1460 0" stroke="#E5E9E1" strokeWidth="2" strokeOpacity=".08" />
         </svg>
       </div>
-      {siteMedia['service_property-valuation'] && <img src={siteMedia['service_property-valuation']} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/35" />
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
         <div className="max-w-3xl">
