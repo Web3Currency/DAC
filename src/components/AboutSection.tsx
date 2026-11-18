@@ -258,6 +258,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
+        </div>
       </section>
     </div>
   );
