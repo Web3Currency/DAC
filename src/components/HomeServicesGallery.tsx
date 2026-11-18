@@ -3,15 +3,6 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { CORE_SERVICES } from '../data/companyData';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
-const fallbackImages: Record<string, string> = {
-  'estate-agency-brokerage': 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1100&q=85',
-  'property-valuation': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1100&q=85',
-  'property-facility-management': 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1100&q=85',
-  'facility-management': 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1100&q=85',
-  'investment-jv-consultancy': 'https://images.unsplash.com/photo-1460472178825-e5240623afd5?auto=format&fit=crop&w=1100&q=85',
-  'real-estate-consultancy': 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1100&q=85',
-};
-
 export const HomeServicesGallery: React.FC = () => {
   const siteMedia = useSiteMedia();
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -49,7 +40,7 @@ export const HomeServicesGallery: React.FC = () => {
           aria-label="Explore DAC professional services"
         >
           {CORE_SERVICES.map((service) => {
-            const image = siteMedia['service_' + service.id] || fallbackImages[service.id];
+            const image = siteMedia['service_' + service.id];
             return (
               <a
                 key={service.id}
@@ -57,12 +48,14 @@ export const HomeServicesGallery: React.FC = () => {
                 aria-label={`Explore ${service.title} on the Services page`}
                 className="group relative block h-[270px] w-[78vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl bg-[#252223] shadow-sm sm:h-[310px] sm:w-[42vw] sm:max-w-[390px] lg:h-[340px] lg:w-[31%] lg:max-w-none"
               >
-                <img
-                  src={image}
-                  alt=""
-                  className="service-card-image absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
-                />
+                {image && (
+                  <img
+                    src={image}
+                    alt=""
+                    className="service-card-image absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/5 transition-colors duration-300 group-hover:from-black/85" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 sm:p-6">
                   <h3 className="max-w-[85%] text-lg font-bold leading-snug tracking-tight text-white drop-shadow sm:text-xl">{service.title}</h3>
