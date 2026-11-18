@@ -28,7 +28,7 @@ export const InsightsPage: React.FC = () => {
     return () => { active = false; };
   }, []);
 
-  const source = articles.map(item => ({
+  const source = articles.length ? articles.map(item => ({
     title: item.title,
     excerpt: item.excerpt || '',
     slug: item.slug,
