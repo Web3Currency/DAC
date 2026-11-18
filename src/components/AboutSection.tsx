@@ -77,7 +77,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             <circle cx="1090" cy="265" r="235" fill="none" stroke="#D6E8BD" strokeWidth="1.2" strokeOpacity=".12" strokeDasharray="7 13" />
           </svg>
         </div>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/40" />
+                <div className="pointer-events-none absolute -right-8 top-1/2 hidden -translate-y-1/2 text-[#8ABE4B]/15 sm:block" aria-hidden="true">
+          <Building2 className="h-[25rem] w-[25rem] fill-current stroke-[#8ABE4B]/30" strokeWidth={0.8} />
+        </div>
+<div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/40" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#171617]/35 to-transparent" />
         <div className="max-w-7xl mx-auto flex h-full w-full items-center px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
           <div className="max-w-4xl">
