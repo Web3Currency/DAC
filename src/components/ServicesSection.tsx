@@ -15,6 +15,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 }) => {
   const siteMedia = useSiteMedia();
   return (
+    <>
     <section className="relative isolate flex min-h-[280px] items-center overflow-hidden bg-[#252223] text-white sm:min-h-[340px] lg:min-h-[390px]">
       {siteMedia['service_property-valuation'] && <img src={siteMedia['service_property-valuation']} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/35" />
@@ -83,5 +84,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         </div>
       </div>
     </section>
+    </>
   );
 };
