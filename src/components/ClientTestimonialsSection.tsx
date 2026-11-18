@@ -20,11 +20,6 @@ export const ClientTestimonialsSection: React.FC = () => (
   <section aria-labelledby="client-testimonials-heading" className="border-y border-[#E5E9E1] bg-white py-14 sm:py-16 lg:py-20">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mx-auto mb-9 max-w-2xl text-center sm:mb-11">
-        <div className="mb-3 flex items-center justify-center gap-2">
-          <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#07A757]">Client experiences</span>
-          <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-        </div>
         <h2 id="client-testimonials-heading" className="text-3xl font-bold tracking-tight text-[#252223] sm:text-4xl">What Our Clients Say</h2>
         <p className="mt-3 text-sm leading-relaxed text-[#626061] sm:text-base">Trusted relationships built through professional service and experience.</p>
       </div>
