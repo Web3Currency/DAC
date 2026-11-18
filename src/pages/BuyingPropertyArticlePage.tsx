@@ -9,13 +9,12 @@ export const BuyingPropertyArticlePage: React.FC = () => (
       <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <a href="/#expert-perspectives-heading" className="mb-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/75 transition hover:text-[#A7D477]"><ArrowLeft size={15} /> Back to insights</a>
         <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#A7D477]">Expert Perspectives · Property Acquisition</p>
-        <h1 className="max-w-4xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">7 Things to Check Before Buying Property in Nigeria</h1>
+        <h1 className="max-w-4xl text-3xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] sm:text-4xl lg:text-5xl">7 Things to Check Before Buying Property in Nigeria</h1>
         <p className="mt-5 text-sm text-white/65">Demola Adetola &amp; Co. Chartered Estate Surveyors &amp; Valuers</p>
       </div>
     </header>
     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,760px)_260px] lg:gap-16 lg:px-8">
       <div className="min-w-0">
-        <div className="mb-8 overflow-hidden rounded-sm"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85" alt="Contemporary residential property" className="aspect-[16/9] w-full object-cover" /></div>
         <div className="space-y-6 text-[15px] leading-[1.9] text-[#4E4B4B] sm:text-base">
           <p>Purchasing property is one of the most significant financial decisions anyone can make. While real estate offers tremendous opportunities for wealth creation and long-term security, buyers must exercise due diligence before committing their resources.</p>
           <p>Below are seven important factors every prospective property buyer should consider.</p>
