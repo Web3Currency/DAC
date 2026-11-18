@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowUpRight, BookOpen } from 'lucide-react';
+import { ArrowUpRight, BookOpen, FileText } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
