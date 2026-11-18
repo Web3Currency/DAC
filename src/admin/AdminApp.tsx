@@ -4,8 +4,9 @@ import type { User } from '@supabase/supabase-js';
 import { upload } from '@vercel/blob/client';
 import { supabase } from '../lib/supabase';
 import PropertiesAdmin from './PropertiesAdmin';
+import ArticlesAdmin from './ArticlesAdmin';
 
-type AssetFolder = 'logo' | 'hero' | 'services' | 'projects' | 'team' | 'company';
+type AssetFolder = 'logo' | 'hero' | 'services' | 'projects' | 'team' | 'company' | 'credentials' | 'articles' | 'office';
 type MediaItem = {
   id: string;
   title: string;
@@ -27,6 +28,7 @@ const basePlacements = [
   { value: 'homepage_hero', label: 'Homepage hero' },
   { value: 'about_image', label: 'About section image' },
 ];
+type PlacementRecord = { placement_key: string; label: string; section: string; description: string | null; display_order: number; is_active: boolean };
 type ServicePlacement = { slug: string; title: string; display_order: number; is_active: boolean };
 const APPROVED_SERVICE_SLUGS = [
   'estate-agency-brokerage',
@@ -43,6 +45,9 @@ const folders: { value: AssetFolder; label: string; description: string }[] = [
   { value: 'projects', label: 'Projects', description: 'Completed projects and portfolio imagery' },
   { value: 'team', label: 'Team', description: 'Approved leadership and team photographs' },
   { value: 'company', label: 'Company', description: 'Office, activities and general company imagery' },
+  { value: 'credentials', label: 'Professional credentials', description: 'Professional body and accreditation logos' },
+  { value: 'articles', label: 'Articles & blog', description: 'Editorial covers and article imagery' },
+  { value: 'office', label: 'Offices & locations', description: 'Office and geographic reach imagery' },
 ];
 
 function readableTitle(pathname: string) {
@@ -59,6 +64,8 @@ export default function AdminApp() {
   const [files, setFiles] = useState<File[]>([]);
   const [media, setMedia] = useState<MediaItem[]>([]);
   const [servicePlacements, setServicePlacements] = useState<ServicePlacement[]>([]);
+  const [placements, setPlacements] = useState<PlacementRecord[]>([]);
+  const [activeTab, setActiveTab] = useState<'media' | 'properties' | 'articles'>('media');
   const [busy, setBusy] = useState(false);
   const [loadingMedia, setLoadingMedia] = useState(false);
   const [error, setError] = useState('');
@@ -105,7 +112,7 @@ export default function AdminApp() {
 
   async function loadMedia() {
     setLoadingMedia(true);
-    const [{ data, error: queryError }, { data: services, error: serviceError }] = await Promise.all([
+    const [{ data, error: queryError }, { data: services, error: serviceError }, { data: placementRows, error: placementError }] = await Promise.all([
       supabase.from('site_media')
         .select('id,title,folder,blob_url,pathname,mime_type,size_bytes,alt_text,caption,is_active,created_at,placement_key')
         .order('created_at', { ascending: false }),
@@ -113,6 +120,7 @@ export default function AdminApp() {
         .select('slug,title,display_order,is_active')
         .eq('is_active', true)
         .order('display_order', { ascending: true }),
+      supabase.from('site_media_placements').select('placement_key,label,section,description,display_order,is_active').eq('is_active', true).order('display_order', { ascending: true }),
     ]);
     if (queryError) {
       setError(`Could not load the media library: ${queryError.message}`);
@@ -148,6 +156,8 @@ export default function AdminApp() {
       }
       setMedia(currentMedia);
     }
+    if (placementError) setError(`Could not load image placements: ${placementError.message}`);
+    else setPlacements((placementRows || []) as PlacementRecord[]);
     if (serviceError) {
       setServicePlacements([]);
       setError(`Could not load the active service list. Service image assignments are disabled until the catalog is available: ${serviceError.message}`);
@@ -249,7 +259,7 @@ export default function AdminApp() {
     const { error: updateError } = await supabase.from('site_media').update({ placement_key: placement || null }).eq('id', item.id);
     if (updateError) { setError('Could not assign image: ' + updateError.message); return; }
     await loadMedia();
-    const label = [...basePlacements, ...servicePlacements.map((service) => ({ value: 'service_' + service.slug, label: 'Service: ' + service.title }))].find((p) => p.value === placement)?.label || placement;
+    const label = placements.find((p) => p.placement_key === placement)?.label || placement;
     setNotice(placement ? 'Image assigned to ' + label + '.' : 'Image placement cleared.');
   }
 
@@ -344,6 +354,20 @@ export default function AdminApp() {
         </div>
       </header>
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+        <nav aria-label="Admin sections" className="grid grid-cols-3 gap-2 rounded-xl border border-[#E5E9E1] bg-white p-2">
+          {([
+            { id: 'media', label: 'Website Media', icon: '▧' },
+            { id: 'properties', label: 'Properties', icon: '⌂' },
+            { id: 'articles', label: 'Articles & Blog', icon: '▤' },
+          ] as const).map((tab) => (
+            <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} aria-current={activeTab === tab.id ? 'page' : undefined}
+              className={`rounded-lg px-2 py-3 text-xs sm:text-sm font-bold transition ${activeTab === tab.id ? 'bg-[#8ABE4B] text-[#252223]' : 'text-[#626061] hover:bg-[#F5F8F2]'}`}>
+              <span className="mr-1.5">{tab.icon}</span>{tab.label}
+            </button>
+          ))}
+        </nav>
+        {activeTab === 'media' && (
+          <div className="space-y-6">
         <section className="rounded-2xl bg-white border border-[#E5E9E1] p-5 sm:p-7 space-y-5">
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-xl bg-[#F5F8F2] text-[#07A757] grid place-items-center"><UploadCloud className="w-5 h-5" /></div>
@@ -397,8 +421,7 @@ export default function AdminApp() {
                       <span className="block text-[10px] text-[#07A757]">6 approved services · legacy service placements hidden</span>
                       <select value={item.placement_key || ""} onChange={(event) => void assignPlacement(item, event.target.value)} className="w-full rounded-lg border border-[#D9DED5] bg-white px-2.5 py-2 text-xs">
                         <option value="">Not assigned</option>
-                        {basePlacements.map((placement) => <option key={placement.value} value={placement.value}>{placement.label}</option>)}
-                        {servicePlacements.map((service) => <option key={service.slug} value={'service_' + service.slug}>Service: {service.title}</option>)}
+                        {placements.map((placement) => <option key={placement.placement_key} value={placement.placement_key}>{placement.section}: {placement.label}</option>)}
                       </select>
                     </label>
                     <div className="flex items-center justify-between gap-2">
@@ -421,7 +444,11 @@ export default function AdminApp() {
             </div>
           )}
         </section>
-        <PropertiesAdmin user={user} />
+          </div>
+        )}
+        {activeTab === 'properties' && <PropertiesAdmin user={user} />}
+        {activeTab === 'articles' && <ArticlesAdmin user={user} />}
+
       </div>
     </main>
   );
