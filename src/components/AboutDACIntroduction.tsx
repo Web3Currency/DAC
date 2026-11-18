@@ -32,26 +32,28 @@ const highlights = [
 
 export const AboutDACIntroduction: React.FC = () => {
   const siteMedia = useSiteMedia();
-  const image = siteMedia.about_image || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85';
+  const image = siteMedia.about_image;
 
   return (
     <section aria-labelledby="about-dac-introduction-heading" className="bg-white py-14 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-9 lg:grid-cols-12 lg:gap-14">
-          <div className="relative lg:col-span-5">
-            <div className="overflow-hidden rounded-2xl bg-[#F5F8F2]">
-              <img
-                src={image}
-                alt="Contemporary commercial office building representing DAC's professional real estate consultancy"
-                className="aspect-[5/4] w-full object-cover sm:aspect-[4/3] lg:aspect-[4/5]"
-                loading="lazy"
-              />
+          {image && (
+            <div className="relative lg:col-span-5">
+              <div className="overflow-hidden rounded-2xl bg-[#F5F8F2]">
+                <img
+                  src={image}
+                  alt="Demola Adetola & Co. office"
+                  className="aspect-[5/4] w-full object-cover sm:aspect-[4/3] lg:aspect-[4/5]"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute bottom-4 left-4 rounded-xl bg-[#252223] px-4 py-3 text-white shadow-lg sm:bottom-5 sm:left-5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/65">Professional practice since</p>
+                <p className="mt-0.5 text-2xl font-bold leading-none text-[#A9D477]">1992</p>
+              </div>
             </div>
-            <div className="absolute bottom-4 left-4 rounded-xl bg-[#252223] px-4 py-3 text-white shadow-lg sm:bottom-5 sm:left-5">
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/65">Professional practice since</p>
-              <p className="mt-0.5 text-2xl font-bold leading-none text-[#A9D477]">1992</p>
-            </div>
-          </div>
+          )}
 
           <div className="lg:col-span-7">
             <div className="mb-3 flex items-center gap-2">
