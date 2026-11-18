@@ -18,10 +18,6 @@ export const HomeServicesGallery: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-7 flex items-end justify-between gap-4 sm:mb-9">
           <div>
-            <div className="mb-3 flex items-center gap-2">
-              <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#07A757]">Comprehensive Real Estate Solutions</span>
-            </div>
             <h2 id="home-services-heading" className="text-3xl font-bold tracking-tight text-[#252223] sm:text-4xl">Our Professional Services</h2>
           </div>
           <div className="hidden shrink-0 gap-2 sm:flex">
