@@ -13,6 +13,7 @@ import { PropertyValuationArticlePage } from './pages/PropertyValuationArticlePa
 import { PropertyManagementArticlePage } from './pages/PropertyManagementArticlePage';
 import { BuyingPropertyArticlePage } from './pages/BuyingPropertyArticlePage';
 import { RealEstateInvestmentArticlePage } from './pages/RealEstateInvestmentArticlePage';
+import CmsArticlePage from './pages/CmsArticlePage';
 import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -60,11 +61,14 @@ export default function App() {
   const isPropertyManagementArticle = currentPath === '/insights/property-management';
   const isBuyingPropertyArticle = currentPath === '/insights/buying-property-in-nigeria';
   const isRealEstateInvestmentArticle = currentPath === '/insights/real-estate-investment-2026';
+  const isCmsArticle = currentPath.startsWith('/insights/') && !isValuationArticle && !isPropertyManagementArticle && !isBuyingPropertyArticle && !isRealEstateInvestmentArticle;
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
       <Header onOpenConsultation={handleOpenConsultation} />
       <main className="flex-1 w-full max-w-full overflow-x-clip">
-        {isValuationArticle ? (
+        {isCmsArticle ? (
+          <CmsArticlePage slug={currentPath.slice('/insights/'.length)} />
+        ) : isValuationArticle ? (
           <PropertyValuationArticlePage />
         ) : isPropertyManagementArticle ? (
           <PropertyManagementArticlePage />
