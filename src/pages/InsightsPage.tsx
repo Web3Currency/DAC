@@ -4,6 +4,13 @@ import { supabase } from '../lib/supabase';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
 type ArticleCard = { title: string; excerpt: string | null; slug: string; cover_image_url: string | null; cover_image_alt: string | null; published_at: string | null; category: string };
+const fallback = [
+  { title: 'Understanding Property Valuation: Why Every Property Owner Needs It', excerpt: 'Property valuation plays a critical role in real estate transactions, investment decisions, and financial planning.', date: '11 June 2026', image: null, alt: 'Residential property', slug: 'property-valuation', category: 'Property Valuation' },
+  { title: '7 Things to Check Before Buying Property in Nigeria', excerpt: 'Discover the key checks every buyer should perform before committing funds.', date: '11 June 2026', image: null, alt: 'Contemporary home', slug: 'buying-property-in-nigeria', category: 'Real Estate Advisory' },
+  { title: 'Property Management: Protecting the Value of Your Investment', excerpt: 'Learn the benefits of professional property management services.', date: '11 June 2026', image: null, alt: 'Managed commercial property', slug: 'property-management', category: 'Property Management' },
+  { title: 'Real Estate Investment Opportunities in Nigeria in 2026', excerpt: 'Explore emerging trends and sectors with strong growth potential.', date: '11 June 2026', image: null, alt: 'Commercial buildings', slug: 'real-estate-investment-2026', category: 'Market Insights' },
+];
+
 export const InsightsPage: React.FC = () => {
   const [articles, setArticles] = useState<ArticleCard[]>([]);
   const [loaded, setLoaded] = useState(false);
@@ -29,7 +36,7 @@ export const InsightsPage: React.FC = () => {
     alt: item.cover_image_alt || item.title,
     date: item.published_at ? new Date(item.published_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : 'DAC Insights',
     category: item.category || 'Publication',
-  }));
+  })) : fallback;
 
   return (
     <>
