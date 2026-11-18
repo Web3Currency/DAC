@@ -18,6 +18,7 @@
    * blank strip on Android Chrome / Mi Browser.
    */
   html {
+    scroll-behavior: smooth;
     width: 100%;
     max-width: 100%;
     overflow-x: clip;
@@ -173,4 +174,20 @@ button:disabled {
   .prototype-whatsapp-enter, .prototype-whatsapp-pulse {
     animation: none;
   }
+}
+
+/* Slow, restrained motion for homepage service and geographical imagery */
+@keyframes homepageCardDrift {
+  0%, 100% { transform: scale(1.06) translate3d(-1.2%, 0, 0); }
+  50% { transform: scale(1.12) translate3d(1.2%, -0.6%, 0); }
+}
+.service-card-image,
+.geographical-card-image {
+  animation: homepageCardDrift 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.geographical-card-image { animation-duration: 30s; }
+@media (prefers-reduced-motion: reduce) {
+  .service-card-image,
+  .geographical-card-image { animation: none; }
 }
