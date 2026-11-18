@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, House } from 'lucide-react';
 import { CORE_SERVICES } from '../data/companyData';
 import { ServiceItem } from '../types';
 import { useSiteMedia } from '../lib/useSiteMedia';
