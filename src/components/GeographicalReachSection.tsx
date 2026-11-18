@@ -7,9 +7,9 @@ import { useSiteMedia } from '../lib/useSiteMedia';
 export const GeographicalReachSection: React.FC = () => {
   const siteMedia = useSiteMedia();
   const locations = [
-    { number: '01', name: 'Lagos', country: 'Nigeria', label: 'Headquarters', detail: 'Onikan, Lagos Island', image: siteMedia.geographical_reach_lagos || 'https://content.r9cdn.net/rimg/dimg/93/ca/c46f09c7-city-25271-18a65f178fb.jpg?crop=true&height=768&width=1366', alt: 'Lagos Island waterfront and commercial skyline' , imagePosition: 'center' },
-    { number: '02', name: 'Nationwide', country: 'Nigeria', label: 'Nationwide Operations', detail: 'Professional services across Nigeria', image: 'https://images.trvl-media.com/place/553248635976008619/ecafb32f-de92-4637-a85d-ba71513eb86f.jpg', alt: 'Abuja cityscape representing DAC’s nationwide Nigerian service coverage' , imagePosition: 'center' },
-    { number: '03', name: 'Pretoria', country: 'South Africa', label: 'International Presence', detail: 'DAC subsidiary', image: siteMedia.geographical_reach_pretoria || 'https://e3zak6m1avgttdml.public.blob.vercel-storage.com/seo-covers/pretoria-1778015373763.webp', alt: 'Pretoria Union Buildings and surrounding cityscape' , imagePosition: 'center' },
+    { name: 'Lagos', country: 'Nigeria', label: 'Headquarters', detail: 'Onikan, Lagos Island', image: siteMedia.geographical_reach_lagos || 'https://content.r9cdn.net/rimg/dimg/93/ca/c46f09c7-city-25271-18a65f178fb.jpg?crop=true&height=768&width=1366', alt: 'Lagos Island waterfront and commercial skyline' , imagePosition: 'center' },
+    { name: 'Nationwide', country: 'Nigeria', label: 'Nationwide Operations', detail: 'Professional services across Nigeria', image: 'https://images.trvl-media.com/place/553248635976008619/ecafb32f-de92-4637-a85d-ba71513eb86f.jpg', alt: 'Abuja cityscape representing DAC’s nationwide Nigerian service coverage' , imagePosition: 'center' },
+    { name: 'Pretoria', country: 'South Africa', label: 'International Presence', detail: 'DAC subsidiary', image: siteMedia.geographical_reach_pretoria || 'https://e3zak6m1avgttdml.public.blob.vercel-storage.com/seo-covers/pretoria-1778015373763.webp', alt: 'Pretoria Union Buildings and surrounding cityscape' , imagePosition: 'center' },
   ];
   return (
   <section aria-labelledby="geographical-reach-heading" className="bg-[#F5F8F2] py-14 sm:py-16 lg:py-20">
@@ -29,7 +29,7 @@ export const GeographicalReachSection: React.FC = () => {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {locations.map(({ name, country, label, detail, image, alt, imagePosition }) => (
-          <article key={number} className="group relative isolate min-h-[340px] overflow-hidden rounded-2xl bg-[#252223] shadow-sm sm:min-h-[390px]">
+          <article key={name} className="group relative isolate min-h-[340px] overflow-hidden rounded-2xl bg-[#252223] shadow-sm sm:min-h-[390px]">
             <img
               src={image}
               alt={alt}
