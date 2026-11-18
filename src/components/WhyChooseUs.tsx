@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, ArrowRight, Award, Building2, BriefcaseBusiness } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface WhyChooseUsProps {
   onOpenConsultation: () => void;
@@ -7,22 +7,18 @@ interface WhyChooseUsProps {
 
 const points = [
   {
-    icon: <Award className="w-5 h-5 text-[#07A757]" />,
     title: 'Established Experience',
     description: 'Established professional experience in Nigeria’s property sector.',
   },
   {
-    icon: <ShieldCheck className="w-5 h-5 text-[#07A757]" />,
     title: 'Professional Approach',
     description: 'Considered guidance grounded in professional standards.',
   },
   {
-    icon: <BriefcaseBusiness className="w-5 h-5 text-[#07A757]" />,
     title: 'Service in One Place',
     description: 'A range of property and real estate consultancy services through one firm.',
   },
   {
-    icon: <Building2 className="w-5 h-5 text-[#07A757]" />,
     title: 'Knowledge of Local Properties',
     description: 'Familiarity with Nigerian property markets and local considerations.',
   },
@@ -62,9 +58,6 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
             key={point.title}
             className="min-h-[160px] rounded-2xl bg-white p-5 sm:p-5 shadow-sm transition-shadow duration-300 hover:shadow-lg"
           >
-            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#F5F8F2]">
-              {point.icon}
-            </div>
             <h3 className="mb-2 text-base font-bold text-[#252223]">{point.title}</h3>
             <p className="text-sm leading-relaxed text-[#626061]">{point.description}</p>
           </article>
