@@ -29,12 +29,6 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-7 sm:mb-9">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">
-              Why Choose Demola Adetola &amp; Co.
-            </span>
-          </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#252223]">
             Property Advice You Can Rely On.
           </h2>
