@@ -17,6 +17,28 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   return (
     <>
     <section className="relative isolate flex h-[280px] items-center overflow-hidden bg-[#252223] text-white sm:h-[340px] lg:h-[390px]">
+      <div className="absolute inset-0 -z-10 opacity-40" aria-hidden="true">
+        <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+          <defs>
+            <pattern id="services-blueprint-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M80 0H0V80" fill="none" stroke="#8ABE4B" strokeWidth="1" strokeOpacity=".3" />
+              <path d="M40 0V80M0 40H80" stroke="#E5E9E1" strokeWidth=".6" strokeOpacity=".1" />
+            </pattern>
+          </defs>
+          <rect width="1440" height="520" fill="url(#services-blueprint-grid)" />
+          <g fill="none" stroke="#8ABE4B" strokeWidth="1.6" strokeOpacity=".3">
+            <path d="M900 410V190l110-78 110 78v220z" />
+            <path d="M960 410V250h100v160M985 250v-70h52v70M1120 410V230h70v180" />
+            <path d="M860 410h430M930 150h280M1010 112V65M900 190l110 60 110-60" />
+            <path d="M1260 130h70v280h-70M1280 160h30M1280 195h30M1280 230h30" />
+          </g>
+          <g fill="none" stroke="#D6E8BD" strokeOpacity=".2">
+            <circle cx="1100" cy="260" r="210" strokeDasharray="5 12" />
+            <circle cx="1100" cy="260" r="245" />
+          </g>
+          <path d="M780 520L1120 0M950 520L1290 0M1120 520L1460 0" stroke="#E5E9E1" strokeWidth="2" strokeOpacity=".08" />
+        </svg>
+      </div>
       {siteMedia['service_property-valuation'] && <img src={siteMedia['service_property-valuation']} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/35" />
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
