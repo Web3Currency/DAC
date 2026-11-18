@@ -232,8 +232,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 bg-[#252223]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <section className="py-14 sm:py-16 lg:py-20 bg-[#F5F8F2]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div className="rounded-2xl bg-[#8ABE4B] px-6 py-10 text-[#252223] shadow-xl sm:px-10 sm:py-12 lg:px-14 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-4">
               <span className="w-8 h-0.5 bg-[#8ABE4B]" />
@@ -244,14 +244,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
               Let’s build value through real estate.
             </h2>
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-white/70">
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#252223]/80">
               Speak with our team about your property needs, investment goals or next real estate
               decision.
             </p>
           </div>
           <button
             onClick={onOpenConsultation}
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-[#8ABE4B] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-[#252223]/30 bg-[#252223]/[0.06] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.12]"
           >
             <Handshake className="w-4 h-4" />
             <span>Speak with our team</span>
