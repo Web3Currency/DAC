@@ -16,10 +16,6 @@ export const GeographicalReachSection: React.FC = () => {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col gap-3 sm:mb-10 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <div className="mb-3 flex items-center gap-2">
-            <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#07A757]">Our Geographical Reach</span>
-          </div>
           <h2 id="geographical-reach-heading" className="text-3xl font-bold tracking-tight text-[#252223] sm:text-4xl">Local Expertise. Wider Reach.</h2>
         </div>
         <p className="max-w-xl text-sm leading-relaxed text-[#626061] lg:max-w-md">
