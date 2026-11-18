@@ -59,3 +59,4 @@ export const GeographicalReachSection: React.FC = () => {
     </div>
   </section>
 );
+};
