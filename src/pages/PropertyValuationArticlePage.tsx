@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 export const PropertyValuationArticlePage: React.FC = () => (
   <article className="bg-white">
     <header className="relative overflow-hidden bg-[#20251F] text-white">
-      <div className="absolute inset-0 opacity-25"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=85" alt="" className="h-full w-full object-cover" /></div>
+      <div className="absolute inset-0 opacity-25"><img src="https://jayzylf6zqoil8xi.public.blob.vercel-storage.com/dac/articles/9d35744e-0339-4b48-acde-a24629c6cfa1-1000609289-88LcuKwx5EMiUXk3F4Zm1c4oO121JA.jpg" alt="" className="h-full w-full object-cover" /></div>
       <div className="absolute inset-0 bg-gradient-to-r from-[#171C17]/95 via-[#20251F]/85 to-[#20251F]/55" />
       <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <a href="/#expert-perspectives-heading" className="mb-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/75 transition hover:text-[#A7D477]"><ArrowLeft size={15} /> Back to insights</a>
