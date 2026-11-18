@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
               <a
                 key={item.label}
                 href={item.href}
-                className={`py-2 transition-colors hover:text-[#07A757] ${index === 0 ? 'text-[#07A757] font-semibold' : ''}`
+                className={`py-2 transition-colors hover:text-[#07A757] ${index === 0 ? 'text-[#07A757] font-semibold' : ''}`}
               >
                 {item.label}
               </a>
