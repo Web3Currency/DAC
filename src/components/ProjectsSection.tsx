@@ -28,7 +28,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     let active = true;
     async function loadProperties() {
       setLoading(true);
-      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,listing_status,is_featured,created_at,location,city,state,country,price_amount,price_currency,price_label,price_frequency,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,units,title_tenure,features,property_images(image_url,display_order,is_cover)').eq('is_published', true).order('display_order', { ascending: true }).order('created_at', { ascending: false });
+      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,listing_status,is_featured,created_at,location,city,state,country,price_amount,price_currency,price_label,price_frequency,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,units,title_tenure,features,property_images(image_url,display_order,is_cover)').eq('is_published', true).eq('listing_status', 'available').order('display_order', { ascending: true }).order('created_at', { ascending: false });
       if (!active) return;
       if (error) {
         setLoadError('Property listings are temporarily unavailable.');
