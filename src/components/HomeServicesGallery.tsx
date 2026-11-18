@@ -65,7 +65,7 @@ export const HomeServicesGallery: React.FC = () => {
         </div>
 
         <div className="mt-8 flex justify-center">
-          <a href="/services" className="inline-flex items-center gap-2 rounded-lg bg-[#252223] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-[#07894B]">
+          <a href="/services" className="inline-flex items-center gap-2 rounded-lg bg-[#8ABE4B] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white">
             Explore All Services
             <ArrowUpRight className="h-4 w-4" />
           </a>
