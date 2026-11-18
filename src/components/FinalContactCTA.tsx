@@ -7,10 +7,10 @@ export const FinalContactCTA: React.FC = () => (
     <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-2xl bg-[#8ABE4B] px-6 py-10 text-[#252223] shadow-xl sm:mx-6 sm:px-10 sm:py-12 lg:mx-auto lg:flex-row lg:items-center lg:justify-between lg:px-14">
       <div className="max-w-3xl">
         <div className="mb-3 flex items-center gap-2">
-          <span className="h-0.5 w-8 bg-[#8ABE4B]" />
+          <span className="h-0.5 w-8 bg-[#252223]/60" />
           <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#252223]/70">Your next property decision</span>
         </div>
-        <h2 id="final-contact-heading" className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.65rem]">Let’s Discuss Your Property Needs.</h2>
+        <h2 id="final-contact-heading" className="text-3xl font-bold leading-tight tracking-tight text-[#252223] sm:text-4xl lg:text-[2.65rem]">Let’s Discuss Your Property Needs.</h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#252223]/80 sm:text-base">Whether you require professional valuation, property consultancy, property management or real estate advisory, our team is ready to assist.</p>
       </div>
       <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col xl:flex-row">
