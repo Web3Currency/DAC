@@ -34,7 +34,6 @@ export const ExpertPerspectivesSection: React.FC = () => {
     <section id="perspectives" aria-labelledby="expert-perspectives-heading" className="bg-[#F8F9F7] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-9 max-w-2xl sm:mb-12">
-          <div className="mb-3 flex items-center gap-2"><span className="h-0.5 w-8 bg-[#8ABE4B]" /><span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#07A757]">Insights &amp; Publications</span></div>
           <h2 id="expert-perspectives-heading" className="text-3xl font-bold leading-tight tracking-tight text-[#252223] sm:text-4xl">Expert Perspectives on Real Estate Solutions</h2>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#626061] sm:text-base">Stay informed with the latest property research and publications from Africa and around the world.</p>
         </div>
