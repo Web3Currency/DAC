@@ -9,6 +9,7 @@ interface HeaderProps {
 const navigation = [
   { label: 'Home', href: '/' },
   { label: 'Properties', href: '/properties' },
+  { label: 'Insights', href: '/insights' },
   { label: 'Services', href: '/services' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
