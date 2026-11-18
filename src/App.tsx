@@ -17,7 +17,6 @@ import CmsArticlePage from './pages/CmsArticlePage';
 import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
-import { ProcessSection } from './components/ProcessSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
@@ -95,7 +94,6 @@ export default function App() {
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
             <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
             <ExpertPerspectivesSection />
-            <ProcessSection onOpenConsultation={() => handleOpenConsultation('property-valuation')} />
           </>
         )}
       </main>
