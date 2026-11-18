@@ -44,13 +44,39 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({ onSelectProperty
               <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#8ABE4B]">DAC Property Portfolio</span>
             </div>
             <h1 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Find the Right Property. Make the Right Move.</h1>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#E5E9E1]/80 sm:text-base">Explore available properties for sale and letting across our verified locations in Nigeria.</p>
+            <p className="mt-4 max-w-xl text-sm font-semibold leading-relaxed text-white sm:text-base sm:font-bold">Explore available properties for sale and letting across our verified locations in Nigeria.</p>
             <a href="#property-finder" className="mt-7 inline-flex items-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white">Find a Property <MapPin className="h-4 w-4" /></a>
           </div>
         </div>
       </section>
       <PropertyFinderSection onSearchProperties={setFilterCriteria} />
       <ProjectsSection onSelectProperty={onSelectProperty} onRequestViewing={onRequestViewing} filterCriteria={filterCriteria} />
+
+      <section className="relative overflow-hidden bg-[#F5F8F2] py-16 sm:py-20">
+        <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#8ABE4B]/10 blur-3xl" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-2xl bg-[#252223] px-6 py-10 text-white shadow-xl sm:px-10 sm:py-12 lg:px-14">
+            <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+              <div className="max-w-2xl">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="h-0.5 w-8 bg-[#8ABE4B]" />
+                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#8ABE4B]">Your Property Journey</span>
+                </div>
+                <h2 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">Haven’t found what you’re looking for?</h2>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#E5E9E1]/80 sm:text-base">Our team can help you explore more opportunities, understand your options and find the right property solution.</p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+                <a href="/services" className="inline-flex items-center justify-center rounded-lg border border-white/25 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#8ABE4B] hover:bg-white/5">Explore Our Services</a>
+                <a href="/contact" className="inline-flex items-center justify-center rounded-lg bg-[#8ABE4B] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white">Speak with Our Team</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <style>{`
+        #property-finder form > div:nth-child(3) > p { display: none; }
+      `}</style>
     </>
   );
 };
