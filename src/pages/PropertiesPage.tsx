@@ -67,7 +67,7 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({ onSelectProperty
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <a href="/services" className="inline-flex items-center justify-center rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">Explore Our Services</a>
-                <a href="/contact" className="inline-flex items-center justify-center rounded-lg bg-[#8ABE4B] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white">Speak with Our Team</a>
+                <a href="/contact" className="inline-flex items-center justify-center rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">Speak with Our Team</a>
               </div>
             </div>
           </div>
