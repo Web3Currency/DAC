@@ -56,10 +56,6 @@ export const AboutDACIntroduction: React.FC = () => {
           )}
 
           <div className="lg:col-span-7">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#07A757]">About DAC · Company Introduction</span>
-            </div>
             <h2 id="about-dac-introduction-heading" className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-[#252223] sm:text-4xl lg:text-[2.65rem]">
               Over Three Decades of Professional Real Estate Expertise.
             </h2>
