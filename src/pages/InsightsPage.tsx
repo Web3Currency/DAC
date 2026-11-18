@@ -44,23 +44,23 @@ export const InsightsPage: React.FC = () => {
       <div className="absolute inset-0 -z-10 opacity-40" aria-hidden="true">
         <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
           <defs>
-            <pattern id="insights-editorial-grid" width="84" height="84" patternUnits="userSpaceOnUse">
-              <path d="M84 0H0V84" fill="none" stroke="#8ABE4B" strokeWidth="1" strokeOpacity=".28" />
-              <path d="M18 22h34M18 31h48M18 40h27" stroke="#D6E8BD" strokeWidth="1" strokeOpacity=".16" />
+            <pattern id="insights-map-grid" width="92" height="72" patternUnits="userSpaceOnUse">
+              <path d="M 92 0 L 0 0 0 72" fill="none" stroke="#8ABE4B" strokeWidth="1" strokeOpacity=".35" />
+              <path d="M 46 0 L 46 72 M 0 36 L 92 36" fill="none" stroke="#E5E9E1" strokeWidth=".6" strokeOpacity=".12" />
+            </pattern>
+            <pattern id="insights-map-blocks" width="260" height="190" patternUnits="userSpaceOnUse" patternTransform="rotate(-13)">
+              <path d="M20 18h92v48H20z M142 18h92v48h-92z M20 94h92v74H20z M142 94h92v74h-92z" fill="none" stroke="#8ABE4B" strokeWidth="1.2" strokeOpacity=".25" />
             </pattern>
           </defs>
-          <rect width="1440" height="520" fill="url(#insights-editorial-grid)" />
-          <g fill="none" stroke="#8ABE4B" strokeOpacity=".28" strokeWidth="2">
-            <path d="M920 82h310v350H920z" />
-            <path d="M956 126h238M956 152h190M956 178h218M956 204h156" />
-            <path d="M1000 252h150v116h-150z" />
-            <path d="M1180 252h42v116h-42z" />
-            <path d="M890 110l-45 45v260l45 45M1260 110l45 45v260l-45 45" />
-          </g>
-          <path d="M760 520L1120 0M920 520L1280 0M1080 520L1440 0" stroke="#E5E9E1" strokeWidth="2" strokeOpacity=".08" />
-          <circle cx="1100" cy="260" r="205" fill="none" stroke="#8ABE4B" strokeWidth="1.5" strokeOpacity=".12" />
-          <circle cx="1100" cy="260" r="245" fill="none" stroke="#D6E8BD" strokeWidth="1" strokeOpacity=".1" strokeDasharray="6 12" />
+          <rect width="1440" height="520" fill="url(#insights-map-grid)" />
+          <rect width="1440" height="520" fill="url(#insights-map-blocks)" />
+          <path d="M-40 390 C260 300 390 440 650 320 S1080 160 1500 260" fill="none" stroke="#8ABE4B" strokeWidth="18" strokeOpacity=".13" />
+          <path d="M-40 390 C260 300 390 440 650 320 S1080 160 1500 260" fill="none" stroke="#D6E8BD" strokeWidth="2" strokeDasharray="8 12" strokeOpacity=".55" />
+          <path d="M120 0L410 520 M520 0L780 520 M990 0L1260 520" stroke="#E5E9E1" strokeWidth="2" strokeOpacity=".1" />
         </svg>
+      </div>
+      <div className="pointer-events-none absolute -right-8 top-1/2 hidden -translate-y-1/2 text-[#8ABE4B]/15 sm:block" aria-hidden="true">
+        <FileText className="h-[25rem] w-[25rem] fill-current stroke-[#8ABE4B]/30" strokeWidth={0.8} />
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/35" />
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
