@@ -5,10 +5,7 @@ import {
   CheckCircle2,
   Eye,
   Handshake,
-  Lightbulb,
-  ShieldCheck,
   Target,
-  Users,
 } from 'lucide-react';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
@@ -29,27 +26,22 @@ const values = [
   {
     title: 'Integrity',
     description: 'We act honestly and put our clients’ interests at the centre of every engagement.',
-    icon: ShieldCheck,
   },
   {
     title: 'Professionalism',
     description: 'We bring care, competence and accountability to every property assignment.',
-    icon: Building2,
   },
   {
     title: 'Transparency',
     description: 'We communicate clearly so clients can make decisions with confidence.',
-    icon: Eye,
   },
   {
     title: 'Excellence',
     description: 'We pursue high standards in our advice, service and delivery.',
-    icon: Lightbulb,
   },
   {
     title: 'Client satisfaction',
     description: 'We listen, understand each brief and work towards outcomes that serve our clients.',
-    icon: Users,
   },
 ];
 
@@ -122,12 +114,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             )}
           </div>
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 mb-5">
-              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#07A757]">
-                Who we are
-              </span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
               More than property agents. Partners in real estate growth.
             </h2>
@@ -167,12 +153,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
       <section className="py-16 sm:py-20 bg-[#F5F8F2] border-y border-[#E5E9E1]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-10">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#07A757]">
-                Our direction
-              </span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
               Guided by purpose. Focused on lasting value.
             </h2>
@@ -205,12 +185,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
       <section className="py-16 sm:py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-10">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#07A757]">
-                What guides us
-              </span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
               Our core values
             </h2>
@@ -219,11 +193,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-7 lg:gap-6">
-            {values.map(({ title, description, icon: Icon }) => (
+            {values.map(({ title, description }) => (
               <article key={title} className="border-t-2 border-[#8ABE4B] pt-5">
-                <div className="w-10 h-10 rounded-xl bg-[#F5F8F2] flex items-center justify-center mb-5">
-                  <Icon className="w-5 h-5 text-[#07A757]" />
-                </div>
                 <h3 className="text-base font-bold text-[#252223] mb-2">{title}</h3>
                 <p className="text-sm leading-relaxed text-[#626061]">{description}</p>
               </article>
@@ -235,12 +206,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
       <section className="py-14 sm:py-16 lg:py-20 bg-[#F5F8F2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div className="rounded-2xl bg-[#8ABE4B] px-6 py-10 text-[#252223] shadow-xl sm:px-10 sm:py-12 lg:px-14 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-0.5 bg-[#252223]/60" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#252223]/70">
-                Work with us
-              </span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
               Let’s build value through real estate.
             </h2>
