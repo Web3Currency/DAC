@@ -23,7 +23,7 @@ export const HomeServicesGallery: React.FC = () => {
   };
 
   return (
-    <section aria-labelledby="home-services-heading" className="bg-[#F5F8F2] py-14 sm:py-16 lg:py-20">
+    <section id="services" aria-labelledby="home-services-heading" className="bg-[#F5F8F2] py-14 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-7 flex items-end justify-between gap-4 sm:mb-9">
           <div>
@@ -60,7 +60,7 @@ export const HomeServicesGallery: React.FC = () => {
                 <img
                   src={image}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="service-card-image absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/5 transition-colors duration-300 group-hover:from-black/85" />
