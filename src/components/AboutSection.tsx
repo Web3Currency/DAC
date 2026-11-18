@@ -59,6 +59,24 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
   return (
     <div className="w-full bg-white">
       <section className="relative isolate flex h-[280px] items-center overflow-hidden border-b border-[#E5E9E1] bg-[#252223] text-white sm:h-[340px] lg:h-[390px]">
+        <div className="absolute inset-0 -z-10 opacity-40" aria-hidden="true">
+          <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+            <defs>
+              <pattern id="about-architecture-grid" width="88" height="88" patternUnits="userSpaceOnUse">
+                <path d="M88 0H0V88" fill="none" stroke="#8ABE4B" strokeWidth="1" strokeOpacity=".28" />
+              </pattern>
+            </defs>
+            <rect width="1440" height="520" fill="url(#about-architecture-grid)" />
+            <g fill="none" stroke="#8ABE4B" strokeWidth="1.5" strokeOpacity=".3">
+              <path d="M900 430V170h100v260M1025 430V105h130v325M1180 430V210h105v220" />
+              <path d="M920 195h60M920 230h60M920 265h60M1048 135h84M1048 170h84M1048 205h84M1200 240h65M1200 275h65" />
+              <path d="M870 430h455M945 170l5-55h90l5 55M1060 105l5-45h55l5 45" />
+              <path d="M870 450h455M900 465h385" strokeOpacity=".18" />
+            </g>
+            <path d="M820 520L1160 0M1000 520L1340 0M1180 520L1520 0" stroke="#E5E9E1" strokeWidth="2" strokeOpacity=".08" />
+            <circle cx="1090" cy="265" r="235" fill="none" stroke="#D6E8BD" strokeWidth="1.2" strokeOpacity=".12" strokeDasharray="7 13" />
+          </svg>
+        </div>
         {siteMedia.about_image && <img src={siteMedia.about_image} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/40" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#171617]/35 to-transparent" />
