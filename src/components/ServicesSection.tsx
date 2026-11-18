@@ -86,7 +86,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   <button onClick={() => onViewServiceDetail(service)} className="text-xs font-bold text-[#252223] hover:text-[#07A757] flex items-center gap-1.5 transition-colors">
                     <span>Learn More</span><ChevronRight className="w-3.5 h-3.5 text-[#07A757]" />
                   </button>
-                  <button onClick={() => onSelectServiceForConsultation(service.id)} className="px-3.5 py-2 text-xs font-semibold text-[#07A757] bg-white hover:bg-[#07A757] hover:text-white border border-[#07A757] rounded-lg transition-colors">
+                  <button onClick={() => onSelectServiceForConsultation(service.id)} className="px-3.5 py-2 text-xs font-semibold text-[#252223] bg-[#252223]/[0.06] hover:bg-[#252223]/[0.12] border border-[#252223]/30 backdrop-blur-md rounded-lg transition-colors">
                     Speak With Our Team
                   </button>
                 </div>
@@ -95,14 +95,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           })}
         </div>
 
-        <div className="mt-12 p-7 sm:p-8 rounded-2xl bg-[#252223] text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-6 shadow-sm">
+        <div className="mt-12 p-7 sm:p-8 rounded-2xl bg-[#8ABE4B] text-[#252223] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-6 shadow-sm">
           <div className="max-w-2xl">
-            <h3 className="text-xl font-bold text-white mb-2">Need Help With a Property Matter?</h3>
-            <p className="text-sm text-[#E5E9E1]/85">
+            <h3 className="text-xl font-bold text-[#252223] mb-2">Need Help With a Property Matter?</h3>
+            <p className="text-sm text-[#252223]/80">
               Talk to our team about valuation, property management, investment advice or your next development project.
             </p>
           </div>
-          <button onClick={() => onSelectServiceForConsultation('property-valuation')} className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg transition-colors whitespace-nowrap shrink-0">
+          <button onClick={() => onSelectServiceForConsultation('property-valuation')} className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#252223]/[0.06] hover:bg-[#252223]/[0.12] border border-[#252223]/30 backdrop-blur-md rounded-lg transition-colors whitespace-nowrap shrink-0">
             Speak With Our Team
           </button>
         </div>
