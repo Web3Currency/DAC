@@ -41,6 +41,27 @@ export const InsightsPage: React.FC = () => {
   return (
     <>
     <section aria-labelledby="insights-page-heading" className="relative isolate flex h-[280px] items-center overflow-hidden bg-[#252223] text-white sm:h-[340px] lg:h-[390px]">
+      <div className="absolute inset-0 -z-10 opacity-40" aria-hidden="true">
+        <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+          <defs>
+            <pattern id="insights-editorial-grid" width="84" height="84" patternUnits="userSpaceOnUse">
+              <path d="M84 0H0V84" fill="none" stroke="#8ABE4B" strokeWidth="1" strokeOpacity=".28" />
+              <path d="M18 22h34M18 31h48M18 40h27" stroke="#D6E8BD" strokeWidth="1" strokeOpacity=".16" />
+            </pattern>
+          </defs>
+          <rect width="1440" height="520" fill="url(#insights-editorial-grid)" />
+          <g fill="none" stroke="#8ABE4B" strokeOpacity=".28" strokeWidth="2">
+            <path d="M920 82h310v350H920z" />
+            <path d="M956 126h238M956 152h190M956 178h218M956 204h156" />
+            <path d="M1000 252h150v116h-150z" />
+            <path d="M1180 252h42v116h-42z" />
+            <path d="M890 110l-45 45v260l45 45M1260 110l45 45v260l-45 45" />
+          </g>
+          <path d="M760 520L1120 0M920 520L1280 0M1080 520L1440 0" stroke="#E5E9E1" strokeWidth="2" strokeOpacity=".08" />
+          <circle cx="1100" cy="260" r="205" fill="none" stroke="#8ABE4B" strokeWidth="1.5" strokeOpacity=".12" />
+          <circle cx="1100" cy="260" r="245" fill="none" stroke="#D6E8BD" strokeWidth="1" strokeOpacity=".1" strokeDasharray="6 12" />
+        </svg>
+      </div>
       {siteMedia.expert_perspectives_default && <img src={siteMedia.expert_perspectives_default} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/35" />
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
