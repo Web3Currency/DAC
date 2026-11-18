@@ -236,12 +236,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div className="rounded-2xl bg-[#8ABE4B] px-6 py-10 text-[#252223] shadow-xl sm:px-10 sm:py-12 lg:px-14 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#8ABE4B]">
+              <span className="w-8 h-0.5 bg-[#252223]/60" />
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#252223]/70">
                 Work with us
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
               Let’s build value through real estate.
             </h2>
             <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#252223]/80">
