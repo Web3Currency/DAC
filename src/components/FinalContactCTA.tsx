@@ -4,7 +4,7 @@ import { COMPANY_INFO } from '../data/companyData';
 
 export const FinalContactCTA: React.FC = () => (
   <section aria-labelledby="final-contact-heading" className="bg-[#F5F8F2] py-14 sm:py-16 lg:py-20">
-    <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-2xl bg-[#8ABE4B] px-6 py-10 text-[#252223] shadow-xl sm:mx-6 sm:px-10 sm:py-12 lg:mx-auto lg:flex-row lg:items-center lg:justify-between lg:px-14">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div className="flex w-full flex-col gap-7 rounded-2xl bg-[#8ABE4B] px-6 py-10 text-[#252223] shadow-xl sm:px-10 sm:py-12 lg:flex-row lg:items-center lg:justify-between lg:px-14">
       <div className="max-w-3xl">
         <div className="mb-3 flex items-center gap-2">
           <span className="h-0.5 w-8 bg-[#252223]/60" />
@@ -21,6 +21,6 @@ export const FinalContactCTA: React.FC = () => (
           Contact Us <ArrowRight size={15} />
         </a>
       </div>
-    </div>
+    </div></div>
   </section>
 );
