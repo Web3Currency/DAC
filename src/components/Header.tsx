@@ -161,7 +161,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
   </div>
 </div>
       , document.body
-    </>
     )}
+    </>
   );
 };
