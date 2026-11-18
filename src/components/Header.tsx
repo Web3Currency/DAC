@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Menu, X } from 'lucide-react';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
@@ -21,30 +22,22 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  // Lock the document behind the full-screen mobile navigation, including iOS Safari.
+  // Lock background scrolling without fixing the body; fixed-body scroll restoration
+  // can leave some mobile browsers in a blank or unresponsive viewport.
   useEffect(() => {
     if (!mobileMenuOpen) return;
 
-    const scrollY = window.scrollY;
     const body = document.body;
     const html = document.documentElement;
-    const previousBodyStyles = {
-      position: body.style.position,
-      top: body.style.top,
-      left: body.style.left,
-      right: body.style.right,
-      width: body.style.width,
-      overflow: body.style.overflow,
-    };
+    const previousBodyOverflow = body.style.overflow;
     const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverscroll = body.style.overscrollBehavior;
+    const previousHtmlOverscroll = html.style.overscrollBehavior;
 
-    body.style.position = 'fixed';
-    body.style.top = '-' + scrollY + 'px';
-    body.style.left = '0';
-    body.style.right = '0';
-    body.style.width = '100%';
     body.style.overflow = 'hidden';
     html.style.overflow = 'hidden';
+    body.style.overscrollBehavior = 'none';
+    html.style.overscrollBehavior = 'none';
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeMobileMenu();
@@ -52,19 +45,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      body.style.position = previousBodyStyles.position;
-      body.style.top = previousBodyStyles.top;
-      body.style.left = previousBodyStyles.left;
-      body.style.right = previousBodyStyles.right;
-      body.style.width = previousBodyStyles.width;
-      body.style.overflow = previousBodyStyles.overflow;
+      body.style.overflow = previousBodyOverflow;
       html.style.overflow = previousHtmlOverflow;
+      body.style.overscrollBehavior = previousBodyOverscroll;
+      html.style.overscrollBehavior = previousHtmlOverscroll;
       window.removeEventListener('keydown', handleKeyDown);
-      window.scrollTo(0, scrollY);
     };
   }, [mobileMenuOpen]);
 
   return (
+    <>
     <header className="sticky top-0 z-[100] isolate w-full shrink-0 bg-white/90 backdrop-blur-xl border-b border-[#E9ECE7] shadow-[0_4px_20px_rgba(37,34,35,0.06)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-[76px]">
@@ -112,64 +102,66 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
         </div>
       </div>
 
-      {mobileMenuOpen && (
-        <div
-          id="mobile-navigation"
-          className="lg:hidden fixed inset-0 z-[200] flex h-[100dvh] min-h-[100dvh] flex-col overflow-y-auto overscroll-contain bg-white"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation menu"
-        >
-          <div className="flex h-16 shrink-0 items-center justify-between border-b border-[#E9ECE7] px-5 sm:px-7">
-            <a href="#home" onClick={closeMobileMenu} className="flex items-center" aria-label="Demola Adetola & Co. home">
-              <img
-                src={siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
-                alt="Demola Adetola & Co. Logo"
-                className="h-10 w-auto max-w-[210px] object-contain"
-              />
-            </a>
-            <button
-              type="button"
-              data-prototype-allow="true"
-              onClick={closeMobileMenu}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[#252223] transition-colors hover:bg-[#F5F8F2] hover:text-[#07A757]"
-              aria-label="Close navigation menu"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-
-          <nav aria-label="Mobile navigation" className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center px-7 py-10 sm:px-10">
-            <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.22em] text-[#858885]">Explore DAC</p>
-            <div className="flex flex-col">
-              {navigation.map((item, index) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={closeMobileMenu}
-                  className={`flex items-center justify-between border-b border-[#E9ECE7] py-5 text-2xl font-semibold tracking-tight transition-colors hover:text-[#07A757] sm:text-3xl ${index === 0 ? 'text-[#07A757]' : 'text-[#252223]'}`}
-                >
-                  <span>{item.label}</span>
-                </a>
-              ))}
-            </div>
-            <button
-              type="button"
-              data-prototype-allow="true"
-              onClick={() => {
-                closeMobileMenu();
-                onOpenConsultation();
-              }}
-              className="mt-9 inline-flex min-h-14 w-full items-center justify-center rounded-lg bg-[#8ABE4B] px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
-            >
-              Speak With Our Team
-            </button>
-          </nav>
-          <div className="px-7 pb-8 text-center text-xs text-[#858885] sm:px-10">
-            Demola Adetola &amp; Co. · Chartered Estate Surveyors &amp; Valuers
-          </div>
-        </div>
-      )}
     </header>
+    {mobileMenuOpen && createPortal(
+<div
+  id="mobile-navigation"
+  className="lg:hidden fixed inset-0 z-[200] flex h-[100dvh] min-h-[100dvh] flex-col overflow-y-auto overscroll-contain bg-white"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobile navigation menu"
+>
+  <div className="flex h-16 shrink-0 items-center justify-between border-b border-[#E9ECE7] px-5 sm:px-7">
+    <a href="#home" onClick={closeMobileMenu} className="flex items-center" aria-label="Demola Adetola & Co. home">
+      <img
+        src={siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
+        alt="Demola Adetola & Co. Logo"
+        className="h-10 w-auto max-w-[210px] object-contain"
+      />
+    </a>
+    <button
+      type="button"
+      data-prototype-allow="true"
+      onClick={closeMobileMenu}
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[#252223] transition-colors hover:bg-[#F5F8F2] hover:text-[#07A757]"
+      aria-label="Close navigation menu"
+    >
+      <X className="h-6 w-6" />
+    </button>
+  </div>
+
+  <nav aria-label="Mobile navigation" className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center px-7 py-10 sm:px-10">
+    <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.22em] text-[#858885]">Explore DAC</p>
+    <div className="flex flex-col">
+      {navigation.map((item, index) => (
+        <a
+          key={item.label}
+          href={item.href}
+          onClick={closeMobileMenu}
+          className={`flex items-center justify-between border-b border-[#E9ECE7] py-5 text-2xl font-semibold tracking-tight transition-colors hover:text-[#07A757] sm:text-3xl ${index === 0 ? 'text-[#07A757]' : 'text-[#252223]'}`}
+        >
+          <span>{item.label}</span>
+        </a>
+      ))}
+    </div>
+    <button
+      type="button"
+      data-prototype-allow="true"
+      onClick={() => {
+        closeMobileMenu();
+        onOpenConsultation();
+      }}
+      className="mt-9 inline-flex min-h-14 w-full items-center justify-center rounded-lg bg-[#8ABE4B] px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
+    >
+      Speak With Our Team
+    </button>
+  </nav>
+  <div className="px-7 pb-8 text-center text-xs text-[#858885] sm:px-10">
+    Demola Adetola &amp; Co. · Chartered Estate Surveyors &amp; Valuers
+  </div>
+</div>
+      , document.body
+    </>
+    )}
   );
 };
