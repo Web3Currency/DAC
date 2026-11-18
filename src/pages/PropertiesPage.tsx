@@ -58,10 +58,6 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({ onSelectProperty
           <div className="overflow-hidden rounded-2xl bg-[#8ABE4B] px-6 py-10 text-[#252223] shadow-xl sm:px-10 sm:py-12 lg:px-14">
             <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
               <div className="max-w-2xl">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#252223]/70">Your Property Journey</span>
-                </div>
                 <h2 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">Haven’t found what you’re looking for?</h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#252223]/80 sm:text-base">Our team can help you explore more opportunities, understand your options and find the right property solution.</p>
               </div>
