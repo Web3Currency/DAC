@@ -77,10 +77,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         
         {homepagePreview ? (
           <div className="mb-7 flex flex-col gap-2 sm:mb-9">
-            <div className="flex items-center gap-2">
-              <span className="h-0.5 w-8 bg-[#8ABE4B]" />
-              <span className="text-xs font-bold uppercase tracking-widest text-[#07A757]">DAC Property Portfolio</span>
-            </div>
             <h2 className="text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl lg:text-4xl">Featured Properties</h2>
             <p className="text-sm text-[#626061]">Explore a selection of properties currently available through DAC.</p>
           </div>
@@ -157,7 +153,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               );
             })}
             <div className="pt-2 text-center">
-              <a href="/properties" className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#252223] px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#07A757]">
+              <a href="/properties" className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#8ABE4B] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white">
                 View All Properties <ArrowRight className="h-4 w-4" />
               </a>
             </div>
