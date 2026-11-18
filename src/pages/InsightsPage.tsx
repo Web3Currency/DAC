@@ -62,7 +62,6 @@ export const InsightsPage: React.FC = () => {
           <circle cx="1100" cy="260" r="245" fill="none" stroke="#D6E8BD" strokeWidth="1" strokeOpacity=".1" strokeDasharray="6 12" />
         </svg>
       </div>
-      {siteMedia.expert_perspectives_default && <img src={siteMedia.expert_perspectives_default} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover object-center" />}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#171617]/90 via-[#252223]/75 to-[#252223]/35" />
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
         <header className="max-w-3xl">
