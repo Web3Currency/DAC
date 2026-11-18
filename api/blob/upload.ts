@@ -42,7 +42,7 @@ function isAllowedPath(pathname: string): boolean {
     return false;
   }
 
-  if (/^dac\/branding\/(logo|hero|services|projects|team|company)\/[a-zA-Z0-9._-]+$/.test(pathname)) {
+  if (/^dac\/branding\/(logo|hero|services|projects|team|company|credentials|articles|office)\/[a-zA-Z0-9._-]+$/.test(pathname)) {
     return true;
   }
 
