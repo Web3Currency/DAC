@@ -40,7 +40,7 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({ onSelectProperty
         <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
           <div className="max-w-2xl">
             <div className="mb-3 flex items-center gap-2">
-              <span className="h-0.5 w-8 bg-[#8ABE4B]" />
+              <span className="h-0.5 w-8 bg-[#252223]/60" />
               <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#8ABE4B]">DAC Property Portfolio</span>
             </div>
             <h1 className="max-w-2xl text-2xl font-bold leading-tight tracking-tight sm:text-3xl lg:text-5xl">Find the Right Property. Make the Right Move.</h1>
