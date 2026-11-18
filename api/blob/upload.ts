@@ -46,7 +46,11 @@ function isAllowedPath(pathname: string): boolean {
     return true;
   }
 
-  if (/^dac\/articles\/[a-zA-Z0-9._-]+$/.test(pathname)) {\n    return true;\n  }\n\n  return /^dac\/properties\/[0-9a-f-]{36}\/[a-zA-Z0-9._-]+$/i.test(pathname);
+  if (/^dac\/articles\/[a-zA-Z0-9._-]+$/.test(pathname)) {
+    return true;
+  }
+
+  return /^dac\/properties\/[0-9a-f-]{36}\/[a-zA-Z0-9._-]+$/i.test(pathname);
 }
 
 export default async function handler(request: any, response: any) {
