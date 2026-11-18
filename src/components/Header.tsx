@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
@@ -21,6 +21,49 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
+  // Lock the document behind the full-screen mobile navigation, including iOS Safari.
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const html = document.documentElement;
+    const previousBodyStyles = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    };
+    const previousHtmlOverflow = html.style.overflow;
+
+    body.style.position = 'fixed';
+    body.style.top = '-' + scrollY + 'px';
+    body.style.left = '0';
+    body.style.right = '0';
+    body.style.width = '100%';
+    body.style.overflow = 'hidden';
+    html.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeMobileMenu();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      body.style.position = previousBodyStyles.position;
+      body.style.top = previousBodyStyles.top;
+      body.style.left = previousBodyStyles.left;
+      body.style.right = previousBodyStyles.right;
+      body.style.width = previousBodyStyles.width;
+      body.style.overflow = previousBodyStyles.overflow;
+      html.style.overflow = previousHtmlOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+      window.scrollTo(0, scrollY);
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <header className="sticky top-0 z-[100] isolate w-full shrink-0 bg-white/90 backdrop-blur-xl border-b border-[#E9ECE7] shadow-[0_4px_20px_rgba(37,34,35,0.06)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
           </a>
 
           <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-7 text-[13px] font-medium text-[#252223]">
-            {navigation.map((item, index) => (
+            {navigation.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
@@ -72,7 +115,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
       {mobileMenuOpen && (
         <div
           id="mobile-navigation"
-          className="lg:hidden fixed inset-0 z-[200] flex min-h-[100dvh] flex-col overflow-y-auto bg-white"
+          className="lg:hidden fixed inset-0 z-[200] flex h-[100dvh] min-h-[100dvh] flex-col overflow-y-auto overscroll-contain bg-white"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation menu"
@@ -107,7 +150,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
                   className={`flex items-center justify-between border-b border-[#E9ECE7] py-5 text-2xl font-semibold tracking-tight transition-colors hover:text-[#07A757] sm:text-3xl ${index === 0 ? 'text-[#07A757]' : 'text-[#252223]'}`}
                 >
                   <span>{item.label}</span>
-                  <span className="text-sm font-medium text-[#A4A8A1]">0{index + 1}</span>
                 </a>
               ))}
             </div>
