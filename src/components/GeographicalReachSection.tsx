@@ -2,41 +2,7 @@ import React from 'react';
 import { ArrowUpRight, Globe2, MapPinned } from 'lucide-react';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
-const locations = [
-  {
-    number: '01',
-    name: 'Lagos',
-    country: 'Nigeria',
-    label: 'Headquarters',
-    detail: 'Onikan, Lagos Island',
-    image: 'https://content.r9cdn.net/rimg/dimg/93/ca/c46f09c7-city-25271-18a65f178fb.jpg?crop=true&height=768&width=1366',
-    alt: 'Lagos Island waterfront and commercial skyline',
-    icon: MapPinned,
-    imagePosition: 'center',
-  },
-  {
-    number: '02',
-    name: 'Nationwide',
-    country: 'Nigeria',
-    label: 'Nationwide Operations',
-    detail: 'Professional services across Nigeria',
-    image: 'https://images.trvl-media.com/place/553248635976008619/ecafb32f-de92-4637-a85d-ba71513eb86f.jpg',
-    alt: 'Abuja cityscape representing DAC’s nationwide Nigerian service coverage',
-    icon: Globe2,
-    imagePosition: 'center',
-  },
-  {
-    number: '03',
-    name: 'Pretoria',
-    country: 'South Africa',
-    label: 'International Presence',
-    detail: 'DAC subsidiary',
-    image: 'https://e3zak6m1avgttdml.public.blob.vercel-storage.com/seo-covers/pretoria-1778015373763.webp',
-    alt: 'Pretoria Union Buildings and surrounding cityscape',
-    icon: Globe2,
-    imagePosition: 'center',
-  },
-];
+
 
 export const GeographicalReachSection: React.FC = () => {
   const siteMedia = useSiteMedia();
