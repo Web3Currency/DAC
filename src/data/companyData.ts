@@ -285,76 +285,7 @@ export const REAL_ARTICLES: ArticleItem[] = [
   },
 ];
 
-export const FEATURED_PROPERTIES: PropertyItem[] = [
-  {
-    id: 'sample-residential-property',
-    title: 'Contemporary Residential Property',
-    category: 'Residential',
-    location: 'Lagos, Nigeria',
-    price: 'Sample listing — details to be confirmed',
-    status: 'Illustrative Concept',
-    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85',
-    specs: {
-      area: 'Property specifications to be supplied by the client',
-      tenure: 'Title information to be verified before publication',
-    },
-    summary:
-      'Illustrative residential property presentation. Replace this concept with a verified property, approved photographs, confirmed location, specifications, pricing and availability before launch.',
-    isReplaceableSample: true,
-    sampleTypeBadge: 'Illustrative Concept — Replace Before Launch',
-  },
-  {
-    id: 'sample-commercial-property',
-    title: 'Modern Commercial Property',
-    category: 'Commercial',
-    location: 'Lagos, Nigeria',
-    price: 'Sample listing — details to be confirmed',
-    status: 'Illustrative Concept',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85',
-    specs: {
-      area: 'Floor area to be confirmed',
-      tenure: 'Title information to be verified before publication',
-    },
-    summary:
-      'Illustrative commercial property presentation. Replace this concept with a verified property, approved photographs, confirmed location, specifications, pricing and availability before launch.',
-    isReplaceableSample: true,
-    sampleTypeBadge: 'Illustrative Concept — Replace Before Launch',
-  },
-  {
-    id: 'sample-managed-asset',
-    title: 'Commercial Property & Asset',
-    category: 'Commercial',
-    location: 'Lagos, Nigeria',
-    price: 'Portfolio information to be confirmed',
-    status: 'Illustrative Concept',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85',
-    specs: {
-      area: 'Property details to be supplied by the client',
-      tenure: 'Management status to be confirmed',
-    },
-    summary:
-      'Illustrative managed-asset presentation. Do not imply that this property is owned or managed by the firm unless the client confirms that relationship and approves the supporting details.',
-    isReplaceableSample: true,
-    sampleTypeBadge: 'Illustrative Concept — Replace Before Launch',
-  },
-  {
-    id: 'sample-development-land',
-    title: 'Land & Development Opportunity',
-    category: 'Development',
-    location: 'Lagos, Nigeria',
-    price: 'Project details to be confirmed',
-    status: 'Illustrative Concept',
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85',
-    specs: {
-      area: 'Land size to be confirmed',
-      tenure: 'Title and planning status to be verified',
-    },
-    summary:
-      'Illustrative land and development presentation. Replace with verified site imagery and client-approved information before presenting this as an available opportunity.',
-    isReplaceableSample: true,
-    sampleTypeBadge: 'Illustrative Concept — Replace Before Launch',
-  },
-];
+export const FEATURED_PROPERTIES: PropertyItem[] = [];
 
 export const OFFICE_LOCATIONS: OfficeLocation[] = [
   {
