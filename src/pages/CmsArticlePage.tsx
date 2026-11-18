@@ -22,13 +22,12 @@ export default function CmsArticlePage({ slug }: { slug:string }) {
       <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <a href="/#expert-perspectives-heading" className="mb-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/75 hover:text-[#A7D477]"><ArrowLeft size={15}/> Back to insights</a>
         <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#A7D477]">{article.category}</p>
-        <h1 className="max-w-4xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">{article.title}</h1>
+        <h1 className="max-w-4xl text-3xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] sm:text-4xl lg:text-5xl">{article.title}</h1>
         {article.published_at && <p className="mt-5 text-sm text-white/65">{new Date(article.published_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>}
       </div>
     </header>
     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,760px)_260px] lg:gap-16 lg:px-8">
       <div className="min-w-0">
-        {article.cover_image_url && <div className="mb-8 overflow-hidden rounded-sm"><img src={article.cover_image_url} alt={article.cover_image_alt||article.title} className="aspect-[16/9] w-full object-cover"/></div>}
         <div className="space-y-6 text-[15px] leading-[1.9] text-[#4E4B4B] sm:text-base">{article.content.split(/\n\s*\n/).filter(Boolean).map((paragraph,index)=><p key={index}>{paragraph}</p>)}</div>
       </div>
       <aside className="h-fit border border-[#E8EBE5] bg-[#F8F9F7] p-6">
