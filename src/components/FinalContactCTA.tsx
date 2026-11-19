@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArrowRight, Phone } from 'lucide-react';
-import { COMPANY_INFO } from '../data/companyData';
+import { ArrowRight } from 'lucide-react';
 
 export const FinalContactCTA: React.FC = () => (
   <section aria-labelledby="final-contact-heading" className="bg-[#F5F8F2] py-14 sm:py-16 lg:py-20">
@@ -10,8 +9,8 @@ export const FinalContactCTA: React.FC = () => (
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#252223]/80 sm:text-base">Whether you require professional valuation, property consultancy, property management or real estate advisory, our team is ready to assist.</p>
       </div>
       <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col xl:flex-row">
-        <a href={`tel:${COMPANY_INFO.primaryPhone.replace(/[^+\d]/g, '')}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">
-          <Phone size={15} /> Speak With Our Team
+        <a href="/contact#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">
+          Speak With Our Team <ArrowRight size={15} />
         </a>
         <a href="/contact#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">
           Contact Us <ArrowRight size={15} />
