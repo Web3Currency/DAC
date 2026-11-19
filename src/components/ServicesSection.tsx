@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, CheckCircle2, House } from 'lucide-react';
 import { CORE_SERVICES } from '../data/companyData';
 import { useSiteMedia } from '../lib/useSiteMedia';
@@ -6,8 +6,28 @@ import { useSiteMedia } from '../lib/useSiteMedia';
 export const ServicesSection: React.FC = () => {
   const siteMedia = useSiteMedia();
   const [activeServiceId, setActiveServiceId] = useState(CORE_SERVICES[0].id);
+  const tabListRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const activeService = CORE_SERVICES.find((service) => service.id === activeServiceId) ?? CORE_SERVICES[0];
   const activeImage = siteMedia['service_' + activeService.id];
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.matchMedia('(min-width: 768px)').matches) return;
+
+    const tabList = tabListRef.current;
+    const activeTab = tabRefs.current[activeServiceId];
+    if (!tabList || !activeTab) return;
+
+    const listBounds = tabList.getBoundingClientRect();
+    const tabBounds = activeTab.getBoundingClientRect();
+    const targetLeft =
+      tabList.scrollLeft +
+      tabBounds.left -
+      listBounds.left -
+      (tabList.clientWidth - activeTab.clientWidth) / 2;
+
+    tabList.scrollTo({ left: targetLeft, behavior: 'smooth' });
+  }, [activeServiceId]);
 
   return (
     <>
@@ -47,27 +67,27 @@ export const ServicesSection: React.FC = () => {
         </div>
       </section>
 
-      <section id="services" className="border-b border-[#E5E9E1] bg-[#F5F8F2] py-10 sm:py-14 lg:py-16">
+      <section id="services" className="border-b border-[#E5E9E1] bg-[#F5F8F2] pb-10 pt-0 sm:pb-14 lg:pb-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-5">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#6E9D35]">Explore Our Expertise</p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">Professional Services</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#626061]">Choose a service to see how our practice can help with your property needs.</p>
-          </div>
-
-          <div role="tablist" aria-label="Professional services" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-3 [scrollbar-width:thin] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
-            {CORE_SERVICES.map((service) => {
+          <div
+            ref={tabListRef}
+            role="tablist"
+            aria-label="Professional services"
+            className="-mx-4 flex w-[calc(100%+2rem)] snap-x snap-mandatory overflow-x-auto border-b border-[#DCE4D4] bg-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:w-full md:grid-cols-6 md:overflow-hidden md:rounded-b-xl md:border md:border-t-0"
+          >
+            {CORE_SERVICES.map((service, index) => {
               const selected = service.id === activeService.id;
               return (
                 <button
                   key={service.id}
+                  ref={(element) => { tabRefs.current[service.id] = element; }}
                   id={`service-tab-${service.id}`}
                   type="button"
                   role="tab"
                   aria-selected={selected}
                   aria-controls="service-panel"
                   onClick={() => setActiveServiceId(service.id)}
-                  className={`min-h-11 shrink-0 rounded-lg border px-4 py-2.5 text-xs font-bold transition-colors sm:text-sm ${selected ? 'border-[#252223] bg-[#252223] text-white shadow-sm' : 'border-[#DCE4D4] bg-white text-[#4E4B4C] hover:border-[#8ABE4B] hover:text-[#252223]'}`}
+                  className={`relative min-h-[3.75rem] w-[42%] min-w-[148px] shrink-0 snap-center border-r border-[#E8ECE4] px-4 py-3 text-center text-xs font-bold leading-snug transition-colors last:border-r-0 md:min-h-[4.25rem] md:w-auto md:min-w-0 md:px-2 md:text-sm ${selected ? 'bg-[#252223] text-white after:absolute after:inset-x-0 after:bottom-0 after:h-1 after:bg-[#8ABE4B]' : 'bg-white text-[#4E4B4C] hover:bg-[#F5F8F2] hover:text-[#252223]'}`}
                 >
                   {service.title}
                 </button>
