@@ -100,7 +100,7 @@ export default function App() {
             <ProjectsSection onSelectProperty={handleSelectProperty} onRequestViewing={handleRequestViewing} homepagePreview />
             <GeographicalReachSection />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
-            <IndustriesSection onOpenConsultation={() => handleOpenConsultation()} />
+            <IndustriesSection />
             <ExpertPerspectivesSection />
             <ClientTestimonialsSection />
             <FinalContactCTA />
