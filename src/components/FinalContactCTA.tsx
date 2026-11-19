@@ -8,11 +8,8 @@ export const FinalContactCTA: React.FC = () => (
         <h2 id="final-contact-heading" className="text-3xl font-bold leading-tight tracking-tight text-[#252223] sm:text-4xl lg:text-[2.65rem]">Let’s Discuss Your Property Needs.</h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#252223]/80 sm:text-base">Whether you require professional valuation, property consultancy, property management or real estate advisory, our team is ready to assist.</p>
       </div>
-      <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col xl:flex-row">
-        <a href="/contact#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">
-          Speak With Our Team <ArrowRight size={15} />
-        </a>
-        <a href="/contact#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">
+      <div className="flex w-full shrink-0 sm:w-auto">
+        <a href="/contact#contact" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#252223] px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#383435] sm:w-auto">
           Contact Us <ArrowRight size={15} />
         </a>
       </div>
