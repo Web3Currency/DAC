@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
 import { CORE_SERVICES } from '../data/companyData';
 
-interface ContactSectionProps {
-  preselectedServiceId?: string;
-}
-
-export const ContactSection: React.FC<ContactSectionProps> = ({ preselectedServiceId }) => {
-  const [formData, setFormData] = useState(() => { const params = new URLSearchParams(window.location.search); return { fullName: '', phone: '', email: '', serviceId: preselectedServiceId || params.get('service') || 'property-valuation', message: params.get('message') || '' }; });
+export const ContactSection: React.FC = () => {
+  const [formData, setFormData] = useState(() => { const params = new URLSearchParams(window.location.search); return { fullName: '', phone: '', email: '', serviceId: params.get('service') || 'property-valuation', message: params.get('message') || '' }; });
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
