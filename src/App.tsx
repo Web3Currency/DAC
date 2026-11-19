@@ -20,7 +20,6 @@ import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { ConsultationModal } from './components/ConsultationModal';
 import { ServiceModal } from './components/ServiceModal';
 import { PropertyDetailPage } from './components/PropertyModal';
 import { ScrollAnimations } from './components/ScrollAnimations';
@@ -31,18 +30,14 @@ import { FinalContactCTA } from './components/FinalContactCTA';
 import { ServiceItem, PropertyItem } from './types';
 
 export default function App() {
-  const [consultationOpen, setConsultationOpen] = useState(false);
-  const [selectedServiceId, setSelectedServiceId] = useState<string | undefined>(undefined);
-  const [intakeData, setIntakeData] = useState<{ assetType?: string; purpose?: string; location?: string } | undefined>(undefined);
   const [activeServiceForModal, setActiveServiceForModal] = useState<ServiceItem | null>(null);
   const [activePropertyForModal, setActivePropertyForModal] = useState<PropertyItem | null>(null);
   const [propertyReturnScroll, setPropertyReturnScroll] = useState(0);
   useEffect(() => { if (!activePropertyForModal) window.scrollTo({ top: propertyReturnScroll, behavior: 'instant' }); }, [activePropertyForModal, propertyReturnScroll]);
 
   const handleOpenConsultation = (serviceId?: string) => {
-    setSelectedServiceId(serviceId);
-    setIntakeData(undefined);
-    setConsultationOpen(true);
+    const query = serviceId ? `?service=${encodeURIComponent(serviceId)}` : '';
+    window.location.assign(`/contact${query}#contact`);
   };
   const handleViewService = (service: ServiceItem) => setActiveServiceForModal(service);
   const handleSelectProperty = (property: PropertyItem) => {
@@ -90,7 +85,7 @@ export default function App() {
         ) : currentPath === '/properties' ? (
           <PropertiesPage onSelectProperty={handleSelectProperty} onRequestViewing={handleRequestViewing} />
         ) : currentPath === '/contact' ? (
-          <><ContactSection preselectedServiceId={selectedServiceId} /><AddressSection /></>
+          <><ContactSection /><AddressSection /></>
         ) : (
           <>
             <Hero onOpenConsultation={handleOpenConsultation} />
@@ -108,7 +103,6 @@ export default function App() {
         )}
       </main>
       <Footer />
-      <ConsultationModal isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} defaultServiceId={selectedServiceId} initialData={intakeData} />
       <ServiceModal service={activeServiceForModal} onClose={() => setActiveServiceForModal(null)} onInquire={handleOpenConsultation} />
       <ScrollAnimations />
       <WhatsAppFloat />
