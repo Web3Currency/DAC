@@ -67,7 +67,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
             >
               <div className="flex flex-col items-center gap-2 px-2 text-center sm:flex-row sm:items-center sm:justify-start sm:gap-3 sm:px-4 sm:text-left first:sm:pl-0">
                 <Building2 className="h-6 w-6 shrink-0 text-[#A9D477] sm:h-7 sm:w-7" strokeWidth={1.8} />
-                <span className="text-[10px] font-semibold leading-tight text-white sm:text-sm">Property<br className="sm:hidden" /> Development</span>
+                <span className="text-[10px] font-semibold leading-tight text-white sm:text-sm">Property<br className="sm:hidden" /> Valuation</span>
               </div>
               <div className="flex flex-col items-center gap-2 px-2 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-3 sm:px-4 sm:text-left">
                 <Layers3 className="h-6 w-6 shrink-0 text-[#A9D477] sm:h-7 sm:w-7" strokeWidth={1.8} />
@@ -75,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
               </div>
               <div className="flex flex-col items-center gap-2 px-2 text-center sm:flex-row sm:items-center sm:justify-end sm:gap-3 sm:px-4 sm:text-left last:sm:pr-0">
                 <ChartNoAxesColumnIncreasing className="h-6 w-6 shrink-0 text-[#A9D477] sm:h-7 sm:w-7" strokeWidth={1.8} />
-                <span className="text-[10px] font-semibold leading-tight text-white sm:text-sm">Investment<br className="sm:hidden" /> Advisory</span>
+                <span className="text-[10px] font-semibold leading-tight text-white sm:text-sm">Realty<br className="sm:hidden" /> Advisory</span>
               </div>
             </div>
           </div>
