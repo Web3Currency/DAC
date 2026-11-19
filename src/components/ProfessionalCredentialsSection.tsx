@@ -39,14 +39,6 @@ export const ProfessionalCredentialsSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-8 flex items-center gap-4 border-t border-[#DDE4D7] pt-6 sm:mt-9">
-        <div className="shrink-0">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#626061]">Established</p>
-          <p className="mt-0.5 text-3xl font-bold leading-none tracking-tight text-[#252223] tabular-nums">1992</p>
-        </div>
-        <div className="h-10 w-px bg-[#DDE4D7]" />
-        <p className="text-xs font-medium leading-relaxed text-[#626061]">Over three decades of professional practice</p>
-      </div>
     </div>
   </section>
 );
