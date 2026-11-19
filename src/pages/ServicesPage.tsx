@@ -4,15 +4,11 @@ import { ServicesSection } from '../components/ServicesSection';
 
 interface ServicesPageProps {
   onOpenConsultation: (serviceId?: string) => void;
-  onViewServiceDetail: (service: import('../types').ServiceItem) => void;
 }
 
-export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenConsultation, onViewServiceDetail }) => (
+export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenConsultation }) => (
   <div className="w-full">
-    <ServicesSection
-      onSelectServiceForConsultation={onOpenConsultation}
-      onViewServiceDetail={onViewServiceDetail}
-    />
+    <ServicesSection />
     <section aria-labelledby="services-contact-heading" className="bg-[#F5F8F2] px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
       <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-2xl bg-[#8ABE4B] px-6 py-10 text-[#252223] shadow-xl sm:px-10 sm:py-12 lg:flex-row lg:items-center lg:justify-between lg:px-14">
         <div className="max-w-3xl">
