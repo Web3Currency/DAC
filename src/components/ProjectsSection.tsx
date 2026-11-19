@@ -92,7 +92,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </h2>
             </div>
 
-            <p className="max-w-sm text-sm leading-relaxed text-[#626061]">Browse every currently available DAC property listing, whether for purchase or letting.</p>
           </div>
         </div>
           </>
