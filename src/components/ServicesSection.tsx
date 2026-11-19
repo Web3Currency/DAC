@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, CheckCircle2, FileText, House, Shield, Users } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, House } from 'lucide-react';
 import { CORE_SERVICES } from '../data/companyData';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
@@ -42,7 +42,7 @@ export const ServicesSection: React.FC = () => {
           <div className="max-w-3xl">
             <div className="mb-3 flex items-center gap-2"><span className="h-0.5 w-8 bg-[#8ABE4B]" /><span className="text-xs font-bold uppercase tracking-widest text-[#D5E8C0]">Our Services</span></div>
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">Real Estate Services to Help You Make the Right Move.</h1>
-            <p className="mt-3 max-w-2xl text-xs leading-relaxed text-white/85 sm:mt-4 sm:text-sm lg:text-base">We help clients value, buy, sell, manage and develop property.</p>
+            <p className="mt-3 max-w-2xl text-xs leading-relaxed text-white/85 sm:mt-4 sm:text-sm lg:text-base">We provide property valuation, property sales and letting, property and facility management, and professional real estate advice.</p>
           </div>
         </div>
       </section>
@@ -52,7 +52,7 @@ export const ServicesSection: React.FC = () => {
           <div className="mb-5">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#6E9D35]">Explore Our Expertise</p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">Professional Services</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#626061]">Select a service to explore its professional scope, deliverables and the clients we support.</p>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#626061]">Choose a service to see how our practice can help with your property needs.</p>
           </div>
 
           <div role="tablist" aria-label="Professional services" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-3 [scrollbar-width:thin] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
@@ -75,73 +75,35 @@ export const ServicesSection: React.FC = () => {
             })}
           </div>
 
-          <article
-            id="service-panel"
-            role="tabpanel"
-            aria-labelledby={`service-tab-${activeService.id}`}
-            className="mt-4 overflow-hidden rounded-2xl border border-[#E1E8DA] bg-white shadow-sm"
-          >
+          <article id="service-panel" role="tabpanel" aria-labelledby={`service-tab-${activeService.id}`} className="mt-4 overflow-hidden rounded-2xl border border-[#E1E8DA] bg-white shadow-sm">
             {activeImage && (
               <div className="h-44 overflow-hidden bg-[#E5E9E1] sm:h-56 lg:h-64">
                 <img src={activeImage} alt={activeService.title} className="h-full w-full object-cover" loading="lazy" />
               </div>
             )}
             <div className="p-5 sm:p-7 lg:p-9">
-              <div className="flex flex-col gap-3 border-b border-[#E8ECE4] pb-5 sm:flex-row sm:items-start sm:justify-between">
-                <div className="max-w-3xl">
-                  <span className="text-xs font-extrabold tracking-[0.16em] text-[#6E9D35]">PRACTICE DISCIPLINE {activeService.number}</span>
-                  <h3 className="mt-2 text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">{activeService.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#626061] sm:text-base">{activeService.shortDesc}</p>
-                </div>
+              <div className="max-w-4xl">
+                <span className="text-xs font-extrabold tracking-[0.16em] text-[#6E9D35]">SERVICE {activeService.number}</span>
+                <h3 className="mt-2 text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">{activeService.title}</h3>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-[#626061] sm:text-base">{activeService.shortDesc}</p>
+                <p className="mt-3 text-sm leading-7 text-[#393637] sm:text-base">{activeService.fullDesc}</p>
               </div>
 
-              <section className="py-6" aria-labelledby="service-overview-heading">
-                <h4 id="service-overview-heading" className="text-xs font-bold uppercase tracking-wider text-[#626061]">Practice Overview &amp; Fiduciary Standard</h4>
-                <p className="mt-3 max-w-5xl text-sm leading-7 text-[#393637] sm:text-base">{activeService.fullDesc}</p>
+              <section className="mt-6 border-t border-[#E8ECE4] pt-6" aria-labelledby="service-includes-heading">
+                <h4 id="service-includes-heading" className="text-sm font-bold text-[#252223]">What This Service Covers</h4>
+                <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {activeService.scope.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3 rounded-xl bg-[#F5F8F2] p-4 text-sm leading-relaxed text-[#4E4B4C]">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#07A757]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </section>
 
-              <div className="grid grid-cols-1 gap-5 border-t border-[#E8ECE4] pt-6 lg:grid-cols-2">
-                <section className="rounded-xl bg-[#F5F8F2] p-4 sm:p-5" aria-labelledby="service-scope-heading">
-                  <h4 id="service-scope-heading" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#252223]">
-                    <CheckCircle2 className="h-4 w-4 text-[#07A757]" /> Full Scope of Engagement
-                  </h4>
-                  <ul className="mt-4 space-y-3 text-sm leading-relaxed text-[#626061]">
-                    {activeService.scope.map((item, index) => (
-                      <li key={index} className="flex items-start gap-2.5">
-                        <span className="mt-0.5 shrink-0 font-bold text-[#8ABE4B]">•</span><span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-
-                <div className="space-y-5">
-                  <section aria-labelledby="service-deliverables-heading">
-                    <h4 id="service-deliverables-heading" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#252223]">
-                      <FileText className="h-4 w-4 text-[#07A757]" /> Certified Deliverables
-                    </h4>
-                    <div className="mt-3 space-y-2">
-                      {activeService.deliverables.map((item, index) => (
-                        <div key={index} className="flex items-start gap-2.5 rounded-lg bg-[#F5F8F2] p-3 text-sm leading-relaxed text-[#393637]">
-                          <Shield className="mt-0.5 h-4 w-4 shrink-0 text-[#07A757]" /><span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                  <section className="border-t border-[#E8ECE4] pt-5" aria-labelledby="service-clients-heading">
-                    <h4 id="service-clients-heading" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#626061]">
-                      <Users className="h-4 w-4 text-[#07A757]" /> Relevant Client Profiles
-                    </h4>
-                    <p className="mt-2 text-sm leading-relaxed text-[#626061]">{activeService.targetClients}</p>
-                  </section>
-                </div>
-              </div>
-
               <div className="mt-7 flex flex-col gap-3 border-t border-[#E8ECE4] pt-5 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-xs leading-relaxed text-[#777273]">Discuss your requirements with our team and receive guidance on the next steps.</p>
-                <a
-                  href={`/contact?service=${encodeURIComponent(activeService.id)}#contact`}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
-                >
+                <p className="text-xs leading-relaxed text-[#777273]">Have a requirement in this area? Speak with our team about the next steps.</p>
+                <a href={`/contact?service=${encodeURIComponent(activeService.id)}#contact`} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white">
                   Enquire About This Service <ArrowUpRight className="h-4 w-4" />
                 </a>
               </div>
