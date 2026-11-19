@@ -14,7 +14,7 @@ interface AboutSectionProps {
 }
 
 const practiceAreas = [
-  'Property agency and brokerage',
+  'Property sales and letting',
   'Property valuation and appraisal',
   'Property management',
   'Investment advisory',
@@ -115,7 +115,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
           </div>
           <div className="lg:col-span-7">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">
-              More than property agents. Partners in real estate growth.
+              Professional Real Estate Services. Built on Trust and Experience.
             </h2>
             <div className="mt-6 space-y-4 text-sm sm:text-base leading-relaxed text-[#626061]">
               <p>
@@ -128,9 +128,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
                 that every transaction is handled with accuracy and confidence.
               </p>
               <p>
-                We are a fully registered real estate practice offering a connected range of
-                property services. We are not just property agents; we are strategic partners in
-                real estate growth and wealth creation.
+                Demola Adetola &amp; Co. is a firm of Chartered Estate Surveyors and Valuers providing
+                professional real estate services to individuals, businesses and organizations.
+                From property valuation and management to property sales, letting and real estate
+                advisory, we provide reliable guidance and professional support at every stage.
               </p>
             </div>
             <div className="mt-8">
