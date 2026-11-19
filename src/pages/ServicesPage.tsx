@@ -19,7 +19,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenConsultation, 
           <h2 id="services-contact-heading" className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl lg:text-4xl">Need Help With a Property Matter?</h2>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#252223]/80 sm:text-base">Talk to our team about valuation, property management, investment advice or your next development project.</p>
         </div>
-        <button onClick={() => onOpenConsultation('property-valuation')} className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">
+        <button onClick={() => onOpenConsultation('property-valuation')} className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#252223] px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#383435]">
           Speak With Our Team <ArrowUpRight size={15} />
         </button>
       </div>
