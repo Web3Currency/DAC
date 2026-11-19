@@ -60,9 +60,8 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({ onSelectProperty
                 <h2 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">Haven’t found what you’re looking for?</h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#252223]/80 sm:text-base">Our team can help you explore more opportunities, understand your options and find the right property solution.</p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <a href="/services" className="inline-flex items-center justify-center rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">Explore Our Services</a>
-                <a href="/contact#contact" className="inline-flex items-center justify-center rounded-lg border border-[#252223]/30 bg-[#252223]/[0.08] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.14]">Speak with Our Team</a>
+              <div className="flex flex-col sm:flex-row lg:flex-col">
+                <a href="/services" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#252223] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#383435]">Explore Our Services</a>
               </div>
             </div>
           </div>
