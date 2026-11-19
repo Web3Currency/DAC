@@ -87,7 +87,7 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
           <div className="flex items-start gap-3 p-3.5 rounded-xl bg-[#F5F8F2] shadow-2xs text-xs text-[#252223]">
             <ShieldCheck className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
             <div>
-              <strong className="text-[#07A757]">Demola Adetola &amp; Co. Due Diligence Protocol:</strong> All properties brokered or managed by our practice undergo exhaustive land registry searches, Governor’s Consent validation, and physical boundary confirmation.
+              <strong className="text-[#07A757]">Demola Adetola &amp; Co. Due Diligence Protocol:</strong> All properties handled or managed by our firm are subject to appropriate checks, including land registry searches, verification of Governor’s Consent where applicable, and physical boundary confirmation.
             </div>
           </div>
 
