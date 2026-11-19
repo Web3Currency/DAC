@@ -4,11 +4,6 @@ import { useSiteMedia } from '../lib/useSiteMedia';
 
 const highlights = [
   {
-    title: 'Established in 1992',
-    description: 'Over three decades of professional real estate practice.',
-    icon: Building2,
-  },
-  {
     title: 'Independent Consultancy',
     description: 'A Nigerian firm of Chartered Estate Surveyors and Valuers.',
     icon: Scale,
@@ -79,7 +74,7 @@ export const AboutDACIntroduction: React.FC = () => {
 
             <a
               href="/about"
-              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#252223] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-[#07894B]"
+              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
             >
               Discover Our Story
               <ArrowUpRight className="h-4 w-4" />
