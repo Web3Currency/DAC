@@ -93,12 +93,6 @@ export const ServicesSection: React.FC = () => {
                   <h3 className="mt-2 text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">{activeService.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-[#626061] sm:text-base">{activeService.shortDesc}</p>
                 </div>
-                <a
-                  href={`/contact?service=${encodeURIComponent(activeService.id)}#contact`}
-                  className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-[#252223] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#383435]"
-                >
-                  Make an Enquiry <ArrowUpRight className="h-4 w-4" />
-                </a>
               </div>
 
               <section className="py-6" aria-labelledby="service-overview-heading">
