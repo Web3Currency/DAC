@@ -216,7 +216,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
           </div>
           <button
             onClick={onOpenConsultation}
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-[#252223]/30 bg-[#252223]/[0.06] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-[#252223] backdrop-blur-md transition-colors hover:bg-[#252223]/[0.12]"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-[#252223] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#383435]"
           >
             <Handshake className="w-4 h-4" />
             <span>Speak with our team</span>
