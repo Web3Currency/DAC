@@ -1,10 +1,5 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-
-interface WhyChooseUsProps {
-  onOpenConsultation: () => void;
-}
-
 const points = [
   {
     title: 'Established Experience',
@@ -24,6 +19,8 @@ const points = [
   },
 ];
 
+interface WhyChooseUsProps { onOpenConsultation: () => void; }
+
 export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) => (
   <section className="py-12 sm:py-14 lg:py-16 bg-[#F5F8F2] border-b border-[#E5E9E1]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,13 +34,6 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
           </p>
         </div>
 
-        <button
-          onClick={onOpenConsultation}
-          className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] hover:bg-[#07A757] hover:text-white rounded-lg shadow-xs transition-colors shrink-0"
-        >
-          <span>Speak With Our Team</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
@@ -56,6 +46,16 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
             <p className="text-sm leading-relaxed text-[#626061]">{point.description}</p>
           </article>
         ))}
+      </div>
+
+      <div className="mt-7 flex justify-center sm:mt-9">
+        <button
+          onClick={onOpenConsultation}
+          className="inline-flex items-center gap-2 rounded-lg bg-[#8ABE4B] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] shadow-xs transition-colors hover:bg-[#07A757] hover:text-white"
+        >
+          <span>Speak With Our Team</span>
+          <ArrowRight className="h-3.5 w-3.5" />
+        </button>
       </div>
     </div>
   </section>
