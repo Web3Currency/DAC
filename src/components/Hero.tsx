@@ -41,7 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
             </h1>
 
             <p className="mb-8 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg lg:text-xl">
-              We help individuals, businesses and investors with property valuation, buying and selling, property management and real estate advice.
+              We are Chartered Estate Surveyors and Valuers providing property valuation, property management, sales and letting services, and real estate advisory to individuals, businesses and investors.
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
