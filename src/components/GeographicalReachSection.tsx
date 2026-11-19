@@ -18,9 +18,6 @@ export const GeographicalReachSection: React.FC = () => {
         <div>
           <h2 id="geographical-reach-heading" className="text-3xl font-bold tracking-tight text-[#252223] sm:text-4xl">Local Expertise. Wider Reach.</h2>
         </div>
-        <p className="max-w-xl text-sm leading-relaxed text-[#626061] lg:max-w-md">
-          Professional real estate consultancy and property solutions across Nigeria, with an international presence in South Africa.
-        </p>
       </div>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
