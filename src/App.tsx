@@ -19,17 +19,15 @@ import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { ServiceModal } from './components/ServiceModal';
 import { PropertyDetailPage } from './components/PropertyModal';
 import { ScrollAnimations } from './components/ScrollAnimations';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { ExpertPerspectivesSection } from './components/ExpertPerspectivesSection';
 import { ClientTestimonialsSection } from './components/ClientTestimonialsSection';
 import { FinalContactCTA } from './components/FinalContactCTA';
-import { ServiceItem, PropertyItem } from './types';
+import { PropertyItem } from './types';
 
 export default function App() {
-  const [activeServiceForModal, setActiveServiceForModal] = useState<ServiceItem | null>(null);
   const [activePropertyForModal, setActivePropertyForModal] = useState<PropertyItem | null>(null);
   const [propertyReturnScroll, setPropertyReturnScroll] = useState(0);
   useEffect(() => { if (!activePropertyForModal) window.scrollTo({ top: propertyReturnScroll, behavior: 'instant' }); }, [activePropertyForModal, propertyReturnScroll]);
@@ -38,7 +36,6 @@ export default function App() {
     const query = serviceId ? `?service=${encodeURIComponent(serviceId)}` : '';
     window.location.assign(`/contact${query}#contact`);
   };
-  const handleViewService = (service: ServiceItem) => setActiveServiceForModal(service);
   const handleSelectProperty = (property: PropertyItem) => {
     setPropertyReturnScroll(window.scrollY);
     setActivePropertyForModal(property);
@@ -78,7 +75,7 @@ export default function App() {
         ) : isRealEstateInvestmentArticle ? (
           <RealEstateInvestmentArticlePage />
         ) : currentPath === '/services' ? (
-          <ServicesPage onOpenConsultation={handleOpenConsultation} onViewServiceDetail={handleViewService} />
+          <ServicesPage onOpenConsultation={handleOpenConsultation} />
         ) : currentPath === '/about' ? (
           <AboutPage onOpenConsultation={() => handleOpenConsultation()} />
         ) : currentPath === '/properties' ? (
@@ -102,7 +99,6 @@ export default function App() {
         )}
       </main>
       <Footer />
-      <ServiceModal service={activeServiceForModal} onClose={() => setActiveServiceForModal(null)} onInquire={handleOpenConsultation} />
       <ScrollAnimations />
       <WhatsAppFloat />
     </div>
