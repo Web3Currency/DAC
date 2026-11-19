@@ -75,7 +75,7 @@ export const ServicesSection: React.FC = () => {
             aria-label="Professional services"
             className="-mx-4 flex w-[calc(100%+2rem)] snap-x snap-mandatory overflow-x-auto border-b border-[#DCE4D4] bg-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:w-full md:grid-cols-6 md:overflow-hidden md:rounded-b-xl md:border md:border-t-0"
           >
-            {CORE_SERVICES.map((service, index) => {
+            {CORE_SERVICES.map((service) => {
               const selected = service.id === activeService.id;
               return (
                 <button
