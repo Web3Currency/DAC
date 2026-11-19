@@ -80,7 +80,23 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <h2 className="text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl lg:text-4xl">Featured Properties</h2>
             <p className="text-sm text-[#626061]">Explore a selection of properties currently available through DAC.</p>
           </div>
-        ) : null}
+        ) : (
+          <>
+          {/* Header Block — Constrained strictly to page margin, never overflowing */}
+        <div className="mb-6 sm:mb-8 w-full max-w-full min-w-0">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 max-w-full min-w-0">
+            {/* Title & Eyebrow */}
+            <div className="max-w-2xl min-w-0">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#252223]">
+                Available Properties for Sale &amp; Letting.
+              </h2>
+            </div>
+
+            <p className="max-w-sm text-sm leading-relaxed text-[#626061]">Browse every currently available DAC property listing, whether for purchase or letting.</p>
+          </div>
+        </div>
+          </>
+        )}
 
         {homepagePreview ? (
           <div className="space-y-8">
