@@ -15,7 +15,6 @@ import { PropertyManagementArticlePage } from './pages/PropertyManagementArticle
 import { BuyingPropertyArticlePage } from './pages/BuyingPropertyArticlePage';
 import { RealEstateInvestmentArticlePage } from './pages/RealEstateInvestmentArticlePage';
 import CmsArticlePage from './pages/CmsArticlePage';
-import { AddressSection } from './components/AddressSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ContactSection } from './components/ContactSection';
@@ -85,7 +84,7 @@ export default function App() {
         ) : currentPath === '/properties' ? (
           <PropertiesPage onSelectProperty={handleSelectProperty} onRequestViewing={handleRequestViewing} />
         ) : currentPath === '/contact' ? (
-          <><ContactSection /><AddressSection /></>
+          <ContactSection />
         ) : (
           <>
             <Hero onOpenConsultation={handleOpenConsultation} />
