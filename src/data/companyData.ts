@@ -11,7 +11,7 @@ export const COMPANY_INFO = {
   aboutIntro:
     'Buying, selling or managing property involves important decisions. Good advice can help you understand your options and avoid costly mistakes.',
   aboutMission:
-    'The firm provides property valuation, agency, management and advisory services for individuals, businesses and investors.',
+    'The firm provides property valuation, property sales and letting, management and advisory services for individuals, businesses and investors.',
   aboutHistory:
     'The firm was conceived in 1992 and began operations in July 1993.',
   establishedYear: 1993,
@@ -30,12 +30,12 @@ export const CORE_SERVICES: ServiceItem[] = [
   {
     id: 'estate-agency-brokerage',
     number: '01',
-    title: 'Property Agency',
+    title: 'Property Sales & Letting',
     shortDesc: 'Professional support for buying, selling, letting and leasing property.',
     fullDesc:
       'We guide individuals, businesses and investors through property transactions, helping them assess opportunities, carry out appropriate due diligence and progress negotiations with clarity.',
     scope: [
-      'Sales and purchase brokerage for residential, commercial and land assets',
+      'Buying and selling residential, commercial properties and land',
       'Property letting, leasing negotiations and tenant vetting',
       'Property inspections and preparation of property information',
       'Transaction coordination and support with title and land registry checks',
@@ -210,7 +210,7 @@ export const WHY_CHOOSE_US_ITEMS = [
   },
   {
     title: 'Comprehensive Property Solutions',
-    description: 'An integrated firm delivering valuation, brokerage, facility management, and development advisory under one roof.',
+    description: 'An integrated firm delivering property valuation, property sales and letting, facility management, and development advisory under one roof.',
   },
   {
     title: 'Trusted Professional Standards',
