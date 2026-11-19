@@ -103,7 +103,6 @@ export const ServicesSection: React.FC = () => {
             )}
             <div className="py-2 sm:py-3">
               <div className="max-w-4xl">
-                <span className="text-xs font-extrabold tracking-[0.16em] text-[#6E9D35]">SERVICE {activeService.number}</span>
                 <h3 className="mt-2 text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">{activeService.title}</h3>
                 <p className="mt-3 text-sm font-medium leading-relaxed text-[#626061] sm:text-base">{activeService.shortDesc}</p>
                 <p className="mt-3 text-sm leading-7 text-[#393637] sm:text-base">{activeService.fullDesc}</p>
