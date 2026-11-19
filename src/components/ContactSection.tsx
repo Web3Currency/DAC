@@ -151,7 +151,7 @@ export const ContactSection: React.FC = () => {
               <h2 id="reach-us-heading" className="text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">Reach Us Directly</h2>
               <p className="mt-2 text-sm text-[#626061]">Prefer to speak with us? Use any of the channels below.</p>
               <div className="mt-5 space-y-4">
-                <a href={`tel:${COMPANY_INFO.primaryPhone.replace(/[^+\\d]/g, '')}`} className="group flex items-start gap-3">
+                <a href={`tel:${COMPANY_INFO.primaryPhone.replace(/[^+\d]/g, '')}`} className="group flex items-start gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F0F5E9] text-[#6E9D35]"><Phone className="h-5 w-5" /></span>
                   <span><strong className="block text-sm text-[#252223]">{COMPANY_INFO.primaryPhone}</strong><span className="mt-1 block text-xs text-[#626061]">Call our office</span></span>
                 </a>
@@ -197,7 +197,7 @@ export const ContactSection: React.FC = () => {
                 <h3 className="mt-2 text-lg font-bold text-[#252223]">{office.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-[#626061]">{office.address}, {office.landmark}, {office.city}</p>
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[#E5E9E1] pt-4">
-                  <a href={`tel:${office.phones[0].replace(/[^+\\d]/g, '')}`} className="text-xs font-semibold text-[#252223] hover:text-[#07A757]">{office.phones[0]}</a>
+                  <a href={`tel:${office.phones[0].replace(/[^+\d]/g, '')}`} className="text-xs font-semibold text-[#252223] hover:text-[#07A757]">{office.phones[0]}</a>
                   <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${office.address}, ${office.landmark}, ${office.city}`)}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-bold text-[#252223] hover:text-[#07A757]">Get directions <ArrowUpRight className="h-3.5 w-3.5" /></a>
                 </div>
               </article>
