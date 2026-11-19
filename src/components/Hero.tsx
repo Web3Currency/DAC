@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
 interface HeroProps {
@@ -8,12 +8,6 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   const siteMedia = useSiteMedia();
-  const proofPoints = [
-    'Established in 1993',
-    'Chartered estate surveying and valuation services',
-    'Serving clients across Nigeria',
-  ];
-
   return (
     <section className="relative bg-white px-0 pb-5 sm:pb-7">
       <div className="relative isolate min-h-[68vh] sm:min-h-[72vh] lg:min-h-[78vh] flex items-center overflow-hidden bg-[#252223]">
@@ -49,15 +43,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
             <p className="mb-8 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg lg:text-xl">
               We help individuals, businesses and investors with property valuation, buying and selling, property management and real estate advice.
             </p>
-
-            <div className="mb-8 flex flex-col gap-3 sm:mb-9 sm:flex-row sm:flex-wrap sm:gap-x-7 sm:gap-y-3">
-              {proofPoints.map((point) => (
-                <div key={point} className="flex items-center gap-2.5 text-sm font-medium text-white/95 sm:text-[0.925rem]">
-                  <CheckCircle2 className="h-[18px] w-[18px] shrink-0 text-[#A9D477]" />
-                  <span>{point}</span>
-                </div>
-              ))}
-            </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <button
