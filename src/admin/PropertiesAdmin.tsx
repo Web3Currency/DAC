@@ -68,10 +68,6 @@ export default function PropertiesAdmin({ user }: { user: User }) {
     event.preventDefault();
     setError('');
     setMessage('');
-    if (!editingId && photos.length < 4) {
-      setError('Please select at least four property photographs before saving this listing.');
-      return;
-    }
     if (photos.length > 12) {
       setError('A property can have a maximum of 12 photographs.');
       return;
@@ -138,8 +134,10 @@ export default function PropertiesAdmin({ user }: { user: User }) {
           is_cover: (existingImageCount || 0) === 0 && index === 0,
         });
       }
-      const { error: imageError } = await supabase.from('property_images').insert(imageRows);
-      if (imageError) throw new Error('Property saved as draft, but its photographs could not be linked: ' + imageError.message);
+      if (imageRows.length > 0) {
+        const { error: imageError } = await supabase.from('property_images').insert(imageRows);
+        if (imageError) throw new Error('Property saved as draft, but its photographs could not be linked: ' + imageError.message);
+      }
       setMessage(editingId ? 'Property details updated successfully.' : 'Property saved as an unpublished draft with ' + photos.length + ' photographs. Review it below and publish when the details are verified.');
       setTitle(''); setLocation(''); setCity(''); setPrice(''); setPriceLabel('');
       setDescription(''); setArea(''); setPhotos([]); setEditingId(null); setListingStatus('available');
@@ -222,8 +220,8 @@ export default function PropertiesAdmin({ user }: { user: User }) {
     if (!item.is_published) {
       const { count, error: countError } = await supabase.from('property_images')
         .select('id', { count: 'exact', head: true }).eq('property_id', item.id);
-      if (countError || (count || 0) < 4) {
-        setError('This listing needs at least four saved photographs before it can be published.');
+      if (countError) {
+        setError('Could not verify the listing photographs: ' + countError.message);
         return;
       }
     }
@@ -262,7 +260,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
         <label className="sm:col-span-2 block rounded-xl border-2 border-dashed border-[#C9D4C1] bg-[#FAFCF8] p-5 text-center cursor-pointer">
           <Upload className="w-6 h-6 text-[#07A757] mx-auto mb-2" />
           <span className="block text-sm font-semibold text-[#252223]">Select property photographs</span>
-          <span className="block text-xs text-[#777] mt-1">{editingId ? 'Optional: add more photographs. Maximum 12 photographs per listing.' : 'Minimum 4, maximum 12. First photograph becomes the cover image.'}</span>
+          <span className="block text-xs text-[#777] mt-1">Optional: upload up to 12 photographs per listing. The first photograph becomes the cover image.</span>
           <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple className="sr-only" onChange={e => setPhotos(Array.from(e.target.files || []))} />
         </label>
         {photos.length > 0 && <p className="sm:col-span-2 text-xs text-[#626061]">{photos.length} new photograph(s) selected: {photos.map(file => file.name).join(', ')}</p>}
