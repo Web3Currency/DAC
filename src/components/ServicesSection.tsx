@@ -73,7 +73,7 @@ export const ServicesSection: React.FC = () => {
             ref={tabListRef}
             role="tablist"
             aria-label="Professional services"
-            className="-mx-4 flex w-[calc(100%+2rem)] snap-x snap-mandatory overflow-x-auto border-b border-[#DCE4D4] bg-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:w-full md:grid-cols-6 md:overflow-hidden md:rounded-b-xl md:border md:border-t-0"
+            className="sticky top-16 z-[90] -mx-4 flex w-[calc(100%+2rem)] snap-x snap-mandatory overflow-x-auto border-b border-[#DCE4D4] bg-white shadow-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:top-[76px] md:mx-0 md:grid md:w-full md:grid-cols-6 md:overflow-hidden md:rounded-b-xl md:border md:border-t-0"
           >
             {CORE_SERVICES.map((service) => {
               const selected = service.id === activeService.id;
@@ -87,7 +87,7 @@ export const ServicesSection: React.FC = () => {
                   aria-selected={selected}
                   aria-controls="service-panel"
                   onClick={() => setActiveServiceId(service.id)}
-                  className={`relative min-h-[3.75rem] w-[42%] min-w-[148px] shrink-0 snap-center border-r border-[#E8ECE4] px-4 py-3 text-center text-xs font-bold leading-snug transition-colors last:border-r-0 md:min-h-[4.25rem] md:w-auto md:min-w-0 md:px-2 md:text-sm ${selected ? 'bg-[#252223] text-white after:absolute after:inset-x-0 after:bottom-0 after:h-1 after:bg-[#8ABE4B]' : 'bg-white text-[#4E4B4C] hover:bg-[#F5F8F2] hover:text-[#252223]'}`}
+                  className={`relative min-h-[3.75rem] w-[42%] min-w-[148px] shrink-0 snap-center border-r border-[#E8ECE4] px-4 py-3 text-center text-xs font-bold leading-snug transition-colors last:border-r-0 md:min-h-[4.25rem] md:w-auto md:min-w-0 md:px-2 md:text-sm ${selected ? 'bg-[#8ABE4B] text-[#252223] shadow-inner' : 'bg-white text-[#4E4B4C] hover:bg-[#F5F8F2] hover:text-[#252223]'}`}
                 >
                   {service.title}
                 </button>
@@ -95,13 +95,13 @@ export const ServicesSection: React.FC = () => {
             })}
           </div>
 
-          <article id="service-panel" role="tabpanel" aria-labelledby={`service-tab-${activeService.id}`} className="mt-4 overflow-hidden rounded-2xl border border-[#E1E8DA] bg-white shadow-sm">
+          <article id="service-panel" role="tabpanel" aria-labelledby={`service-tab-${activeService.id}`} className="mt-8">
             {activeImage && (
               <div className="h-44 overflow-hidden bg-[#E5E9E1] sm:h-56 lg:h-64">
                 <img src={activeImage} alt={activeService.title} className="h-full w-full object-cover" loading="lazy" />
               </div>
             )}
-            <div className="p-5 sm:p-7 lg:p-9">
+            <div className="py-2 sm:py-3">
               <div className="max-w-4xl">
                 <span className="text-xs font-extrabold tracking-[0.16em] text-[#6E9D35]">SERVICE {activeService.number}</span>
                 <h3 className="mt-2 text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">{activeService.title}</h3>
@@ -111,9 +111,9 @@ export const ServicesSection: React.FC = () => {
 
               <section className="mt-6 border-t border-[#E8ECE4] pt-6" aria-labelledby="service-includes-heading">
                 <h4 id="service-includes-heading" className="text-sm font-bold text-[#252223]">What This Service Covers</h4>
-                <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <ul className="mt-4 grid grid-cols-1 gap-x-8 sm:grid-cols-2">
                   {activeService.scope.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3 rounded-xl bg-[#F5F8F2] p-4 text-sm leading-relaxed text-[#4E4B4C]">
+                    <li key={index} className="flex items-start gap-3 border-b border-[#E8ECE4] py-3 text-sm leading-relaxed text-[#4E4B4C]">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#07A757]" />
                       <span>{item}</span>
                     </li>
