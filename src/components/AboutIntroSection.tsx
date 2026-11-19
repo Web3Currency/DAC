@@ -4,7 +4,7 @@ import { ArrowUpRight, Building2, Globe2, MapPinned, Network, Scale } from 'luci
 const companyHighlights = [
   {
     icon: Building2,
-    title: 'Established in 1992',
+    title: 'Established in 1993',
     description: 'Over three decades of professional real estate practice.',
   },
   {
@@ -42,7 +42,7 @@ export const AboutIntroSection: React.FC = () => (
             Over Three Decades of Professional Real Estate Expertise.
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-[#626061] sm:text-base">
-            Since 1992, Demola Adetola &amp; Co. has delivered professional real estate consultancy, valuation and property solutions, combining technical expertise, market knowledge and professional integrity to serve individuals, businesses and institutions.
+            Since 1993, Demola Adetola &amp; Co. has delivered professional real estate consultancy, valuation and property solutions, combining technical expertise, market knowledge and professional integrity to serve individuals, businesses and institutions.
           </p>
 
           <div className="mt-7 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
