@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  ArrowRight,
   Building2,
   Building,
   Construction,
@@ -8,10 +7,6 @@ import {
   Landmark,
   Scale,
 } from 'lucide-react';
-
-interface IndustriesSectionProps {
-  onOpenConsultation?: () => void;
-}
 
 const industries = [
   { title: 'Banks & Financial Institutions', Icon: Landmark },
@@ -22,24 +17,13 @@ const industries = [
   { title: 'Legal & Estate Professionals', Icon: Scale },
 ];
 
-export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenConsultation }) => (
+export const IndustriesSection: React.FC = () => (
   <section className="bg-white py-10 sm:py-12 lg:py-14 border-b border-[#E5E9E1]">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mb-7 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 className="text-2xl font-bold leading-tight tracking-tight text-[#252223] sm:text-3xl">
-            Property Support for Different Needs.
-          </h2>
-        </div>
-        {onOpenConsultation && (
-          <button
-            onClick={onOpenConsultation}
-            className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg bg-[#8ABE4B] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white sm:self-auto"
-          >
-            <span>Speak With Our Team</span>
-            <ArrowRight className="h-3.5 w-3.5" />
-          </button>
-        )}
+      <div className="mb-7 sm:mb-8">
+        <h2 className="text-2xl font-bold leading-tight tracking-tight text-[#252223] sm:text-3xl">
+          Property Support for Different Needs.
+        </h2>
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
