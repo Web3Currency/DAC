@@ -44,8 +44,8 @@ export const AboutDACIntroduction: React.FC = () => {
                 />
               </div>
               <div className="absolute bottom-4 left-4 rounded-xl bg-[#252223] px-4 py-3 text-white shadow-lg sm:bottom-5 sm:left-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/65">Professional practice since</p>
-                <p className="mt-0.5 text-2xl font-bold leading-none text-[#A9D477]">1992</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/65">Professional</p>
+                <p className="mt-1 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.12em] text-white">Practice Since <span className="ml-1 text-base tracking-normal text-[#A9D477]">1993</span></p>
               </div>
             </div>
           )}
@@ -55,7 +55,7 @@ export const AboutDACIntroduction: React.FC = () => {
               Over Three Decades of Professional Real Estate Expertise.
             </h2>
             <p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#626061] sm:text-base">
-              Since 1992, Demola Adetola &amp; Co. has delivered professional real estate consultancy, valuation and property solutions, combining technical expertise, market knowledge and professional integrity to serve individuals, businesses and institutions.
+              Since 1993, Demola Adetola &amp; Co. has delivered professional real estate consultancy, valuation and property solutions, combining technical expertise, market knowledge and professional integrity to serve individuals, businesses and institutions.
             </p>
 
             <div className="mt-7 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
