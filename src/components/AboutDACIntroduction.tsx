@@ -20,7 +20,7 @@ const highlights = [
   },
   {
     title: 'Multidisciplinary Expertise',
-    description: 'Valuation, property and facility management, agency, brokerage and real estate consultancy.',
+    description: 'Property valuation, property sales and letting, property and facility management, and real estate consultancy.',
     icon: Network,
   },
 ];
