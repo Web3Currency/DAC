@@ -10,12 +10,12 @@ interface PropertiesPageProps {
 }
 
 export const PropertiesPage: React.FC<PropertiesPageProps> = ({ onSelectProperty, onRequestViewing }) => {
-  const [filterCriteria, setFilterCriteria] = useState<{ location: string; listingType: string; price: string; country?: string } | undefined>(() => {
+  const [filterCriteria, setFilterCriteria] = useState<{ location: string; listingType: string; category: string; price: string; country?: string } | undefined>(() => {
     const params = new URLSearchParams(window.location.search);
     const location = params.get('location') || 'Any';
     const country = params.get('country') || undefined;
     return location !== 'Any' || country
-      ? { location, country, listingType: 'Any', price: 'Any' }
+      ? { location, country, listingType: 'Any', category: 'Any', price: 'Any' }
       : undefined;
   });
 
@@ -50,7 +50,7 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({ onSelectProperty
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#D5E8C0]">— DAC Property Portfolio</span>
             </div>
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">Find the Right Property. Make the Right Move.</h1>
-            <p className="mt-3 max-w-2xl text-xs leading-relaxed text-white/85 sm:mt-4 sm:text-sm lg:text-base">Explore available properties for sale and letting across our verified locations in Nigeria.</p>
+            <p className="mt-3 max-w-2xl text-xs leading-relaxed text-white/85 sm:mt-4 sm:text-sm lg:text-base">Explore available properties for sale and to let across our verified locations in Nigeria.</p>
             <a href="#property-finder" className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[#8ABE4B] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] shadow-lg shadow-black/15 transition-colors hover:bg-[#07A757] hover:text-white sm:mt-6">Find a Property <MapPin className="h-4 w-4" /></a>
           </div>
         </div>
