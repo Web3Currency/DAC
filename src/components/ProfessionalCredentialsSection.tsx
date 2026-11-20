@@ -25,8 +25,11 @@ export const ProfessionalCredentialsSection: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 items-center gap-x-5 gap-y-6 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-8 lg:grid-cols-5 lg:gap-x-5">
-            {affiliations.map((item) => (
-              <div key={item.name} className="flex h-20 w-full items-center justify-center sm:h-24 lg:h-20">
+            {affiliations.map((item, index) => (
+              <div
+                key={item.name}
+                className={`flex h-20 w-full items-center justify-center sm:h-24 lg:h-20 ${index === affiliations.length - 1 ? 'col-span-2 sm:col-span-1 sm:col-start-2 lg:col-start-auto' : ''}`}
+              >
                 <div className="flex h-[60px] w-full max-w-[136px] items-center justify-center">
                   <img
                     src={item.logo}
