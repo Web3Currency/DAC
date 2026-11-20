@@ -19,10 +19,10 @@ export const COMPANY_INFO = {
   yearsOfExcellence: '30+',
   email: 'info@demolaadetola.ng',
   secondaryEmails: ['demolaadetolaandco@gmail.com'],
-  primaryPhone: '+234 201 227 2520–2522',
+  primaryPhone: '+234 201 227 2520–2',
   secondaryPhones: ['08073772255'],
   telephoneContacts: [
-    { label: '+234 201 227 2520–2522', href: 'tel:+2342012272520' },
+    { label: '+234 201 227 2520–2', href: 'tel:+2342012272520' },
     { label: '+234 807 377 2255', href: 'tel:+2348073772255' },
   ],
   whatsappContacts: [
@@ -309,7 +309,7 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     address: '3A, Force Road ( Pent Floor Suite) opposite TBS, Onikan Lagos',
     landmark: '',
     city: '',
-    phones: ['+234 201 227 2520–2522', '+234 807 377 2255'],
+    phones: ['+234 201 227 2520–2', '+234 807 377 2255'],
     email: 'info@demolaadetola.ng',
     hours: 'Monday – Friday: 8:00 AM – 6:00 PM',
   },
