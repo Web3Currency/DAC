@@ -8,7 +8,7 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
   '/': { title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION },
   '/about': { title: 'About Us | Demola Adetola & Co.', description: 'Learn about Demola Adetola & Co., a professional practice of Chartered Estate Surveyors and Valuers established in 1993.' },
   '/services': { title: 'Real Estate Services | Demola Adetola & Co.', description: 'Explore property valuation, property management, facility management, property sales and letting, investment advisory and real estate consultancy.' },
-  '/properties': { title: 'Properties for Sale & Letting | Demola Adetola & Co.', description: 'Explore property listings and real estate opportunities from Demola Adetola & Co. across Nigeria.' },
+  '/properties': { title: 'Properties for Sale & To Let | Demola Adetola & Co.', description: 'Explore property listings for sale and to let from Demola Adetola & Co. across Lagos and Nigeria.' },
   '/contact': { title: 'Contact Demola Adetola & Co. | Property Professionals', description: 'Contact Demola Adetola & Co. for professional property valuation, management, sales, letting and real estate advisory enquiries.' },
   '/insights': { title: 'Property Insights & Publications | Demola Adetola & Co.', description: 'Read property market insights, valuation guidance, investment perspectives and real estate publications from Demola Adetola & Co.' },
   '/insights/property-valuation': { title: 'Understanding Property Valuation | Demola Adetola & Co.', description: 'Understand the importance of professional property valuation for real estate transactions, investment decisions and financial planning.' },
