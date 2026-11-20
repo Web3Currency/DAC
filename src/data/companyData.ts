@@ -230,7 +230,7 @@ export const WHY_CHOOSE_US_ITEMS = [
   },
   {
     title: 'Nationwide Reach',
-    description: 'Strategic Lagos Island head offices with nationwide branch networks and regional advisory capabilities.',
+    description: 'Lagos-based professional practice with nationwide service and advisory coverage.',
   },
 ];
 
@@ -294,25 +294,13 @@ export const FEATURED_PROPERTIES: PropertyItem[] = [];
 export const OFFICE_LOCATIONS: OfficeLocation[] = [
   {
     id: 'force-road',
-    name: 'Head Office (Force Road, Onikan)',
+    name: 'Head Office',
     type: 'Head Office',
-    address: '3A, Force Road (Opposite TBS / Onikan)',
-    landmark: 'Directly Opposite Tafawa Balewa Square (TBS), Onikan, Lagos Island',
-    city: 'Lagos Island, Lagos State, Nigeria',
+    address: '3A, Force Road ( Pent Floor Suite) opposite TBS, Onikan Lagos',
+    landmark: '',
+    city: '',
     phones: ['+234 802 814 7070', '+234 809 814 7070'],
     email: 'info@demolaadetola.ng',
-    hours: 'Monday – Friday: 8:00 AM – 5:30 PM WAT',
+    hours: 'Monday – Friday: 8:00 AM – 6:00 PM',
   },
-  {
-    id: 'campbell-street',
-    name: 'Lagos Island Branch (Campbell Street)',
-    type: 'Branch Office',
-    address: '37, Campbell Street (2nd Floor, Off Joseph Street)',
-    landmark: 'Lagos Island Commercial & Legal Hub',
-    city: 'Lagos Island, Lagos State, Nigeria',
-    phones: ['+234 807 377 5522', '+234 807 377 2255'],
-    email: 'info@demolaadetola.ng',
-    hours: 'Monday – Friday: 8:30 AM – 5:00 PM WAT',
-  },
-
 ];
