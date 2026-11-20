@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { SEOHead } from './components/SEOHead';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ProfessionalCredentialsSection } from './components/ProfessionalCredentialsSection';
@@ -60,6 +61,7 @@ export default function App() {
   const isCmsArticle = currentPath.startsWith('/insights/') && !isValuationArticle && !isPropertyManagementArticle && !isBuyingPropertyArticle && !isRealEstateInvestmentArticle;
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#252223] antialiased selection:bg-[#8ABE4B] selection:text-[#252223]">
+      <SEOHead pathname={currentPath} />
       <Header onOpenConsultation={handleOpenConsultation} />
       <main className="flex-1 w-full max-w-full overflow-x-clip">
         {isInsightsIndex ? (
