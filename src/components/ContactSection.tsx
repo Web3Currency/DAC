@@ -7,6 +7,7 @@ import {
   Clock3,
   Layers3,
   Mail,
+  MessageCircle,
   MessagesSquare,
   MapPin,
   Phone,
@@ -152,14 +153,39 @@ export const ContactSection: React.FC = () => {
               <h2 id="reach-us-heading" className="text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">Reach Us Directly</h2>
               <p className="mt-2 text-sm text-[#626061]">Prefer to speak with us? Use any of the channels below.</p>
               <div className="mt-5 space-y-4">
-                <a href={`tel:${COMPANY_INFO.primaryPhone.replace(/[^+\d]/g, '')}`} className="group flex items-start gap-3">
+                <div className="flex items-start gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F0F5E9] text-[#6E9D35]"><Phone className="h-5 w-5" /></span>
-                  <span><strong className="block text-sm text-[#252223]">{COMPANY_INFO.primaryPhone}</strong><span className="mt-1 block text-xs text-[#626061]">Call our office</span></span>
-                </a>
-                <a href={`mailto:${COMPANY_INFO.email}`} className="group flex items-start gap-3">
+                  <div className="min-w-0 flex-1">
+                    <strong className="block text-sm text-[#252223]">Telephone</strong>
+                    <div className="mt-2 space-y-2">
+                      {COMPANY_INFO.telephoneContacts.map((contact) => (
+                        <a key={contact.href} href={contact.href} className="block text-sm text-[#626061] transition-colors hover:text-[#07A757]">{contact.label}</a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F0F5E9] text-[#6E9D35]"><MessageCircle className="h-5 w-5" /></span>
+                  <div className="min-w-0 flex-1">
+                    <strong className="block text-sm text-[#252223]">WhatsApp</strong>
+                    <div className="mt-2 space-y-2">
+                      {COMPANY_INFO.whatsappContacts.map((contact) => (
+                        <a key={contact.href} href={contact.href} target="_blank" rel="noopener noreferrer" className="block text-sm text-[#626061] transition-colors hover:text-[#07A757]">{contact.label}</a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F0F5E9] text-[#6E9D35]"><Mail className="h-5 w-5" /></span>
-                  <span><strong className="block text-sm text-[#252223]">{COMPANY_INFO.email}</strong><span className="mt-1 block text-xs text-[#626061]">Email our practice</span></span>
-                </a>
+                  <div className="min-w-0 flex-1">
+                    <strong className="block text-sm text-[#252223]">Email</strong>
+                    <div className="mt-2 space-y-2">
+                      {COMPANY_INFO.emailContacts.map((email) => (
+                        <a key={email} href={`mailto:${email}`} className="block break-all text-sm text-[#626061] transition-colors hover:text-[#07A757]">{email}</a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
                 <div className="flex items-start gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F0F5E9] text-[#6E9D35]"><MapPin className="h-5 w-5" /></span>
                   <span><strong className="block text-sm text-[#252223]">Head Office</strong><span className="mt-1 block text-xs leading-relaxed text-[#626061]">{OFFICE_LOCATIONS[0].address}</span><button type="button" onClick={() => void navigator.clipboard.writeText(OFFICE_LOCATIONS[0].address)} className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-[#527C32] transition-colors hover:text-[#07A757]"><Copy className="h-3.5 w-3.5" />Copy address</button></span>
