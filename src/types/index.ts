@@ -44,7 +44,7 @@ export interface ArticleItem {
 export interface OfficeLocation {
   id: string;
   name: string;
-  type: 'Head Office' | 'Branch Office' | 'Regional Network';
+  type: 'Head Office' | 'Regional Network';
   address: string;
   landmark: string;
   city: string;
