@@ -161,7 +161,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-5 sm:gap-5 sm:gap-8 w-full max-w-full min-w-0">
           {loading && <p className="col-span-full py-12 text-center text-sm text-[#626061]">Loading verified property listings…</p>}
           {!loading && loadError && <p className="col-span-full py-12 text-center text-sm text-[#626061]">{loadError}</p>}
-          {!loading && !loadError && filteredProperties.length === 0 && <div className="col-span-full py-12 text-center"><p className="text-base font-semibold text-[#252223]">Property listings are being prepared.</p><p className="mt-2 text-sm text-[#626061]">Contact our team for current sale and letting opportunities.</p></div>}
+          {!loading && !loadError && filteredProperties.length === 0 && <div className="col-span-full py-12 text-center"><p className="text-base font-semibold text-[#252223]">Property listings are being prepared.</p><p className="mt-2 text-sm text-[#626061]">Contact our team for current sale and to-let opportunities.</p></div>}
           {filteredProperties.map((prop) => (
             <div
               key={prop.id}
@@ -184,7 +184,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 </div>
 
                 <div className="absolute top-4 right-4">
-                  <span className={`px-3 py-1 text-[11px] font-semibold rounded-md backdrop-blur-xs ${prop.status === 'For Sale' ? 'bg-red-600 text-white' : prop.status === 'For Letting' ? 'bg-yellow-400 text-[#252223]' : 'bg-[#252223]/85 text-white'}`}>
+                  <span className={`px-3 py-1 text-[11px] font-semibold rounded-md backdrop-blur-xs ${prop.status === 'For Sale' ? 'bg-red-600 text-white' : prop.status === 'To Let' ? 'bg-yellow-400 text-[#252223]' : 'bg-[#252223]/85 text-white'}`}>
                     {prop.status}
                   </span>
                 </div>
