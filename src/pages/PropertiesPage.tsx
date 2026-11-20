@@ -10,7 +10,14 @@ interface PropertiesPageProps {
 }
 
 export const PropertiesPage: React.FC<PropertiesPageProps> = ({ onSelectProperty, onRequestViewing }) => {
-  const [filterCriteria, setFilterCriteria] = useState<{ location: string; listingType: string; price: string } | undefined>(undefined);
+  const [filterCriteria, setFilterCriteria] = useState<{ location: string; listingType: string; price: string; country?: string } | undefined>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const location = params.get('location') || 'Any';
+    const country = params.get('country') || undefined;
+    return location !== 'Any' || country
+      ? { location, country, listingType: 'Any', price: 'Any' }
+      : undefined;
+  });
 
   return (
     <>
