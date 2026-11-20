@@ -90,7 +90,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             {/* Title & Eyebrow */}
             <div className="max-w-2xl min-w-0">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#252223]">
-                Available Properties for Sale &amp; Letting.
+                {filterCriteria?.location && filterCriteria.location !== 'Any' ? `Available Properties in ${filterCriteria.location}.` : filterCriteria?.country ? `Available Properties in ${filterCriteria.country}.` : 'Available Properties for Sale & Letting.'}
               </h2>
             </div>
 
