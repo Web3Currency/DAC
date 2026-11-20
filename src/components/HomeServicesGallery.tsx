@@ -40,7 +40,7 @@ export const HomeServicesGallery: React.FC = () => {
             return (
               <a
                 key={service.id}
-                href="/services"
+                href={`/services?service=${encodeURIComponent(service.id)}#services`}
                 aria-label={`Explore ${service.title} on the Services page`}
                 className="group relative block h-[270px] w-[78vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl bg-[#252223] shadow-sm sm:h-[310px] sm:w-[42vw] sm:max-w-[390px] lg:h-[340px] lg:w-[31%] lg:max-w-none"
               >
