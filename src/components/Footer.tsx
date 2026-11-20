@@ -22,11 +22,11 @@ export const Footer: React.FC = () => {
                 className="h-[4.5rem] sm:h-20 w-auto max-w-[160px] object-contain"
                 loading="lazy"
               />
-              <div className="min-w-0">
-                <div className="text-lg sm:text-xl font-bold tracking-tight leading-tight text-white">
+              <div className="inline-flex min-w-0 flex-col items-center">
+                <div className="whitespace-nowrap text-lg sm:text-xl font-bold tracking-tight leading-tight text-white">
                   Demola Adetola &amp; Co.
                 </div>
-                <div className="mt-1 text-[10px] sm:text-[11px] font-semibold uppercase leading-tight tracking-[0.12em] text-[#9BC65C]">
+                <div className="mt-1 w-full whitespace-nowrap text-center text-[8px] sm:text-[9px] font-semibold uppercase leading-tight tracking-[0.02em] text-[#9BC65C]">
                   Chartered Estate Surveyors + Valuers
                 </div>
               </div>
