@@ -34,7 +34,7 @@ export const ProfessionalApproachSection: React.FC = () => (
           id="professional-approach-heading"
           className="text-2xl font-bold leading-tight tracking-tight text-[#252223] sm:text-3xl lg:text-4xl"
         >
-          A Professional Approach to Every Property Decision.
+          A Professional Approach to Every Property Investment.
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#626061] sm:text-base">
           We bring property knowledge, valuation expertise and practical real estate experience together to help clients make informed decisions and manage their property interests.
