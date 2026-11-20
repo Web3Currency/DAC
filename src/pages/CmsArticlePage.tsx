@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { updatePageMetadata } from '../components/SEOHead';
 
 type Article = { title:string; excerpt:string|null; content:string; category:string; cover_image_url:string|null; cover_image_alt:string|null; published_at:string|null };
 export default function CmsArticlePage({ slug }: { slug:string }) {
   const [article,setArticle]=useState<Article|null>(null);
   const [loading,setLoading]=useState(true);
+  useEffect(() => {
+    if (article) {
+      updatePageMetadata(
+        `${article.title} | Demola Adetola & Co.`,
+        article.excerpt || `Read ${article.title} from Demola Adetola & Co., Chartered Estate Surveyors and Valuers.`,
+        `/insights/${slug}`,
+      );
+    }
+  }, [article, slug]);
   useEffect(()=>{
     let active=true;
     supabase.from('articles').select('title,excerpt,content,category,cover_image_url,cover_image_alt,published_at')
