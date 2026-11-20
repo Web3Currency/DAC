@@ -13,10 +13,11 @@ export interface ServiceItem {
 export interface PropertyItem {
   id: string;
   title: string;
-  category: 'Residential' | 'Commercial' | 'Industrial' | 'Development' | 'Land';
+  category: 'Residential' | 'Commercial' | 'Industrial' | 'Vacant Land' | 'Warehouses';
+  portfolioLocation?: 'Lagos Mainland' | 'Ikoyi' | 'Victoria Island' | 'Lekki' | 'Lagos Island' | null;
   location: string;
   price: string;
-  status: 'For Sale' | 'For Letting' | 'Under Management' | 'Advisory Completed' | 'Under Offer' | 'Sold' | 'Let' | 'Off Market';
+  status: 'For Sale' | 'To Let' | 'Under Management' | 'Advisory Completed' | 'Under Offer' | 'Sold' | 'Let' | 'Off Market';
   image: string;
   images?: string[];
   specs: {
