@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useSiteMedia } from '../lib/useSiteMedia';
 
 const WHATSAPP_NUMBER = '2348028147070';
 
@@ -34,10 +35,12 @@ const enquiryOptions = [
 ];
 
 export const WhatsAppFloat: React.FC = () => {
+  const siteMedia = useSiteMedia();
   const [visible, setVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
   const [draft, setDraft] = useState('');
+  const conversationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setVisible(true), 2800);
@@ -52,6 +55,13 @@ export const WhatsAppFloat: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!selectedMessage) return;
+    const conversation = conversationRef.current;
+    if (!conversation) return;
+    window.requestAnimationFrame(() => conversation.scrollTo({ top: conversation.scrollHeight, behavior: 'smooth' }));
+  }, [selectedMessage]);
 
   const chooseEnquiry = (message: string) => {
     setSelectedMessage(message);
@@ -76,8 +86,12 @@ export const WhatsAppFloat: React.FC = () => {
           aria-label="Demola Adetola & Co. WhatsApp enquiry assistant"
         >
           <div className="flex shrink-0 items-center gap-3 bg-[#176B4A] px-4 py-3.5 text-white">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white text-sm font-extrabold tracking-tight text-[#252223]">
-              DAC
+            <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-white/35 bg-white">
+              {siteMedia.homepage_hero ? (
+                <img src={siteMedia.homepage_hero} alt="Demola Adetola & Co." className="h-full w-full object-cover object-center" />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-xs font-extrabold tracking-tight text-[#252223]">DAC</div>
+              )}
             </div>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-white">Demola Adetola &amp; Co.</p>
@@ -108,14 +122,14 @@ export const WhatsAppFloat: React.FC = () => {
           </div>
 
           <div className="flex min-h-0 flex-1 flex-col bg-[#F3F1E9]">
-            <div className="flex-1 space-y-3 overflow-y-auto px-3.5 py-4">
+            <div ref={conversationRef} className="flex-1 space-y-3 overflow-y-auto px-3.5 py-4">
               <div className="mx-auto w-fit rounded-full bg-white/75 px-3 py-1 text-[10px] font-medium tracking-wide text-[#77736D] shadow-sm">
                 HOW CAN WE HELP?
               </div>
               <div className="max-w-[92%] rounded-2xl rounded-tl-sm bg-white px-3.5 py-3 text-[12px] leading-[1.65] text-[#393635] shadow-sm">
                 <p className="font-semibold text-[#252223]">Welcome to Demola Adetola &amp; Co.</p>
                 <p className="mt-1">Thank you for getting in touch. We provide professional real estate services and advisory.</p>
-                <p className="mt-2">Please select the option that best describes your enquiry. We’ll prepare a message for you to review before continuing to WhatsApp.</p>
+                <p className="mt-2">Please select the option that best describes your enquiry.</p>
                 <p className="mt-2 text-[10px] text-[#96918B]">DAC Enquiry Assistant</p>
               </div>
 
@@ -144,10 +158,7 @@ export const WhatsAppFloat: React.FC = () => {
 
               {selectedMessage && (
                 <div className="space-y-2 rounded-2xl border border-[#DCE7D0] bg-white p-3 shadow-sm">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="text-[11px] font-semibold text-[#252223]">Your message</p>
-                    <span className="rounded-full bg-[#EEF5E6] px-2 py-1 text-[9px] font-semibold text-[#527A32]">Ready to review</span>
-                  </div>
+                  <p className="text-[11px] font-semibold text-[#252223]">Your message</p>
                   <textarea
                     value={draft}
                     onChange={(event) => setDraft(event.target.value)}
@@ -166,17 +177,10 @@ export const WhatsAppFloat: React.FC = () => {
                     </svg>
                     Continue to WhatsApp
                   </button>
-                  <p className="text-center text-[9px] leading-relaxed text-[#8A8781]">WhatsApp will open with this message filled in. You can review and send it there.</p>
                 </div>
               )}
             </div>
-            <div className="flex shrink-0 items-center justify-center gap-1.5 border-t border-[#E8E5DC] bg-[#F8F7F2] px-3 py-2.5 text-[9px] text-[#88837C]">
-              <svg viewBox="0 0 24 24" className="h-3 w-3 fill-none stroke-current" strokeWidth="1.8" aria-hidden="true">
-                <path d="M12 3 4.5 6v5.5c0 4.5 3.1 7.7 7.5 9.5 4.4-1.8 7.5-5 7.5-9.5V6L12 3Z" strokeLinejoin="round" />
-                <path d="m9 12 2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Your enquiry opens in WhatsApp only when you choose to continue
-            </div>
+
           </div>
         </section>
       )}
