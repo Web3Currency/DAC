@@ -11,6 +11,7 @@ interface ProjectsSectionProps {
     location: string;
     listingType: string;
     price: string;
+    category?: string;
     country?: string;
   };
 }
@@ -29,7 +30,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     let active = true;
     async function loadProperties() {
       setLoading(true);
-      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,listing_status,is_featured,created_at,location,city,state,country,price_amount,price_currency,price_label,price_frequency,description,area_value,area_unit,property_images(image_url,display_order,is_cover)').eq('is_published', true).eq('listing_status', 'available').order('display_order', { ascending: true }).order('created_at', { ascending: false });
+      const { data, error } = await supabase.from('properties').select('id,slug,title,listing_type,category,portfolio_location,listing_status,is_featured,created_at,location,city,state,country,price_amount,price_currency,price_label,price_frequency,description,area_value,area_unit,property_images(image_url,display_order,is_cover)').eq('is_published', true).eq('listing_status', 'available').order('display_order', { ascending: true }).order('created_at', { ascending: false });
       if (!active) return;
       if (error) {
         setLoadError('Property listings are temporarily unavailable.');
@@ -38,9 +39,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         const mapped = (data || []).map((row: any) => {
           const photos = [...(row.property_images || [])].sort((a: any, b: any) => Number(b.is_cover) - Number(a.is_cover) || a.display_order - b.display_order).map((photo: any) => photo.image_url).filter(Boolean);
           const amount = row.price_amount == null ? '' : new Intl.NumberFormat('en-NG', { style: 'currency', currency: row.price_currency || 'NGN', maximumFractionDigits: 0 }).format(Number(row.price_amount));
-          const status = row.listing_status === 'under_offer' ? 'Under Offer' : row.listing_status === 'sold' ? 'Sold' : row.listing_status === 'let' ? 'Let' : row.listing_status === 'off_market' ? 'Off Market' : row.listing_type === 'letting' ? 'For Letting' : 'For Sale';
+          const status = row.listing_status === 'under_offer' ? 'Under Offer' : row.listing_status === 'sold' ? 'Sold' : row.listing_status === 'let' ? 'Let' : row.listing_status === 'off_market' ? 'Off Market' : row.listing_type === 'letting' ? 'To Let' : 'For Sale';
           const location = [row.location, row.city, row.state, row.country].filter((value, index, values) => value && values.indexOf(value) === index).join(', ');
-          return { id: row.id, slug: row.slug, title: row.title, category: row.category, location, country: row.country || '', price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Upon request', priceAmount: row.price_amount == null ? null : Number(row.price_amount), status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined }, description: row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
+          return { id: row.id, slug: row.slug, title: row.title, category: row.category, portfolioLocation: row.portfolio_location || null, location, country: row.country || '', price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Upon request', priceAmount: row.price_amount == null ? null : Number(row.price_amount), status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined }, description: row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'To Let' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
         });
         setProperties(mapped);
         setLoadError('');
@@ -55,7 +56,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     if (filterCriteria) {
       if (filterCriteria.country && (listing.country || '').toLowerCase() !== filterCriteria.country.toLowerCase()) return false;
       if (filterCriteria.listingType !== 'Any' && listing.listingType !== filterCriteria.listingType) return false;
-      if (filterCriteria.location !== 'Any' && !item.location.toLowerCase().includes(filterCriteria.location.toLowerCase())) return false;
+      if (filterCriteria.category && filterCriteria.category !== 'Any' && item.category !== filterCriteria.category) return false;
+      if (filterCriteria.location !== 'Any' && (item as any).portfolioLocation !== filterCriteria.location) return false;
       if (filterCriteria.price !== 'Any' && listing.priceAmount != null) {
         const amount = Number(listing.priceAmount);
         if (filterCriteria.price === 'under-100m' && amount >= 100_000_000) return false;
@@ -89,7 +91,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             {/* Title & Eyebrow */}
             <div className="max-w-2xl min-w-0">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#252223]">
-                {filterCriteria?.location && filterCriteria.location !== 'Any' ? `Available Properties in ${filterCriteria.location}.` : filterCriteria?.country ? `Available Properties in ${filterCriteria.country}.` : 'Available Properties for Sale & Letting.'}
+                {filterCriteria?.location && filterCriteria.location !== 'Any' ? `Available Properties in ${filterCriteria.location}.` : filterCriteria?.country ? `Available Properties in ${filterCriteria.country}.` : 'Available Properties for Sale & To Let.'}
               </h2>
             </div>
 
@@ -109,7 +111,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               return (
                 <div key={type}>
                   <div className="mb-4 flex items-center gap-3">
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#252223]">{type === 'sale' ? 'For Sale' : 'For Rent / Let'}</h3>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#252223]">{type === 'sale' ? 'For Sale' : 'To Let'}</h3>
                     <span className="h-px flex-1 bg-[#E5E9E1]" />
                   </div>
                   <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3 md:grid md:grid-cols-2 md:overflow-visible md:pb-0">
@@ -120,7 +122,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                             {prop.image ? <img src={prop.image} alt={prop.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /> : <div className="grid h-full w-full place-items-center text-sm text-[#626061]">Image coming soon</div>}
                             <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
                             <span className="absolute left-4 top-4 rounded-md bg-[#8ABE4B] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#252223]">{prop.category}</span>
-                            <span className={`absolute right-4 top-4 rounded-md px-3 py-1 text-[11px] font-semibold ${prop.status === 'For Sale' ? 'bg-red-600 text-white' : prop.status === 'For Letting' ? 'bg-yellow-400 text-[#252223]' : 'bg-[#252223]/85 text-white'}`}>{prop.status}</span>
+                            <span className={`absolute right-4 top-4 rounded-md px-3 py-1 text-[11px] font-semibold ${prop.status === 'For Sale' ? 'bg-red-600 text-white' : prop.status === 'To Let' ? 'bg-yellow-400 text-[#252223]' : 'bg-[#252223]/85 text-white'}`}>{prop.status}</span>
                             <div className="absolute bottom-4 left-4 right-4 text-white">
                               <h3 className="line-clamp-1 text-lg font-bold text-white">{prop.title}</h3>
                               <div className="mt-1 flex items-center gap-1.5 text-xs text-[#E5E9E1]"><MapPin className="h-3.5 w-3.5 shrink-0 text-[#8ABE4B]" /><span>{prop.location}</span></div>
