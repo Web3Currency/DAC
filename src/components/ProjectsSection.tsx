@@ -182,7 +182,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 </div>
 
                 <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1 text-[11px] font-semibold text-white bg-[#252223]/85 backdrop-blur-xs rounded-md">
+                  <span className={`px-3 py-1 text-[11px] font-semibold rounded-md backdrop-blur-xs ${prop.status === 'For Sale' ? 'bg-red-600 text-white' : prop.status === 'For Letting' ? 'bg-yellow-400 text-[#252223]' : 'bg-[#252223]/85 text-white'}`}>
                     {prop.status}
                   </span>
                 </div>
