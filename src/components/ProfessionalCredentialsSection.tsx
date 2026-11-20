@@ -8,7 +8,7 @@ export const ProfessionalCredentialsSection: React.FC = () => {
     { name: 'NIESV', fullName: 'Nigerian Institution of Estate Surveyors and Valuers', logo: siteMedia.credentials_niesv },
     { name: 'RICS', fullName: 'Royal Institution of Chartered Surveyors', logo: siteMedia.credentials_rics || 'https://www.rics.org/content/dam/ricsglobal/images/logos/footer_logo.png' },
     { name: 'IFMA', fullName: 'International Facility Management Association', logo: siteMedia.credentials_ifma || 'https://www.ifma.org/media/n11i0lzg/ifma-logo-qualifier-tagline.png' },
-    { name: 'FIABCI', fullName: 'FIABCI - International Real Estate Federation', logo: siteMedia.credentials_fiabci || 'https://www.fiabci-singapore.org/congress-2024/img/logo/Fiabci-INT-1.webp' },
+    { name: 'FIABCI', fullName: 'FIABCI - International Real Estate Federation', logo: siteMedia.credentials_fiabci },
   ].filter((item) => Boolean(item.logo));
 
   return (
