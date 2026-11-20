@@ -22,7 +22,7 @@ export const GeographicalReachSection: React.FC = () => {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {locations.map(({ name, country, label, detail, image, alt, imagePosition }) => (
-          <article key={name} className="group relative isolate min-h-[340px] overflow-hidden rounded-2xl bg-[#252223] shadow-sm sm:min-h-[390px]">
+          <a key={name} href={name === 'Lagos' ? '/properties?location=Lagos#properties' : name === 'Nationwide' ? '/properties?country=Nigeria#properties' : '/properties?country=South%20Africa#properties'} aria-label={name === 'Lagos' ? 'View available properties in Lagos' : name === 'Nationwide' ? 'View available properties across Nigeria' : 'View available properties in South Africa'} className="group relative isolate block min-h-[340px] overflow-hidden rounded-2xl bg-[#252223] shadow-sm sm:min-h-[390px]">
             <img
               src={image}
               alt={alt}
@@ -40,7 +40,7 @@ export const GeographicalReachSection: React.FC = () => {
                 <ArrowUpRight className="h-4 w-4 shrink-0 text-[#A9D477] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </div>
             </div>
-          </article>
+          </a>
         ))}
       </div>
     </div>
