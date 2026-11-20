@@ -45,7 +45,7 @@ export const AboutDACIntroduction: React.FC = () => {
               </div>
               <div className="absolute bottom-4 left-4 rounded-xl bg-[#252223] px-4 py-3 text-white shadow-lg sm:bottom-5 sm:left-5">
                 <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/65">Professional</p>
-                <p className="mt-1 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.12em] text-white">Practice Since <span className="ml-1 text-base tracking-normal text-[#A9D477]">1993</span></p>
+                <p className="mt-1 flex items-baseline gap-2 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.12em] text-white">Practice Since <span className="text-2xl font-extrabold leading-none tracking-normal text-[#A9D477] sm:text-3xl">1993</span></p>
               </div>
             </div>
           )}
@@ -72,13 +72,15 @@ export const AboutDACIntroduction: React.FC = () => {
               ))}
             </div>
 
+            <div className="mt-8 flex justify-center">
             <a
               href="/about"
-              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#252223] transition-colors hover:bg-[#07A757] hover:text-white"
             >
               Discover Our Story
               <ArrowUpRight className="h-4 w-4" />
             </a>
+            </div>
           </div>
         </div>
       </div>
