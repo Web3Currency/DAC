@@ -160,7 +160,7 @@ main section {
 }
 .prototype-whatsapp-enter {
   animation: whatsappBadgeEnter 650ms cubic-bezier(.2,.8,.2,1) both;
-  pointer-events: none;
+  pointer-events: auto;
   user-select: none;
 }
 .prototype-whatsapp-pulse {
