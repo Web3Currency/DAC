@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Building2, Layers3, ChartNoAxesColumnIncreasing } from 'lucide-react';
+import { ArrowRight, ChartNoAxesCombined, Layers3, MessagesSquare } from 'lucide-react';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
 interface HeroProps {
@@ -66,7 +66,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
               aria-label="Our core property capabilities"
             >
               <div className="flex flex-col items-center gap-2 px-2 text-center sm:flex-row sm:items-center sm:justify-start sm:gap-3 sm:px-4 sm:text-left first:sm:pl-0">
-                <Building2 className="h-6 w-6 shrink-0 text-[#A9D477] sm:h-7 sm:w-7" strokeWidth={1.8} />
+                <ChartNoAxesCombined className="h-6 w-6 shrink-0 text-[#A9D477] sm:h-7 sm:w-7" strokeWidth={1.8} />
                 <span className="text-[10px] font-semibold leading-tight text-white sm:text-sm">Property<br className="sm:hidden" /> Valuation</span>
               </div>
               <div className="flex flex-col items-center gap-2 px-2 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-3 sm:px-4 sm:text-left">
@@ -74,7 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
                 <span className="text-[10px] font-semibold leading-tight text-white sm:text-sm">Asset<br className="sm:hidden" /> Management</span>
               </div>
               <div className="flex flex-col items-center gap-2 px-2 text-center sm:flex-row sm:items-center sm:justify-end sm:gap-3 sm:px-4 sm:text-left last:sm:pr-0">
-                <ChartNoAxesColumnIncreasing className="h-6 w-6 shrink-0 text-[#A9D477] sm:h-7 sm:w-7" strokeWidth={1.8} />
+                <MessagesSquare className="h-6 w-6 shrink-0 text-[#A9D477] sm:h-7 sm:w-7" strokeWidth={1.8} />
                 <span className="text-[10px] font-semibold leading-tight text-white sm:text-sm">Realty<br className="sm:hidden" /> Advisory</span>
               </div>
             </div>
