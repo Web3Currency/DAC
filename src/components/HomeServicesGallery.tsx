@@ -23,7 +23,7 @@ export const HomeServicesGallery: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-7 sm:mb-9"><h2 id="home-services-heading" className="text-3xl font-bold tracking-tight text-[#252223] sm:text-4xl">Our Professional Services</h2></div>
         <div className="services-marquee overflow-hidden" aria-label="Explore DAC professional services">
-          <div className="services-marquee-track flex w-max gap-4 pb-2 sm:gap-5">
+          <div className="services-marquee-track flex w-max pb-2">
             <div className="flex shrink-0 gap-4 sm:gap-5">{CORE_SERVICES.map((service) => renderCard(service))}</div>
             <div className="flex shrink-0 gap-4 sm:gap-5" aria-hidden="true">{CORE_SERVICES.map((service) => renderCard(service, true))}</div>
           </div>
