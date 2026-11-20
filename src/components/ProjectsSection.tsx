@@ -11,6 +11,7 @@ interface ProjectsSectionProps {
     location: string;
     listingType: string;
     price: string;
+    country?: string;
   };
 }
 
@@ -39,7 +40,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           const amount = row.price_amount == null ? '' : new Intl.NumberFormat('en-NG', { style: 'currency', currency: row.price_currency || 'NGN', maximumFractionDigits: 0 }).format(Number(row.price_amount));
           const status = row.listing_status === 'under_offer' ? 'Under Offer' : row.listing_status === 'sold' ? 'Sold' : row.listing_status === 'let' ? 'Let' : row.listing_status === 'off_market' ? 'Off Market' : row.listing_type === 'letting' ? 'For Letting' : 'For Sale';
           const location = [row.location, row.city, row.state, row.country].filter((value, index, values) => value && values.indexOf(value) === index).join(', ');
-          return { id: row.id, slug: row.slug, title: row.title, category: row.category, location, price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Upon request', priceAmount: row.price_amount == null ? null : Number(row.price_amount), status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined }, description: row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
+          return { id: row.id, slug: row.slug, title: row.title, category: row.category, location, country: row.country || '', price: row.price_label || [amount, row.price_frequency].filter(Boolean).join(' / ') || 'Upon request', priceAmount: row.price_amount == null ? null : Number(row.price_amount), status, image: photos[0] || '', images: photos, specs: { area: row.area_value != null ? String(row.area_value) + ' ' + (row.area_unit || 'sqm') : undefined }, description: row.description || 'Contact our team for further property information.', isReplaceableSample: false, sampleTypeBadge: row.listing_type === 'letting' ? 'For Letting' : 'For Sale', listingType: row.listing_type, listingStatus: row.listing_status, isFeatured: row.is_featured, createdAt: row.created_at } as PropertyItem & { listingType: string; listingStatus: string; isFeatured: boolean; createdAt: string };
         });
         setProperties(mapped);
         setLoadError('');
@@ -50,8 +51,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     return () => { active = false; };
   }, []);
   const filteredProperties = properties.filter((item) => {
-    const listing = item as PropertyItem & { listingType?: string; priceAmount?: number | null };
+    const listing = item as PropertyItem & { listingType?: string; priceAmount?: number | null; country?: string };
     if (filterCriteria) {
+      if (filterCriteria.country && (listing.country || '').toLowerCase() !== filterCriteria.country.toLowerCase()) return false;
       if (filterCriteria.listingType !== 'Any' && listing.listingType !== filterCriteria.listingType) return false;
       if (filterCriteria.location !== 'Any' && !item.location.toLowerCase().includes(filterCriteria.location.toLowerCase())) return false;
       if (filterCriteria.price !== 'Any' && listing.priceAmount != null) {
