@@ -27,7 +27,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenConsultation }) 
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-7 sm:mb-9">
         <div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#252223]">
-            Property Advice You Can Rely On.
+            Real Estate Advisory You Can Trust and Rely On.
           </h2>
           <p className="mt-3 max-w-2xl text-sm sm:text-base leading-relaxed text-[#626061]">
             Property decisions matter. We explain your options and help you decide on the next step.
