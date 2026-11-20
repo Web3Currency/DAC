@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Upload, Eye, EyeOff, RefreshCw, Image as ImageIcon, Pencil, Trash2, X } from 'lucide-react';
+import { Upload, Eye, EyeOff, RefreshCw, Image as ImageIcon, Pencil, Trash2, X, Star } from 'lucide-react';
 import { upload } from '@vercel/blob/client';
 import type { User } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
@@ -13,6 +13,7 @@ type PropertyRecord = {
   location: string | null;
   price_label: string | null;
   is_published: boolean;
+  is_featured: boolean;
   created_at: string;
   city: string | null;
   state: string | null;
@@ -56,7 +57,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
 
   async function refresh() {
     const { data, error: queryError } = await supabase.from('properties')
-      .select('id,title,listing_type,category,listing_status,location,city,state,price_amount,price_label,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,title_tenure,is_published,created_at')
+      .select('id,title,listing_type,category,listing_status,location,city,state,price_amount,price_label,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,title_tenure,is_published,is_featured,created_at')
       .order('created_at', { ascending: false });
     if (queryError) setError('Could not load property records: ' + queryError.message);
     else setProperties((data || []) as PropertyRecord[]);
@@ -235,11 +236,39 @@ export default function PropertiesAdmin({ user }: { user: User }) {
     }
   }
 
+  async function toggleFeatured(item: PropertyRecord) {
+    setError('');
+    setMessage('');
+    if (!item.is_featured) {
+      const { count, error: countError } = await supabase.from('properties')
+        .select('id', { count: 'exact', head: true })
+        .eq('listing_type', item.listing_type)
+        .eq('is_featured', true);
+      if (countError) {
+        setError('Could not verify featured listings: ' + countError.message);
+        return;
+      }
+      if ((count || 0) >= 2) {
+        setError('You can feature a maximum of two ' + (item.listing_type === 'sale' ? 'For Sale' : 'For Letting') + ' properties. Remove a star from another listing in this category first.');
+        return;
+      }
+    }
+    const { error: updateError } = await supabase.from('properties')
+      .update({ is_featured: !item.is_featured })
+      .eq('id', item.id);
+    if (updateError) {
+      setError('Could not update featured status: ' + updateError.message);
+    } else {
+      setMessage(item.is_featured ? 'Property removed from homepage features.' : 'Property added to homepage features.');
+      await refresh();
+    }
+  }
+
   return (
     <section className="rounded-2xl bg-white border border-[#E5E9E1] p-5 sm:p-7 space-y-6">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-xl bg-[#F5F8F2] text-[#07A757] grid place-items-center"><ImageIcon className="w-5 h-5" /></div>
-        <div><h2 className="font-bold text-[#252223]">Property listings</h2><p className="text-xs text-[#626061] mt-1">Create, edit, publish, take offline or delete property listings.</p></div>
+        <div><h2 className="font-bold text-[#252223]">Property listings</h2><p className="text-xs text-[#626061] mt-1">Create and manage listings. Star up to two sale properties and two letting properties for the homepage.</p></div>
       </div>
       {error && <p role="alert" className="rounded-lg bg-red-50 text-red-700 text-sm p-3 break-words">{error}</p>}
       {message && <p role="status" className="rounded-lg bg-emerald-50 text-emerald-800 text-sm p-3">{message}</p>}
@@ -270,8 +299,9 @@ export default function PropertiesAdmin({ user }: { user: User }) {
         <div className="flex items-center justify-between"><h3 className="font-bold text-[#252223]">Saved properties</h3><button onClick={() => void refresh()} className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07A757]"><RefreshCw className="w-3.5 h-3.5" /> Refresh</button></div>
         {properties.length === 0 ? <p className="text-sm text-[#777]">No property records yet.</p> : properties.map(item => (
           <div key={item.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-[#E5E9E1] p-3">
-            <div><p className="text-sm font-semibold text-[#252223]">{item.title}</p><p className="text-xs text-[#626061]">{item.listing_type === 'sale' ? 'For sale' : 'For letting'} · {item.category} · {item.location || 'Location pending'}</p><p className="text-[10px] text-[#777] mt-1">{item.is_published ? 'Published' : 'Draft / unpublished'}</p></div>
+            <div><p className="text-sm font-semibold text-[#252223]">{item.title}</p><p className="text-xs text-[#626061]">{item.listing_type === 'sale' ? 'For sale' : 'For letting'} · {item.category} · {item.location || 'Location pending'}</p><p className="text-[10px] text-[#777] mt-1">{item.is_published ? 'Published' : 'Draft / unpublished'} · {item.listing_status === 'available' ? 'Available' : item.listing_status.replace('_', ' ')}{item.is_featured ? ' · Featured on homepage' : ''}</p></div>
             <div className="flex flex-wrap items-center gap-2">
+              <button onClick={() => void toggleFeatured(item)} aria-label={item.is_featured ? 'Remove from homepage features' : 'Feature on homepage'} title={item.is_featured ? 'Remove from homepage features' : 'Feature on homepage'} className={`inline-flex items-center justify-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold ${item.is_featured ? 'border-[#8ABE4B] bg-[#F5F8F2] text-[#252223]' : 'border-[#D9DED5] text-[#626061]'}`}><Star className={`w-3.5 h-3.5 ${item.is_featured ? 'fill-[#8ABE4B] text-[#07A757]' : ''}`} /> {item.is_featured ? 'Featured' : 'Feature'}</button>
               <button onClick={() => startEditing(item)} className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-[#D9DED5] px-3 py-2 text-xs font-semibold text-[#252223]"><Pencil className="w-3.5 h-3.5" /> Edit</button>
               <button disabled={deletingId === item.id} onClick={() => void deleteProperty(item)} className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-200 px-3 py-2 text-xs font-semibold text-red-700 disabled:opacity-50"><Trash2 className="w-3.5 h-3.5" /> {deletingId === item.id ? 'Deleting…' : 'Delete'}</button>
               <button onClick={() => void togglePublish(item)} className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-[#D9DED5] px-3 py-2 text-xs font-semibold text-[#252223]">{item.is_published ? <><EyeOff className="w-3.5 h-3.5" /> Take offline</> : <><Eye className="w-3.5 h-3.5" /> Publish listing</>}</button>
