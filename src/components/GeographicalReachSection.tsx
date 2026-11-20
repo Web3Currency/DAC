@@ -7,9 +7,9 @@ import { useSiteMedia } from '../lib/useSiteMedia';
 export const GeographicalReachSection: React.FC = () => {
   const siteMedia = useSiteMedia();
   const locations = [
-    { name: 'Lagos', country: 'Nigeria', label: 'Headquarters', detail: 'Onikan, Lagos Island', image: siteMedia.geographical_reach_lagos || 'https://content.r9cdn.net/rimg/dimg/93/ca/c46f09c7-city-25271-18a65f178fb.jpg?crop=true&height=768&width=1366', alt: 'Lagos Island waterfront and commercial skyline' , imagePosition: 'center' },
-    { name: 'Nationwide', country: 'Nigeria', label: 'Nationwide Operations', detail: 'Professional services across Nigeria', image: 'https://images.trvl-media.com/place/553248635976008619/ecafb32f-de92-4637-a85d-ba71513eb86f.jpg', alt: 'Abuja cityscape representing DAC’s nationwide Nigerian service coverage' , imagePosition: 'center' },
-    { name: 'Pretoria', country: 'South Africa', label: 'International Presence', detail: 'DAC subsidiary', image: siteMedia.geographical_reach_pretoria || 'https://e3zak6m1avgttdml.public.blob.vercel-storage.com/seo-covers/pretoria-1778015373763.webp', alt: 'Pretoria Union Buildings and surrounding cityscape' , imagePosition: 'center' },
+    { name: 'Lagos', country: 'Nigeria', detail: 'Onikan, Lagos Island', image: siteMedia.geographical_reach_lagos || 'https://content.r9cdn.net/rimg/dimg/93/ca/c46f09c7-city-25271-18a65f178fb.jpg?crop=true&height=768&width=1366', alt: 'Lagos Island waterfront and commercial skyline' , imagePosition: 'center' },
+    { name: 'Nationwide', country: 'Nigeria', detail: 'Professional services across Nigeria', image: 'https://images.trvl-media.com/place/553248635976008619/ecafb32f-de92-4637-a85d-ba71513eb86f.jpg', alt: 'Abuja cityscape representing DAC’s nationwide Nigerian service coverage' , imagePosition: 'center' },
+    { name: 'Pretoria', country: 'South Africa', detail: 'DAC subsidiary', image: siteMedia.geographical_reach_pretoria || 'https://e3zak6m1avgttdml.public.blob.vercel-storage.com/seo-covers/pretoria-1778015373763.webp', alt: 'Pretoria Union Buildings and surrounding cityscape' , imagePosition: 'center' },
   ];
   return (
   <section aria-labelledby="geographical-reach-heading" className="bg-[#F5F8F2] py-14 sm:py-16 lg:py-20">
@@ -21,7 +21,7 @@ export const GeographicalReachSection: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {locations.map(({ name, country, label, detail, image, alt, imagePosition }) => (
+        {locations.map(({ name, country, detail, image, alt, imagePosition }) => (
           <a key={name} href={name === 'Lagos' ? '/properties?location=Lagos#properties' : name === 'Nationwide' ? '/properties?country=Nigeria#properties' : '/properties?country=South%20Africa#properties'} aria-label={name === 'Lagos' ? 'View available properties in Lagos' : name === 'Nationwide' ? 'View available properties across Nigeria' : 'View available properties in South Africa'} className="group relative isolate block min-h-[340px] overflow-hidden rounded-2xl bg-[#252223] shadow-sm sm:min-h-[390px]">
             <img
               src={image}
@@ -32,7 +32,6 @@ export const GeographicalReachSection: React.FC = () => {
             />
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#171819]/95 via-[#171819]/25 to-[#171819]/10" />
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-              <span className="inline-flex rounded-md bg-[#8ABE4B] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#252223]">{label}</span>
               <h3 className="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">{name}</h3>
               <p className="mt-1 text-sm font-medium text-white/85">{country}</p>
               <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/20 pt-4">
