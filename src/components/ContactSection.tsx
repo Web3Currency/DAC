@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   ArrowUpRight,
   CheckCircle2,
+  Copy,
   ChartNoAxesCombined,
   Clock3,
   Layers3,
@@ -161,7 +162,7 @@ export const ContactSection: React.FC = () => {
                 </a>
                 <div className="flex items-start gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F0F5E9] text-[#6E9D35]"><MapPin className="h-5 w-5" /></span>
-                  <span><strong className="block text-sm text-[#252223]">Head Office</strong><span className="mt-1 block text-xs leading-relaxed text-[#626061]">{OFFICE_LOCATIONS[0].address}, {OFFICE_LOCATIONS[0].landmark}, {OFFICE_LOCATIONS[0].city}</span></span>
+                  <span><strong className="block text-sm text-[#252223]">Head Office</strong><span className="mt-1 block text-xs leading-relaxed text-[#626061]">{OFFICE_LOCATIONS[0].address}</span><button type="button" onClick={() => void navigator.clipboard.writeText(OFFICE_LOCATIONS[0].address)} className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-[#527C32] transition-colors hover:text-[#07A757]"><Copy className="h-3.5 w-3.5" />Copy address</button></span>
                 </div>
               </div>
             </section>
@@ -188,17 +189,17 @@ export const ContactSection: React.FC = () => {
           <div className="mb-7 max-w-2xl">
             <div className="mb-3 flex items-center gap-2"><span className="h-0.5 w-8 bg-[#8ABE4B]" /><span className="text-xs font-bold uppercase tracking-widest text-[#07A757]">Visit Our Offices</span></div>
             <h2 className="text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">Our Office Locations</h2>
-            <p className="mt-2 text-sm text-[#626061]">Visit our Head Office or Lagos Island branch.</p>
+            <p className="mt-2 text-sm text-[#626061]">Visit our Head Office in Onikan, Lagos.</p>
           </div>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4">
             {OFFICE_LOCATIONS.map((office) => (
               <article key={office.id} className="rounded-2xl border border-[#E5E9E1] bg-[#F7F8F6] p-5 sm:p-6">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#6E9D35]">{office.type}</span>
                 <h3 className="mt-2 text-lg font-bold text-[#252223]">{office.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#626061]">{office.address}, {office.landmark}, {office.city}</p>
+                <p className="mt-2 text-sm leading-relaxed text-[#626061]">{office.address}</p>
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[#E5E9E1] pt-4">
                   <a href={`tel:${office.phones[0].replace(/[^+\d]/g, '')}`} className="text-xs font-semibold text-[#252223] hover:text-[#07A757]">{office.phones[0]}</a>
-                  <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${office.address}, ${office.landmark}, ${office.city}`)}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-bold text-[#252223] hover:text-[#07A757]">Get directions <ArrowUpRight className="h-3.5 w-3.5" /></a>
+                  <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(office.address)}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-bold text-[#252223] hover:text-[#07A757]">Get directions <ArrowUpRight className="h-3.5 w-3.5" /></a>
                 </div>
               </article>
             ))}
@@ -215,20 +216,19 @@ export const ContactSection: React.FC = () => {
                 allowFullScreen
               />
             </div>
-            <div className="rounded-2xl border border-[#E5E9E1] bg-[#F2F4F6] p-5 sm:p-7 lg:col-span-5">
+            <div className="rounded-2xl border border-[#E5E9E1] bg-[#F2F4F6] p-6 sm:p-8 lg:col-span-5 lg:flex lg:flex-col lg:justify-center">
               <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#6E9D35]"><Clock3 className="h-5 w-5" /></span>
-                <div><h3 className="text-lg font-bold text-[#252223]">Office Hours</h3><p className="text-xs text-[#626061]">Hours vary by office location.</p></div>
-              </div>
-              <div className="mt-5 space-y-4">
-                {OFFICE_LOCATIONS.map((office) => (
-                  <div key={office.id} className="border-t border-[#DDE2E5] pt-4">
-                    <h4 className="text-sm font-bold text-[#252223]">{office.type}</h4>
-                    <p className="mt-1 text-sm leading-relaxed text-[#626061]">{office.hours}</p>
-                  </div>
-                ))}
-              </div>
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#6E9D35]"><Clock3 className="h-5 w-5" /></span>
+                <div>
+                  <h3 className="text-lg font-bold text-[#252223] sm:text-xl">Head Office – Opening Hours</h3>
+                  <p className="mt-1 text-xs text-[#626061]">Our regular business hours</p>
                 </div>
+              </div>
+              <div className="mt-6 rounded-xl border border-[#DDE2E5] bg-white p-5 sm:p-6">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#6E9D35]">Monday – Friday</p>
+                <p className="mt-2 text-2xl font-bold tracking-tight text-[#252223] sm:text-3xl">8:00 AM – 6:00 PM</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
