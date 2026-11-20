@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {
   ArrowUpRight,
-  Building2,
   CheckCircle2,
+  ChartNoAxesCombined,
   Clock3,
-  Handshake,
   Layers3,
   Mail,
+  MessagesSquare,
   MapPin,
   Phone,
   Send,
@@ -19,7 +19,7 @@ const inquiryServices = [
     id: 'property-valuation',
     title: 'Property Valuation',
     description: 'Request a professional valuation of residential, commercial or land assets.',
-    Icon: Building2,
+    Icon: ChartNoAxesCombined,
   },
   {
     id: 'property-facility-management',
@@ -31,7 +31,7 @@ const inquiryServices = [
     id: 'real-estate-consultancy',
     title: 'Realty Advisory',
     description: 'Get guidance on real estate decisions, transactions and opportunities.',
-    Icon: Handshake,
+    Icon: MessagesSquare,
   },
 ];
 
@@ -228,8 +228,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <p className="mt-5 border-t border-[#DDE2E5] pt-4 text-xs text-[#626061]">All times are West Africa Time (WAT).</p>
-            </div>
+                </div>
           </div>
         </div>
       </section>
