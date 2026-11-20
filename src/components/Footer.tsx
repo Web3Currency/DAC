@@ -14,22 +14,14 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
           <div className="lg:col-span-4 space-y-4">
-            {/* Logo first, followed by the firm name and its designation. */}
-            <div className="flex items-center gap-3">
+            {/* Full DAC logo is stacked vertically, matching the supplied brand artwork. */}
+            <div className="flex w-full flex-col items-start gap-3">
               <img
                 src={siteMedia.footer_logo || siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
-                alt="Demola Adetola & Co. Logo"
-                className="h-16 w-auto max-w-[140px] shrink-0 object-contain"
+                alt="Demola Adetola & Co. — Chartered Estate Surveyors + Valuers"
+                className="h-auto w-full max-w-[300px] object-contain object-left"
                 loading="lazy"
               />
-              <div className="w-max min-w-0">
-                <div className="text-[17px] font-bold tracking-tight leading-tight text-white whitespace-nowrap">
-                  Demola Adetola &amp; Co.
-                </div>
-                <div className="mt-0.5 w-full whitespace-nowrap text-[10.5px] font-medium leading-tight tracking-[-0.035em] text-[#8ABE4B]">
-                  Chartered Estate Surveyors+Valuers
-                </div>
-              </div>
             </div>
 
             <p className="text-xs text-[#E5E9E1]/75 leading-relaxed pr-4">
@@ -91,14 +83,33 @@ export const Footer: React.FC = () => {
               <div>
                 <span className="text-[#E5E9E1]/75">{OFFICE_LOCATIONS[0].address}</span>
               </div>
-              <div className="pt-2 border-t border-[#383435] space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-[#8ABE4B] shrink-0" />
-                  <a href={`tel:${COMPANY_INFO.primaryPhone}`} className="hover:text-[#8ABE4B] text-white font-medium">{COMPANY_INFO.primaryPhone}</a>
+              <div className="pt-2 border-t border-[#383435] space-y-3">
+                <div>
+                  <div className="mb-1 text-[10px] font-bold uppercase tracking-wider text-[#8ABE4B]">Telephone</div>
+                  {COMPANY_INFO.telephoneContacts.map((contact) => (
+                    <div key={contact.href} className="flex items-center gap-2 py-0.5">
+                      <Phone className="w-3.5 h-3.5 text-[#8ABE4B] shrink-0" />
+                      <a href={contact.href} className="hover:text-[#8ABE4B] text-white font-medium">{contact.label}</a>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-[#8ABE4B] shrink-0" />
-                  <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-[#8ABE4B] text-white font-medium">{COMPANY_INFO.email}</a>
+                <div>
+                  <div className="mb-1 text-[10px] font-bold uppercase tracking-wider text-[#8ABE4B]">WhatsApp</div>
+                  {COMPANY_INFO.whatsappContacts.map((contact) => (
+                    <div key={contact.href} className="flex items-center gap-2 py-0.5">
+                      <Phone className="w-3.5 h-3.5 text-[#8ABE4B] shrink-0" />
+                      <a href={contact.href} target="_blank" rel="noopener noreferrer" className="hover:text-[#8ABE4B] text-white font-medium">{contact.label}</a>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <div className="mb-1 text-[10px] font-bold uppercase tracking-wider text-[#8ABE4B]">Email</div>
+                  {COMPANY_INFO.emailContacts.map((email) => (
+                    <div key={email} className="flex items-center gap-2 py-0.5">
+                      <Mail className="w-3.5 h-3.5 text-[#8ABE4B] shrink-0" />
+                      <a href={`mailto:${email}`} className="break-all hover:text-[#8ABE4B] text-white font-medium">{email}</a>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
