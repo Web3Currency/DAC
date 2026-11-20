@@ -11,20 +11,20 @@ export const AddressSection: React.FC = () => (
           <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">Visit Our Offices</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">Our Address</h2>
-        <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#626061]">Connect with our team or visit one of our Lagos Island offices.</p>
+        <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#626061]">Connect with our team or visit our Head Office in Onikan, Lagos.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-7">
+      <div className="grid grid-cols-1 gap-5 lg:gap-7">
         {OFFICE_LOCATIONS.map((loc) => (
           <article key={loc.id} className="rounded-2xl bg-[#F5F8F2] p-6 sm:p-8 border border-[#E5E9E1]">
             <div className="flex items-center justify-between gap-3 mb-5">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#07A757]">{loc.type}</span>
-              <span className="text-xs font-semibold text-[#626061]">{loc.city}</span>
+              <span className="text-xs font-semibold text-[#626061]">Lagos, Nigeria</span>
             </div>
             <h3 className="text-xl font-bold text-[#252223] mb-4">{loc.name}</h3>
             <div className="space-y-4 text-sm text-[#626061]">
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
-                <span>{loc.address} ({loc.landmark})</span>
+                <span>{loc.address}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#07A757] shrink-0" />
