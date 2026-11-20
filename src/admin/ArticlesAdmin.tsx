@@ -10,7 +10,12 @@ type Article = {
   status: 'draft' | 'published' | 'archived'; published_at: string | null;
   created_at: string; updated_at: string;
 };
-const empty = { title: '', slug: '', excerpt: '', content: '', category: 'Expert Perspectives', cover_image_url: '', cover_image_alt: '', status: 'draft' as const };
+type ArticleStatus = Article['status'];
+type ArticleForm = {
+  title: string; slug: string; excerpt: string; content: string; category: string;
+  cover_image_url: string; cover_image_alt: string; status: ArticleStatus;
+};
+const empty: ArticleForm = { title: '', slug: '', excerpt: '', content: '', category: 'Expert Perspectives', cover_image_url: '', cover_image_alt: '', status: 'draft' };
 const slugify = (value: string) => value.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 export default function ArticlesAdmin({ user }: { user: User }) {
