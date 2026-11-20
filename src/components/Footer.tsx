@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
           <div className="lg:col-span-4 space-y-4">
             {/* Place the brand mark above the firm name and professional designation. */}
-            <div className="flex w-full flex-col items-center gap-2 text-center sm:items-start sm:text-left">
+            <div className="flex w-full flex-col items-center gap-2 text-center">
               <img
                 src={siteMedia.footer_logo || siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
                 alt="Demola Adetola & Co. Logo"
