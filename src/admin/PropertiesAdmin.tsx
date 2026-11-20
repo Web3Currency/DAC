@@ -11,6 +11,7 @@ type PropertyRecord = {
   category: string;
   listing_status: string;
   location: string | null;
+  portfolio_location: string | null;
   price_label: string | null;
   is_published: boolean;
   is_featured: boolean;
@@ -28,7 +29,9 @@ type PropertyRecord = {
   title_tenure: string | null;
 };
 
-const categories = ['Residential', 'Commercial', 'Industrial', 'Development', 'Land'];
+const saleCategories = ['Residential', 'Commercial', 'Industrial', 'Vacant Land'];
+const lettingCategories = ['Residential', 'Commercial', 'Warehouses'];
+const portfolioLocations = ['Lagos Mainland', 'Ikoyi', 'Victoria Island', 'Lekki', 'Lagos Island'];
 
 function slugify(value: string) {
   return value.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -40,6 +43,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
   const [listingType, setListingType] = useState<'sale' | 'letting'>('sale');
   const [category, setCategory] = useState('Residential');
   const [location, setLocation] = useState('');
+  const [portfolioLocation, setPortfolioLocation] = useState('Lagos Mainland');
   const [city, setCity] = useState('');
   const [state, setState] = useState('Lagos');
   const [price, setPrice] = useState('');
@@ -57,7 +61,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
 
   async function refresh() {
     const { data, error: queryError } = await supabase.from('properties')
-      .select('id,title,listing_type,category,listing_status,location,city,state,price_amount,price_label,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,title_tenure,is_published,is_featured,created_at')
+      .select('id,title,listing_type,category,listing_status,location,portfolio_location,city,state,price_amount,price_label,summary,description,area_value,area_unit,bedrooms,bathrooms,parking_spaces,title_tenure,is_published,is_featured,created_at')
       .order('created_at', { ascending: false });
     if (queryError) setError('Could not load property records: ' + queryError.message);
     else setProperties((data || []) as PropertyRecord[]);
@@ -92,6 +96,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
       category,
       listing_status: listingStatus,
       location,
+      portfolio_location: portfolioLocation,
       city: city || null,
       state: state || null,
       country: 'Nigeria',
@@ -140,7 +145,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
         if (imageError) throw new Error('Property saved as draft, but its photographs could not be linked: ' + imageError.message);
       }
       setMessage(editingId ? 'Property details updated successfully.' : 'Property saved as an unpublished draft with ' + photos.length + ' photographs. Review it below and publish when the details are verified.');
-      setTitle(''); setLocation(''); setCity(''); setPrice(''); setPriceLabel('');
+      setTitle(''); setLocation(''); setPortfolioLocation('Lagos Mainland'); setCity(''); setPrice(''); setPriceLabel('');
       setDescription(''); setArea(''); setPhotos([]); setEditingId(null); setListingStatus('available');
       await refresh();
     } catch (uploadError) {
@@ -157,6 +162,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
     setListingType(item.listing_type);
     setCategory(item.category);
     setLocation(item.location || '');
+    setPortfolioLocation(item.portfolio_location || 'Lagos Mainland');
     setCity(item.city || '');
     setState(item.state || '');
     setPrice(item.price_amount == null ? '' : String(item.price_amount));
@@ -249,7 +255,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
         return;
       }
       if ((count || 0) >= 2) {
-        setError('You can feature a maximum of two ' + (item.listing_type === 'sale' ? 'For Sale' : 'For Letting') + ' properties. Remove a star from another listing in this category first.');
+        setError('You can feature a maximum of two ' + (item.listing_type === 'sale' ? 'For Sale' : 'To Let') + ' properties. Remove a star from another listing in this category first.');
         return;
       }
     }
@@ -268,7 +274,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
     <section className="rounded-2xl bg-white border border-[#E5E9E1] p-5 sm:p-7 space-y-6">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-xl bg-[#F5F8F2] text-[#07A757] grid place-items-center"><ImageIcon className="w-5 h-5" /></div>
-        <div><h2 className="font-bold text-[#252223]">Property listings</h2><p className="text-xs text-[#626061] mt-1">Create and manage listings. Star up to two sale properties and two letting properties for the homepage.</p></div>
+        <div><h2 className="font-bold text-[#252223]">Property listings</h2><p className="text-xs text-[#626061] mt-1">Create and manage listings. Star up to two For Sale properties and two To Let properties for the homepage.</p></div>
       </div>
       {error && <p role="alert" className="rounded-lg bg-red-50 text-red-700 text-sm p-3 break-words">{error}</p>}
       {message && <p role="status" className="rounded-lg bg-emerald-50 text-emerald-800 text-sm p-3">{message}</p>}
@@ -276,8 +282,9 @@ export default function PropertiesAdmin({ user }: { user: User }) {
         {editingId && <div className="sm:col-span-2 flex items-center justify-between rounded-lg bg-[#F5F8F2] p-3"><p className="text-sm font-semibold text-[#252223]">Editing property listing</p><button type="button" onClick={cancelEditing} className="inline-flex items-center gap-1 text-xs font-semibold"><X className="w-4 h-4" /> Cancel</button></div>}
         <label className="sm:col-span-2 text-xs font-semibold text-[#252223]">Property title<input required value={title} onChange={e => setTitle(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
         <label className="text-xs font-semibold text-[#252223]">Listing status<select value={listingStatus} onChange={e => setListingStatus(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] bg-white px-3 py-2.5 text-sm font-normal"><option value="available">Available</option><option value="under_offer">Under offer</option><option value="sold">Sold</option><option value="let">Let</option><option value="off_market">Off market</option></select></label>
-        <label className="text-xs font-semibold text-[#252223]">Listing type<select value={listingType} onChange={e => setListingType(e.target.value as 'sale' | 'letting')} className="mt-1 w-full rounded-lg border border-[#D9DED5] bg-white px-3 py-2.5 text-sm font-normal"><option value="sale">For sale</option><option value="letting">For letting</option></select></label>
-        <label className="text-xs font-semibold text-[#252223]">Category<select value={category} onChange={e => setCategory(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] bg-white px-3 py-2.5 text-sm font-normal">{categories.map(item => <option key={item}>{item}</option>)}</select></label>
+        <label className="text-xs font-semibold text-[#252223]">Listing type<select value={listingType} onChange={e => setListingType(e.target.value as 'sale' | 'letting')} className="mt-1 w-full rounded-lg border border-[#D9DED5] bg-white px-3 py-2.5 text-sm font-normal"><option value="sale">For sale</option><option value="letting">To Let</option></select></label>
+        <label className="text-xs font-semibold text-[#252223]">Category<select value={category} onChange={e => setCategory(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] bg-white px-3 py-2.5 text-sm font-normal">{(listingType === "sale" ? saleCategories : lettingCategories).map(item => <option key={item}>{item}</option>)}</select></label>
+        <label className="text-xs font-semibold text-[#252223]">Portfolio location<select required value={portfolioLocation} onChange={e => setPortfolioLocation(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] bg-white px-3 py-2.5 text-sm font-normal">{portfolioLocations.map(item => <option key={item}>{item}</option>)}</select></label>
         <label className="sm:col-span-2 text-xs font-semibold text-[#252223]">Property location / address<input required value={location} onChange={e => setLocation(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
         <label className="text-xs font-semibold text-[#252223]">City<input value={city} onChange={e => setCity(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
         <label className="text-xs font-semibold text-[#252223]">State<input value={state} onChange={e => setState(e.target.value)} className="mt-1 w-full rounded-lg border border-[#D9DED5] px-3 py-2.5 text-sm font-normal" /></label>
@@ -299,7 +306,7 @@ export default function PropertiesAdmin({ user }: { user: User }) {
         <div className="flex items-center justify-between"><h3 className="font-bold text-[#252223]">Saved properties</h3><button onClick={() => void refresh()} className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07A757]"><RefreshCw className="w-3.5 h-3.5" /> Refresh</button></div>
         {properties.length === 0 ? <p className="text-sm text-[#777]">No property records yet.</p> : properties.map(item => (
           <div key={item.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-[#E5E9E1] p-3">
-            <div><p className="text-sm font-semibold text-[#252223]">{item.title}</p><p className="text-xs text-[#626061]">{item.listing_type === 'sale' ? 'For sale' : 'For letting'} · {item.category} · {item.location || 'Location pending'}</p><p className="text-[10px] text-[#777] mt-1">{item.is_published ? 'Published' : 'Draft / unpublished'} · {item.listing_status === 'available' ? 'Available' : item.listing_status.replace('_', ' ')}{item.is_featured ? ' · Featured on homepage' : ''}</p></div>
+            <div><p className="text-sm font-semibold text-[#252223]">{item.title}</p><p className="text-xs text-[#626061]">{item.listing_type === 'sale' ? 'For Sale' : 'To Let'} · {item.category} · {item.portfolio_location || 'Area pending'} · {item.location || 'Address pending'}</p><p className="text-[10px] text-[#777] mt-1">{item.is_published ? 'Published' : 'Draft / unpublished'} · {item.listing_status === 'available' ? 'Available' : item.listing_status.replace('_', ' ')}{item.is_featured ? ' · Featured on homepage' : ''}</p></div>
             <div className="flex flex-wrap items-center gap-2">
               <button onClick={() => void toggleFeatured(item)} aria-label={item.is_featured ? 'Remove from homepage features' : 'Feature on homepage'} title={item.is_featured ? 'Remove from homepage features' : 'Feature on homepage'} className={`inline-flex items-center justify-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold ${item.is_featured ? 'border-[#8ABE4B] bg-[#F5F8F2] text-[#252223]' : 'border-[#D9DED5] text-[#626061]'}`}><Star className={`w-3.5 h-3.5 ${item.is_featured ? 'fill-[#8ABE4B] text-[#07A757]' : ''}`} /> {item.is_featured ? 'Featured' : 'Feature'}</button>
               <button onClick={() => startEditing(item)} className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-[#D9DED5] px-3 py-2 text-xs font-semibold text-[#252223]"><Pencil className="w-3.5 h-3.5" /> Edit</button>
