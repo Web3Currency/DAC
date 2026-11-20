@@ -12,8 +12,8 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-[#252223] text-[#E5E9E1]/80 text-xs border-t border-[#383435]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
-          <div className="lg:col-span-4 space-y-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 mb-12">
+          <div className="col-span-2 md:col-span-1 lg:col-span-4 space-y-4">
             {/* Place the brand mark above the firm name and professional designation. */}
             <div className="flex w-full flex-col items-center gap-2 text-center">
               <img
@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
               <div>Serving individuals, businesses and investors</div>
             </div>
 
-            <div className="flex items-center gap-3 pt-2" aria-label="DAC social media profiles">
+            <div className="flex items-center justify-between gap-2 pt-2" aria-label="DAC social media and WhatsApp">
               <a href="https://x.com/demolaadetola" target="_blank" rel="noopener noreferrer" aria-label="DAC on X" className="text-[#E5E9E1]/80 transition-colors hover:text-[#8ABE4B]">
                 <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true"><path d="M18.9 2H22l-6.78 7.75L23.2 22h-6.25l-4.9-7.1L5.83 22H2.7l7.25-8.3L2.3 2h6.4l4.43 6.56L18.9 2Zm-1.1 18h1.73L7.76 3.9H5.9L17.8 20Z"/></svg>
               </a>
@@ -54,15 +54,13 @@ export const Footer: React.FC = () => {
               <a href="https://www.instagram.com/dacngrealestate/" target="_blank" rel="noopener noreferrer" aria-label="DAC on Instagram" className="text-[#E5E9E1]/80 transition-colors hover:text-[#8ABE4B]">
                 <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
               </a>
-            </div>
-
-            <a href="https://whatsapp.com/channel/0029VbDPr996buMKmc70fd46" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 w-fit items-center gap-2 rounded-lg border border-[#8ABE4B]/60 px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider text-[#D6E8BD] transition-colors hover:border-[#8ABE4B] hover:bg-[#8ABE4B] hover:text-[#252223]">
+              <a href="https://whatsapp.com/channel/0029VbDPr996buMKmc70fd46" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 w-fit shrink-0 items-center gap-1.5 rounded-lg border border-[#8ABE4B]/60 px-2.5 py-2 text-[9px] font-bold uppercase tracking-wide text-[#D6E8BD] transition-colors hover:border-[#8ABE4B] hover:bg-[#8ABE4B] hover:text-[#252223]">
               <svg viewBox="0 0 32 32" className="h-4 w-4 fill-current" aria-hidden="true"><path d="M16.02 3.2A12.65 12.65 0 0 0 5.16 22.35L3.4 28.8l6.6-1.73A12.65 12.65 0 1 0 16.02 3.2Zm0 23.02c-1.94 0-3.84-.52-5.5-1.5l-.4-.24-3.92 1.03 1.05-3.82-.26-.42a10.34 10.34 0 1 1 9.03 4.95Zm5.67-7.74c-.31-.16-1.84-.91-2.13-1.02-.29-.1-.5-.16-.71.16-.21.31-.81 1.02-.99 1.23-.18.21-.37.24-.68.08-.31-.16-1.32-.49-2.52-1.56-.93-.83-1.56-1.85-1.74-2.16-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.25-.61-.51-.53-.71-.54h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.6s1.13 3.01 1.29 3.22c.16.21 2.22 3.39 5.37 4.75.75.32 1.33.51 1.79.65.75.24 1.44.2 1.98.12.6-.09 1.84-.75 2.1-1.48.26-.73.26-1.35.18-1.48-.08-.13-.29-.21-.6-.37Z"/></svg>
               Follow Our WhatsApp Channel
-            </a>
+              </a>
           </div>
 
-          <div className="lg:col-span-2 space-y-3">
+          <div className="col-span-1 lg:col-span-2 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">Navigation</h4>
             <ul className="space-y-2">
               <li><a href="/" className="hover:text-[#8ABE4B] transition-colors">Home</a></li>
@@ -74,7 +72,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div className="lg:col-span-3 space-y-3">
+          <div className="col-span-1 text-right lg:col-span-3 lg:text-left space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">Core Practice Areas</h4>
             <ul className="space-y-1.5 text-[11px]">
               {CORE_SERVICES.map((s) => (
@@ -85,7 +83,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div className="lg:col-span-3 space-y-3">
+          <div className="col-span-2 md:col-span-1 lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">Head Office</h4>
             <div className="space-y-3 text-[11px]">
               <div>
@@ -124,9 +122,12 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-[#383435] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#E5E9E1]/60">
-          <div>Copyright © 2026 Demola Adetola &amp; Co. All rights reserved.</div>
-          <button onClick={scrollToTop} className="hover:text-[#8ABE4B] flex items-center gap-1 transition-colors text-[#E5E9E1]/80">
+        <div className="pt-4 border-t border-[#383435] flex flex-row items-center justify-between gap-3 text-[11px] text-[#E5E9E1]/60">
+          <div className="flex flex-col gap-1">
+            <span>Copyright © 2026 Demola Adetola &amp; Co. All rights reserved.</span>
+            <a href="https://web3currency.online" target="_blank" rel="noopener noreferrer" className="md:hidden w-fit font-semibold text-[#8ABE4B] transition-colors hover:text-white">Built by W3C</a>
+          </div>
+          <button onClick={scrollToTop} className="self-end hover:text-[#8ABE4B] flex items-center gap-1 transition-colors text-[#E5E9E1]/80">
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
           </button>
