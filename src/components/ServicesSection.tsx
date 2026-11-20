@@ -5,7 +5,13 @@ import { useSiteMedia } from '../lib/useSiteMedia';
 
 export const ServicesSection: React.FC = () => {
   const siteMedia = useSiteMedia();
-  const [activeServiceId, setActiveServiceId] = useState(CORE_SERVICES[0].id);
+  const [activeServiceId, setActiveServiceId] = useState(() => {
+    if (typeof window === 'undefined') return CORE_SERVICES[0].id;
+    const requestedServiceId = new URLSearchParams(window.location.search).get('service');
+    return CORE_SERVICES.some((service) => service.id === requestedServiceId)
+      ? requestedServiceId as string
+      : CORE_SERVICES[0].id;
+  });
   const tabListRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const activeService = CORE_SERVICES.find((service) => service.id === activeServiceId) ?? CORE_SERVICES[0];
