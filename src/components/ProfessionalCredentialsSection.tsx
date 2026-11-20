@@ -26,14 +26,16 @@ export const ProfessionalCredentialsSection: React.FC = () => {
 
           <div className="grid grid-cols-2 items-center gap-x-5 gap-y-6 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-8 lg:grid-cols-5 lg:gap-x-5">
             {affiliations.map((item) => (
-              <div key={item.name} className="flex h-24 items-center justify-center sm:h-28 lg:h-24">
-                <img
-                  src={item.logo}
-                  alt={item.fullName}
-                  title={item.fullName}
-                  loading="lazy"
-                  className={`max-h-full w-full max-w-[150px] object-contain transition duration-300 ease-out sm:max-w-[170px] lg:max-w-[145px] ${item.name === 'RICS' ? 'grayscale brightness-0 hover:brightness-0 hover:grayscale' : 'grayscale hover:grayscale-0'} ${item.name === 'NIESV' ? 'mix-blend-multiply' : ''}`}
-                />
+              <div key={item.name} className="flex h-20 w-full items-center justify-center sm:h-24 lg:h-20">
+                <div className="flex h-[60px] w-full max-w-[136px] items-center justify-center">
+                  <img
+                    src={item.logo}
+                    alt={item.fullName}
+                    title={item.fullName}
+                    loading="lazy"
+                    className={`h-full w-full object-contain transition duration-300 ease-out ${item.name === 'RICS' ? 'grayscale brightness-0 hover:brightness-0 hover:grayscale' : 'grayscale hover:grayscale-0'} ${item.name === 'NIESV' ? 'mix-blend-multiply' : ''}`}
+                  />
+                </div>
               </div>
             ))}
           </div>
