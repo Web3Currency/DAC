@@ -24,7 +24,7 @@ import { PropertyDetailPage } from './components/PropertyModal';
 import { ScrollAnimations } from './components/ScrollAnimations';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { ExpertPerspectivesSection } from './components/ExpertPerspectivesSection';
-import { ClientTestimonialsSection } from './components/ClientTestimonialsSection';
+import { ProfessionalApproachSection } from './components/ProfessionalApproachSection';
 import { FinalContactCTA } from './components/FinalContactCTA';
 import { PropertyItem } from './types';
 
@@ -94,8 +94,8 @@ export default function App() {
             <GeographicalReachSection />
             <WhyChooseUs onOpenConsultation={() => handleOpenConsultation()} />
             <IndustriesSection />
+            <ProfessionalApproachSection />
             <ExpertPerspectivesSection />
-            <ClientTestimonialsSection />
             <FinalContactCTA />
           </>
         )}
