@@ -123,7 +123,7 @@ The HTML already references these paths. Keep the sitemap updated when public in
 Run before every release:
 
 ```bash
-npm ci
+npm install
 npm run lint
 npm run build
 ```
