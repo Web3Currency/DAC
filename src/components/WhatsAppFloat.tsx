@@ -49,6 +49,18 @@ export const WhatsAppFloat: React.FC = () => {
 
   useEffect(() => {
     if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const previousTouchAction = document.body.style.touchAction;
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.body.style.touchAction = previousTouchAction;
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setIsOpen(false);
     };
@@ -78,11 +90,13 @@ export const WhatsAppFloat: React.FC = () => {
   return (
     <>
       {isOpen && (
+        <>
+        <div className="fixed inset-0 z-[80] bg-[#171617]/55 backdrop-blur-[2px]" aria-hidden="true" />
         <section
           className="fixed bottom-24 left-4 z-[90] flex w-[min(390px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-[#E5E9E1] bg-white shadow-[0_22px_70px_rgba(37,34,35,0.22)] sm:bottom-24 sm:left-5"
           style={{ height: 'min(650px, calc(100dvh - 7.5rem))' }}
           role="dialog"
-          aria-modal="false"
+          aria-modal="true"
           aria-label="Demola Adetola & Co. WhatsApp enquiry assistant"
         >
           <div className="flex shrink-0 items-center gap-3 bg-[#176B4A] px-4 py-3.5 text-white">
@@ -95,7 +109,7 @@ export const WhatsAppFloat: React.FC = () => {
             </div>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-white">Demola Adetola &amp; Co.</p>
-              <p className="mt-0.5 text-[11px] text-white/80">Professional Real Estate Enquiries</p>
+              <p className="mt-0.5 text-[11px] text-white/80">Chartered Estate Surveyors and Valuers</p>
             </div>
             <button
               type="button"
@@ -183,14 +197,17 @@ export const WhatsAppFloat: React.FC = () => {
 
           </div>
         </section>
+        </>
       )}
 
       <button
         type="button"
         onClick={() => setIsOpen((current) => !current)}
-        className="prototype-whatsapp-enter fixed bottom-6 left-5 z-[95] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#25D366]/30"
+        className="prototype-whatsapp-enter fixed bottom-6 left-5 z-[75] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#25D366]/30"
         aria-label={isOpen ? 'Close WhatsApp enquiry assistant' : 'Open WhatsApp enquiry assistant'}
         aria-expanded={isOpen}
+        aria-hidden={isOpen}
+        tabIndex={isOpen ? -1 : 0}
       >
         <span className="prototype-whatsapp-pulse pointer-events-none absolute inset-0 rounded-full" />
         <svg viewBox="0 0 32 32" className="relative z-10 h-8 w-8 fill-current" aria-hidden="true">
