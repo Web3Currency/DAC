@@ -69,8 +69,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
   const homepageProperties = ['sale', 'letting'].flatMap((type) =>
     properties
-      .filter((property: any) => property.listingType === type && property.listingStatus === 'available')
-      .sort((a: any, b: any) => Number(b.isFeatured) - Number(a.isFeatured) || new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .filter((property: any) => property.listingType === type && property.listingStatus === 'available' && property.isFeatured)
       .slice(0, 2)
   );
   return (
@@ -103,6 +102,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           <div className="space-y-8">
             {loading && <p className="py-10 text-center text-sm text-[#626061]">Loading available properties…</p>}
             {!loading && loadError && <p className="py-10 text-center text-sm text-[#626061]">{loadError}</p>}
+            {!loading && !loadError && homepageProperties.length === 0 && <p className="py-10 text-center text-sm text-[#626061]">Featured property selections will appear here.</p>}
             {!loading && !loadError && ['sale', 'letting'].map((type) => {
               const items = homepageProperties.filter((property: any) => property.listingType === type);
               if (!items.length) return null;
