@@ -14,14 +14,22 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
           <div className="lg:col-span-4 space-y-4">
-            {/* Full DAC logo is stacked vertically, matching the supplied brand artwork. */}
-            <div className="flex w-full flex-col items-start gap-3">
+            {/* Place the brand mark above the firm name and professional designation. */}
+            <div className="flex w-full flex-col items-center gap-2 text-center sm:items-start sm:text-left">
               <img
                 src={siteMedia.footer_logo || siteMedia.header_logo || "https://i.imgur.com/qczlHrn.png"}
-                alt="Demola Adetola & Co. — Chartered Estate Surveyors + Valuers"
-                className="h-auto w-full max-w-[300px] object-contain object-left"
+                alt="Demola Adetola & Co. Logo"
+                className="h-16 w-auto max-w-[140px] object-contain"
                 loading="lazy"
               />
+              <div className="min-w-0">
+                <div className="text-[17px] font-bold tracking-tight leading-tight text-white">
+                  Demola Adetola &amp; Co.
+                </div>
+                <div className="mt-0.5 text-[10.5px] font-medium leading-tight tracking-[-0.02em] text-[#8ABE4B]">
+                  Chartered Estate Surveyors + Valuers
+                </div>
+              </div>
             </div>
 
             <p className="text-xs text-[#E5E9E1]/75 leading-relaxed pr-4">
