@@ -8,7 +8,7 @@ export const AddressSection: React.FC = () => (
       <div className="max-w-2xl mb-10">
         <div className="flex items-center gap-2 mb-3">
           <span className="w-8 h-0.5 bg-[#8ABE4B]" />
-          <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">Visit Our Offices</span>
+          <span className="text-xs font-bold tracking-widest uppercase text-[#07A757]">Visit Our Head Office</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#252223]">Our Address</h2>
         <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#626061]">Connect with our team or visit our Head Office in Onikan, Lagos.</p>
