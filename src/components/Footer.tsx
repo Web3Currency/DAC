@@ -32,11 +32,11 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-xs text-[#E5E9E1]/75 leading-relaxed pr-4">
+            <p className="text-center text-xs text-[#E5E9E1]/75 leading-relaxed px-2 lg:px-0 lg:pr-4 lg:text-left">
               Demola Adetola &amp; Co. is a firm of Chartered Estate Surveyors and Valuers providing professional real estate services across Nigeria. Conceived in 1992 and began operations in July 1993.
             </p>
 
-            <div className="flex items-center gap-3 pt-2" aria-label="DAC social media">
+            <div className="flex items-center justify-center gap-3 pt-2 lg:justify-start" aria-label="DAC social media">
               <div className="flex items-center gap-3">
               <a href="https://x.com/demolaadetola" target="_blank" rel="noopener noreferrer" aria-label="DAC on X" className="text-[#E5E9E1]/80 transition-colors hover:text-[#8ABE4B]">
                 <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true"><path d="M18.9 2H22l-6.78 7.75L23.2 22h-6.25l-4.9-7.1L5.83 22H2.7l7.25-8.3L2.3 2h6.4l4.43 6.56L18.9 2Zm-1.1 18h1.73L7.76 3.9H5.9L17.8 20Z"/></svg>
@@ -107,11 +107,10 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-[#383435] grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-[11px] text-[#E5E9E1]/60">
+        <div className="pt-4 border-t border-[#383435] grid grid-cols-[1fr_auto] items-center gap-3 text-[11px] text-[#E5E9E1]/60">
           <div className="flex flex-col gap-1">
             <span>Copyright © 2026 Demola Adetola &amp; Co. All rights reserved.</span>
           </div>
-          <a href="https://web3currency.online" target="_blank" rel="noopener noreferrer" className="w-full text-center font-semibold text-purple-400 transition-colors hover:text-purple-300">Built by W3C</a>
           <button onClick={scrollToTop} className="justify-self-end hover:text-[#8ABE4B] flex items-center gap-1 transition-colors text-[#E5E9E1]/80">
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
