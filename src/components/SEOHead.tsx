@@ -31,6 +31,7 @@ export function updatePageMetadata(title: string, description: string, pathname:
   const canonicalUrl = `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
   document.title = title;
   setMeta('meta[name="description"]', 'name', 'description', description);
+  setMeta('meta[name="robots"]', 'name', 'robots', pathname.startsWith('/admin') ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
   setMeta('meta[property="og:title"]', 'property', 'og:title', title);
   setMeta('meta[property="og:description"]', 'property', 'og:description', description);
   setMeta('meta[property="og:url"]', 'property', 'og:url', canonicalUrl);
