@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
 
           <div className="col-span-1 text-right lg:col-span-3 lg:text-left space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">Core Practice Areas</h4>
-            <ul className="space-y-1.5 text-[11px]">
+            <ul className="space-y-2 text-xs lg:space-y-1.5 lg:text-[11px]">
               {CORE_SERVICES.map((s) => (
                 <li key={s.id}>
                   <a href="/services" className="hover:text-[#8ABE4B] transition-colors block line-clamp-1">{s.title}</a>
@@ -120,11 +120,11 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-[#383435] flex flex-row items-center justify-between gap-3 text-[11px] text-[#E5E9E1]/60">
+        <div className="pt-4 border-t border-[#383435] grid grid-cols-3 items-center gap-3 text-[11px] text-[#E5E9E1]/60">
           <div className="flex flex-col gap-1">
             <span>Copyright © 2026 Demola Adetola &amp; Co. All rights reserved.</span>
-            <a href="https://web3currency.online" target="_blank" rel="noopener noreferrer" className="md:hidden w-fit font-semibold text-[#8ABE4B] transition-colors hover:text-white">Built by W3C</a>
           </div>
+          <a href="https://web3currency.online" target="_blank" rel="noopener noreferrer" className="w-full text-center font-semibold text-purple-400 transition-colors hover:text-purple-300">Built by W3C</a>
           <button onClick={scrollToTop} className="self-end hover:text-[#8ABE4B] flex items-center gap-1 transition-colors text-[#E5E9E1]/80">
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
