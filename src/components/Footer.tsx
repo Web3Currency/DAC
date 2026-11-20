@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, Mail, ArrowUp } from 'lucide-react';
-import { COMPANY_INFO, CORE_SERVICES } from '../data/companyData';
+import { COMPANY_INFO, CORE_SERVICES, OFFICE_LOCATIONS } from '../data/companyData';
 import { useSiteMedia } from '../lib/useSiteMedia';
 
 export const Footer: React.FC = () => {
@@ -86,15 +86,10 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">Office Locations</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFFFFF]">Head Office</h4>
             <div className="space-y-3 text-[11px]">
               <div>
-                <span className="text-[#FFFFFF] font-semibold block">Head Office:</span>
-                <span className="text-[#E5E9E1]/75">3A, Force Road (Opposite TBS / Onikan), Lagos Island</span>
-              </div>
-              <div>
-                <span className="text-[#FFFFFF] font-semibold block">Branch Office:</span>
-                <span className="text-[#E5E9E1]/75">37, Campbell Street (2nd Floor, Off Joseph St), Lagos Island</span>
+                <span className="text-[#E5E9E1]/75">{OFFICE_LOCATIONS[0].address}</span>
               </div>
               <div className="pt-2 border-t border-[#383435] space-y-1.5">
                 <div className="flex items-center gap-2">
