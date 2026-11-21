@@ -50,7 +50,15 @@ export default function App() {
     window.location.assign('/contact?' + params.toString() + '#contact');
   };
 
-  if (activePropertyForModal) return <div className="min-h-screen w-full bg-white text-[#252223] antialiased"><PropertyDetailPage property={activePropertyForModal} onClose={() => setActivePropertyForModal(null)} onInquire={handleRequestViewing} /></div>;
+  if (activePropertyForModal) return (
+    <div className="flex min-h-screen w-full flex-col bg-white text-[#252223] antialiased">
+      <div className="flex-1">
+        <PropertyDetailPage property={activePropertyForModal} onClose={() => setActivePropertyForModal(null)} onInquire={handleRequestViewing} />
+      </div>
+      <Footer />
+      <WhatsAppFloat />
+    </div>
+  );
 
   const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   const isInsightsIndex = currentPath === '/insights';
