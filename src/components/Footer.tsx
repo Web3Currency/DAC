@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
           </button>
         </div>
         <div className="border-t border-white/10 pt-5 sm:pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[11px] text-[#E5E9E1]/55">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 text-center sm:text-left">
             <span>Copyright © 2026 Demola Adetola &amp; Co. All rights reserved.</span>
           </div>
           <button onClick={scrollToTop} className="hidden sm:flex hover:text-[#B6D77D] items-center gap-2 transition-colors text-[#E5E9E1]/75">
