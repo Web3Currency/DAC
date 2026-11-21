@@ -121,11 +121,17 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
+        <div className="flex justify-end pb-3 sm:hidden">
+          <button onClick={scrollToTop} className="hover:text-[#B6D77D] flex items-center gap-2 transition-colors text-[#E5E9E1]/75 text-[11px]">
+            <span>Back to Top</span>
+            <ArrowUp className="w-3.5 h-3.5" />
+          </button>
+        </div>
         <div className="border-t border-white/10 pt-5 sm:pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[11px] text-[#E5E9E1]/55">
           <div className="flex flex-col gap-1">
             <span>Copyright © 2026 Demola Adetola &amp; Co. All rights reserved.</span>
           </div>
-          <button onClick={scrollToTop} className="self-start sm:self-auto hover:text-[#B6D77D] flex items-center gap-2 transition-colors text-[#E5E9E1]/75">
+          <button onClick={scrollToTop} className="hidden sm:flex hover:text-[#B6D77D] items-center gap-2 transition-colors text-[#E5E9E1]/75">
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
           </button>
