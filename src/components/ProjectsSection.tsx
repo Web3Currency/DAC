@@ -119,11 +119,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       <div key={prop.id} className="w-[84vw] max-w-[390px] shrink-0 snap-start md:w-auto md:max-w-none md:min-w-0">
                         <div className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-2xl">
                           <div className="relative h-56 overflow-hidden bg-[#F5F8F2] sm:h-64">
-                            {prop.image ? <img src={prop.image} alt={prop.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /> : <div className="grid h-full w-full place-items-center text-sm text-[#626061]">Image coming soon</div>}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
+                            {prop.image ? <button type="button" onClick={() => onSelectProperty(prop)} aria-label={"View details for " + prop.title} className="absolute inset-0 z-0 h-full w-full cursor-pointer"><img src={prop.image} alt={prop.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></button> : <div className="grid h-full w-full place-items-center text-sm text-[#626061]">Image coming soon</div>}
+                            <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
                             <span className="absolute left-4 top-4 rounded-md bg-[#8ABE4B] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#252223]">{prop.category}</span>
                             <span className={`absolute right-4 top-4 rounded-md px-3 py-1 text-[11px] font-semibold ${prop.status === 'For Sale' ? 'bg-red-600 text-white' : prop.status === 'To Let' ? 'bg-yellow-400 text-[#252223]' : 'bg-[#252223]/85 text-white'}`}>{prop.status}</span>
-                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                            <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-[2] text-white">
                               <h3 className="line-clamp-1 text-lg font-bold text-white">{prop.title}</h3>
                               <div className="mt-1 flex items-center gap-1.5 text-xs text-[#E5E9E1]"><MapPin className="h-3.5 w-3.5 shrink-0 text-[#8ABE4B]" /><span>{prop.location}</span></div>
                             </div>
@@ -169,11 +169,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             >
               {/* Image & Badges */}
               <div className="relative h-64 sm:h-72 overflow-hidden bg-[#F5F8F2]">
-                {prop.image ? <img
+                {prop.image ? <button type="button" onClick={() => onSelectProperty(prop)} aria-label={"View details for " + prop.title} className="absolute inset-0 z-0 h-full w-full cursor-pointer"><img
                   src={prop.image}
                   alt={prop.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                /> : <div className="w-full h-full grid place-items-center text-sm text-[#626061]">Image coming soon</div>}
+                /></button> : <div className="w-full h-full grid place-items-center text-sm text-[#626061]">Image coming soon</div>}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
 
                 {/* Badge */}
