@@ -53,10 +53,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            <a href="https://whatsapp.com/channel/0029VbDPr996buMKmc70fd46" target="_blank" rel="noopener noreferrer" className="mx-auto inline-flex min-h-10 w-fit items-center gap-2 rounded-lg border border-[#9BC65C]/60 px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider text-[#D6E8BD] transition-colors hover:border-[#9BC65C] hover:bg-[#9BC65C] hover:text-[#20221F]">
-              <svg viewBox="0 0 32 32" className="h-4 w-4 fill-current" aria-hidden="true"><path d="M16.02 3.2A12.65 12.65 0 0 0 5.16 22.35L3.4 28.8l6.6-1.73A12.65 12.65 0 1 0 16.02 3.2Zm0 23.02c-1.94 0-3.84-.52-5.5-1.5l-.4-.24-3.92 1.03 1.05-3.82-.26-.42a10.34 10.34 0 1 1 9.03 4.95Zm5.67-7.74c-.31-.16-1.84-.91-2.13-1.02-.29-.1-.5-.16-.71.16-.21.31-.81 1.02-.99 1.23-.18.21-.37.24-.68.08-.31-.16-1.32-.49-2.52-1.56-.93-.83-1.56-1.85-1.74-2.16-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.25-.61-.51-.53-.71-.54h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.6s1.13 3.01 1.29 3.22c.16.21 2.22 3.39 5.37 4.75.75.32 1.33.51 1.79.65.75.24 1.44.2 1.98.12.6-.09 1.84-.75 2.1-1.48.26-.73.26-1.35.18-1.48-.08-.13-.29-.21-.6-.37Z"/></svg>
-              Follow Our WhatsApp Channel
-            </a>
+
           </div>
 
           <div className="col-span-1 lg:col-span-2 space-y-4">
@@ -106,6 +103,9 @@ export const Footer: React.FC = () => {
                       <a href={contact.href} target="_blank" rel="noopener noreferrer" className="min-w-0 break-words text-white/90 transition-colors hover:text-[#B6D77D]">{contact.label}</a>
                     </div>
                   ))}
+                  <a href="https://whatsapp.com/channel/0029VbDPr996buMKmc70fd46" target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex min-h-8 w-fit items-center rounded-md bg-[#9BC65C] px-3 py-1.5 text-[9px] font-bold uppercase tracking-wide text-[#20221F] transition-colors hover:bg-[#B6D77D]">
+                    Follow Our WhatsApp Channel
+                  </a>
                 </div>
                 <div className="min-w-0">
                   <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#9BC65C]">Email</div>
