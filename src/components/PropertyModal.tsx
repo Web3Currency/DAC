@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, MapPin, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PropertyItem } from '../types';
 
@@ -14,12 +14,40 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
   onInquire,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
-  useEffect(() => { setActiveImage(0); }, [property?.id]);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const galleryImages = property?.images?.length ? property.images : property?.image ? [property.image] : [];
+
+  useEffect(() => { setActiveImage(0); setIsLightboxOpen(false); }, [property?.id]);
+
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsLightboxOpen(false);
+      if (galleryImages.length > 1 && event.key === 'ArrowLeft') setActiveImage((current) => (current - 1 + galleryImages.length) % galleryImages.length);
+      if (galleryImages.length > 1 && event.key === 'ArrowRight') setActiveImage((current) => (current + 1) % galleryImages.length);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isLightboxOpen, galleryImages.length]);
 
   if (!property) return null;
-  const galleryImages = property.images?.length ? property.images : property.image ? [property.image] : [];
   const showPrevious = () => setActiveImage((current) => (current - 1 + galleryImages.length) % galleryImages.length);
   const showNext = () => setActiveImage((current) => (current + 1) % galleryImages.length);
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null || galleryImages.length < 2) return;
+    const delta = event.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 45) delta > 0 ? showPrevious() : showNext();
+    touchStartX.current = null;
+  };
 
 
 
@@ -33,11 +61,18 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
         
         {/* Modal Hero Image */}
         <div className="relative h-[280px] sm:h-[420px] lg:h-[560px] w-full bg-gray-900 rounded-2xl overflow-hidden">
-          {galleryImages.length > 0 ? <img
-  src={galleryImages[activeImage] || galleryImages[0]}
-  alt={property.title + " — photograph " + (activeImage + 1)}
-  className="w-full h-full object-cover"
-/> : <div className="w-full h-full grid place-items-center text-sm text-white/70">Property photographs coming soon</div>}
+          {galleryImages.length > 0 ? <button
+            type="button"
+            onClick={() => setIsLightboxOpen(true)}
+            aria-label="Expand property photograph"
+            className="absolute inset-0 h-full w-full cursor-zoom-in"
+          >
+            <img
+              src={galleryImages[activeImage] || galleryImages[0]}
+              alt={property.title + " — photograph " + (activeImage + 1)}
+              className="h-full w-full object-cover"
+            />
+          </button> : <div className="w-full h-full grid place-items-center text-sm text-white/70">Property photographs coming soon</div>}
 {galleryImages.length > 1 && <>
   <button type="button" onClick={showPrevious} aria-label="Previous property photograph" className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white hover:bg-black"><ChevronLeft className="w-5 h-5" /></button>
   <button type="button" onClick={showNext} aria-label="Next property photograph" className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white hover:bg-black"><ChevronRight className="w-5 h-5" /></button>
@@ -99,6 +134,28 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
 
       </article>
       </div>
+
+      {isLightboxOpen && galleryImages.length > 0 && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={property.title + " photo gallery"}
+          className="fixed inset-0 z-[110] flex items-center justify-center bg-black/95 p-3 sm:p-6"
+          onClick={() => setIsLightboxOpen(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <button type="button" onClick={() => setIsLightboxOpen(false)} aria-label="Close photo viewer" className="absolute right-4 top-4 z-10 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/25">Close</button>
+          {galleryImages.length > 1 && (
+            <>
+              <button type="button" onClick={(event) => { event.stopPropagation(); showPrevious(); }} aria-label="Previous photograph" className="absolute left-2 sm:left-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/15 p-3 text-white transition-colors hover:bg-white/30"><ChevronLeft className="h-6 w-6" /></button>
+              <button type="button" onClick={(event) => { event.stopPropagation(); showNext(); }} aria-label="Next photograph" className="absolute right-2 sm:right-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/15 p-3 text-white transition-colors hover:bg-white/30"><ChevronRight className="h-6 w-6" /></button>
+            </>
+          )}
+          <img src={galleryImages[activeImage]} alt={property.title + " — photograph " + (activeImage + 1)} onClick={(event) => event.stopPropagation()} className="max-h-[88vh] max-w-full select-none object-contain" draggable={false} />
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-medium text-white">{activeImage + 1} / {galleryImages.length}</div>
+        </div>
+      )}
     </main>
   );
 };
