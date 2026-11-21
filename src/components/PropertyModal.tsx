@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, MapPin, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, MapPin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PropertyItem } from '../types';
 
 interface PropertyDetailPageProps {
@@ -65,7 +65,7 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
             type="button"
             onClick={() => setIsLightboxOpen(true)}
             aria-label="Expand property photograph"
-            className="absolute inset-0 h-full w-full cursor-zoom-in"
+            className="absolute inset-0 z-0 h-full w-full cursor-zoom-in"
           >
             <img
               src={galleryImages[activeImage] || galleryImages[0]}
@@ -74,20 +74,20 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
             />
           </button> : <div className="w-full h-full grid place-items-center text-sm text-white/70">Property photographs coming soon</div>}
 {galleryImages.length > 1 && <>
-  <button type="button" onClick={showPrevious} aria-label="Previous property photograph" className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white hover:bg-black"><ChevronLeft className="w-5 h-5" /></button>
-  <button type="button" onClick={showNext} aria-label="Next property photograph" className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white hover:bg-black"><ChevronRight className="w-5 h-5" /></button>
-  <div className="absolute bottom-3 right-4 rounded-full bg-black/65 px-2.5 py-1 text-[11px] text-white">{activeImage + 1} / {galleryImages.length}</div>
+  <button type="button" onClick={showPrevious} aria-label="Previous property photograph" className="absolute left-3 top-1/2 z-[3] -translate-y-1/2 p-2 rounded-full bg-black/60 text-white hover:bg-black"><ChevronLeft className="w-5 h-5" /></button>
+  <button type="button" onClick={showNext} aria-label="Next property photograph" className="absolute right-3 top-1/2 z-[3] -translate-y-1/2 p-2 rounded-full bg-black/60 text-white hover:bg-black"><ChevronRight className="w-5 h-5" /></button>
+  <div className="pointer-events-none absolute bottom-3 right-4 z-[3] rounded-full bg-black/65 px-2.5 py-1 text-[11px] text-white">{activeImage + 1} / {galleryImages.length}</div>
 </>}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#252223]/80 via-transparent to-transparent" />
           
           {/* Tag Notice in Lime Green #8ABE4B */}
-          <div className="absolute top-4 left-4">
+          <div className="pointer-events-none absolute top-4 left-4 z-[2]">
             <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#252223] bg-[#8ABE4B] rounded-md shadow-xs">
               {property.sampleTypeBadge}
             </span>
           </div>
 
-          <div className="absolute bottom-4 left-4 right-4 text-white">
+          <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-[2] text-white">
             <span className="text-xs font-bold text-[#8ABE4B] uppercase tracking-wider block mb-0.5">
               {property.category} Portfolio · {property.status}
             </span>
@@ -118,19 +118,20 @@ export const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
           {property.specs.area && <div className="flex flex-wrap items-center gap-3 border-b border-[#E5E9E1] pb-5"><span className="text-xs font-bold uppercase tracking-wider text-[#626061]">Property Area</span><span className="text-sm font-semibold text-[#252223]">{property.specs.area}</span></div>}
           <div><h4 className="text-xs font-bold uppercase tracking-wider text-[#626061] mb-2">Full Property Description</h4><div className="whitespace-pre-line text-sm leading-relaxed text-[#252223]">{property.description}</div></div>
 
-          {/* Due Diligence Stamp (no border) */}
-          <div className="flex items-start gap-3 p-3.5 rounded-xl bg-[#F5F8F2] shadow-2xs text-xs text-[#252223]">
-            <ShieldCheck className="w-4 h-4 text-[#07A757] shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-[#07A757]">Demola Adetola &amp; Co. Due Diligence Protocol:</strong> All properties handled or managed by our firm are subject to appropriate checks, including land registry searches, verification of Governor’s Consent where applicable, and physical boundary confirmation.
-            </div>
-          </div>
+
 
 
 
         </div>
 
         <div className="pb-8 pt-2"><button type="button" onClick={() => { onClose(); onInquire(property); }} className="inline-flex items-center gap-2 rounded-lg bg-[#8ABE4B] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#252223] shadow-2xs transition-colors hover:bg-[#07A757] hover:text-white"><span>Book Private Inspection / Valuation</span><ArrowRight className="h-3.5 w-3.5" /></button></div>
+
+        <section className="mx-auto max-w-5xl border-t border-[#E5E9E1] px-0 py-7 sm:py-9" aria-labelledby="due-diligence-heading">
+          <h4 id="due-diligence-heading" className="mb-2 text-sm font-bold text-[#252223]">Our Due Diligence Commitment</h4>
+          <p className="text-sm leading-7 text-[#626061]">
+            At Demola Adetola &amp; Co., we take our responsibility to clients seriously. As part of our professional service, we undertake appropriate due diligence on property instructions, which may include land registry searches, verification of title documents and Governor’s Consent where applicable, and physical inspection of property boundaries. The scope of checks is guided by the nature and circumstances of each property.
+          </p>
+        </section>
 
       </article>
       </div>
